@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class WithItemBehaviour : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public enum positions { up, right, left, down, front, back };
+
+    public positions itemPosition;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
