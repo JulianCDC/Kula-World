@@ -4,25 +4,38 @@ using UnityEngine;
 
 abstract public class Collectible : MonoBehaviour
 {
-    public enum rotationDirections { x, y, z };
-    public rotationDirections rotationDirection;
+    private float yaw;
+    private float pitch;
+    private float roll;
+
+    public enum RotationDirections { x, y, z };
+    public RotationDirections rotationDirection;
+
     abstract protected void Collected();
+
+    virtual protected void Start()
+    {
+        Quaternion angle = this.transform.rotation;
+        this.yaw = angle.eulerAngles.x;
+        this.roll = angle.eulerAngles.z;
+        this.pitch = angle.eulerAngles.y;
+    }
 
     virtual protected void Update()
     {
-        float x = 0, y = 0, z = 0;
         switch(this.rotationDirection)
         {
-            case rotationDirections.x:
-                x = 50 * Time.deltaTime;
+            case RotationDirections.x:
+                this.yaw += 50 * Time.deltaTime;
                 break;
-            case rotationDirections.y:
-                y = 50 * Time.deltaTime;
+            case RotationDirections.y:
+                this.pitch += 50 * Time.deltaTime;
                 break;
-            case rotationDirections.z:
-                z = 50 * Time.deltaTime;
+            case RotationDirections.z:
+                this.roll += 50 * Time.deltaTime;
                 break;
         }
-        transform.Rotate(x, y, z);
+
+        transform.rotation = Quaternion.Euler(yaw, pitch, roll);
     }
 }

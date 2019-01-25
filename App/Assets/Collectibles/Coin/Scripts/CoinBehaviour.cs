@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class CoinBehaviour : Collectible
 {
-    void Start()
-    {
-        
-    }
-
     override protected void Update()
     {
         base.Update();
