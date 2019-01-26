@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1259215322}
   - component: {fileID: 1259215321}
   - component: {fileID: 1259215320}
-  - component: {fileID: 6825610952759510867}
+  - component: {fileID: 7101983026139357486}
   m_Layer: 0
   m_Name: coin
   m_TagString: Untagged
@@ -78,7 +78,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &6825610952759510867
+--- !u!114 &7101983026139357486
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,7 +87,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1259215318}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 001d027add34f5440b3f689f1601182b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9762b58c5454297469345916fea24c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotationDirection: 1
+  value: 100
