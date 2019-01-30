@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bouncy : Collectible
 {
-    protected override void Collected()
+    public override void Collected()
     {
         // increase ball speed & increment jump distance by 1
     }

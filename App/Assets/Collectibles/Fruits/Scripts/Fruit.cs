@@ -7,7 +7,7 @@ public class Fruit : Collectible
     public enum fruits { apple, banana, watermelon, strawberry, pumpkin };
     public fruits type;
 
-    protected override void Collected()
+    public override void Collected()
     {
         // collect this.type in score
     }
