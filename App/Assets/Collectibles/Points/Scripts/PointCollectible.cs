@@ -6,7 +6,7 @@ public class PointCollectible : Collectible
 {
     public int value;
 
-    protected override void Collected()
+    public override void Collected()
     {
         // increment player score by value
     }

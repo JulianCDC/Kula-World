@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HourglassBehaviour : Collectible
 {
-    protected override void Collected()
+    public override void Collected()
     {
         // add time to timer
     }

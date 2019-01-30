@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-abstract public class Collectible : MonoBehaviour
+public abstract class Collectible : MonoBehaviour
 {
     private float yaw;
     private float pitch;
@@ -11,9 +11,9 @@ abstract public class Collectible : MonoBehaviour
     public enum RotationDirections { x, y, z };
     public RotationDirections rotationDirection;
 
-    abstract protected void Collected();
+    public abstract void Collected();
 
-    virtual protected void Start()
+    protected virtual void Start()
     {
         Quaternion angle = this.transform.rotation;
         this.yaw = angle.eulerAngles.x;
@@ -21,7 +21,7 @@ abstract public class Collectible : MonoBehaviour
         this.pitch = angle.eulerAngles.y;
     }
 
-    virtual protected void Update()
+    protected virtual void Update()
     {
         switch(this.rotationDirection)
         {
