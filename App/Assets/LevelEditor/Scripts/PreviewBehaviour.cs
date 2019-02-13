@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class PreviewBehaviour : MonoBehaviour
 {
-    public GameObject linkedObject;
     private EditableBlockBehaviour editableBlockScript;
+    private GameObject _LinkedObject;
+
+    public GameObject LinkedObject
+    {
+        get { return this._LinkedObject; }
+        set
+        {
+            this._LinkedObject = value;
+            this.editableBlockScript = (EditableBlockBehaviour) value.GetComponent(typeof(EditableBlockBehaviour));
+        }
+    }
 
     void Start()
     {
-        this.editableBlockScript = (EditableBlockBehaviour) this.linkedObject.GetComponent(typeof(EditableBlockBehaviour));
     }
 
     void Update()
@@ -17,9 +26,9 @@ public class PreviewBehaviour : MonoBehaviour
         
     }
 
-    void AddToScene()
+    public void AddToScene()
     {
-        Instantiate(linkedObject, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
+        Instantiate(LinkedObject, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
         this.editableBlockScript.Select();
     }
 }
