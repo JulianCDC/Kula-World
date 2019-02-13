@@ -13,13 +13,16 @@ public class ItemList : MonoBehaviour
     {
         textures = Resources.LoadAll<Texture2D>("EditorItemPreview");
 
+        int i = 0;
         foreach (Texture2D prefabTexture in textures)
         {
             Image image = Instantiate(previewTemplate, this.transform);
+            //image.rectTransform.Translate(Vector2.down * ((i * 100) + (i * 2)));
 
             Sprite imageSprite = Sprite.Create(prefabTexture, new Rect(0, 0, 128, 128), new Vector2(0, 0));
 
             image.sprite = imageSprite;
+            i += 1;
         }
     }
 
