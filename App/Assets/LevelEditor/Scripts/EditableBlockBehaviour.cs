@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EditableBlockBehaviour : MonoBehaviour
 {
@@ -16,6 +17,5 @@ public class EditableBlockBehaviour : MonoBehaviour
 
     public void Select()
     {
-        // selected in editor
     }
 }
