@@ -5,17 +5,8 @@ using UnityEngine;
 public class PreviewBehaviour : MonoBehaviour
 {
     private EditableBlockBehaviour editableBlockScript;
-    private GameObject _LinkedObject;
-
-    public GameObject LinkedObject
-    {
-        get { return this._LinkedObject; }
-        set
-        {
-            this._LinkedObject = value;
-            this.editableBlockScript = (EditableBlockBehaviour) value.GetComponent(typeof(EditableBlockBehaviour));
-        }
-    }
+    [System.NonSerialized]
+    public GameObject LinkedObject;
 
     void Start()
     {
@@ -30,6 +21,7 @@ public class PreviewBehaviour : MonoBehaviour
     {
         GameObject gameObject = Instantiate(LinkedObject, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
         gameObject.transform.parent = GameObject.Find("Map").transform;
+        this.editableBlockScript = gameObject.GetComponent<EditableBlockBehaviour>();
         this.editableBlockScript.Select();
     }
 }

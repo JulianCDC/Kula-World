@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &2912683530686105454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8425027577639769682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a10ba0c2163c84d48b473c56e5e56d03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2275967047170169098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10,7 +22,7 @@ PrefabInstance:
     - target: {fileID: 7745749394913496920, guid: 5ee0a74a20f2413438da687f1b7cc921,
         type: 3}
       propertyPath: m_Name
-      value: Block with apple
+      value: editable_Block with apple
       objectReference: {fileID: 0}
     - target: {fileID: 386979649084580689, guid: 5ee0a74a20f2413438da687f1b7cc921,
         type: 3}
@@ -67,6 +79,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2498609913284644157, guid: 5ee0a74a20f2413438da687f1b7cc921,
+        type: 3}
+      propertyPath: script
+      value: 
+      objectReference: {fileID: 765011456310909085}
     - target: {fileID: 8186301661481402816, guid: 5ee0a74a20f2413438da687f1b7cc921,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -92,20 +109,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2498609913284644157, guid: 5ee0a74a20f2413438da687f1b7cc921,
-        type: 3}
-      propertyPath: script
-      value: 
-      objectReference: {fileID: 765011456310909085}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ee0a74a20f2413438da687f1b7cc921, type: 3}
+--- !u!1 &8425027577639769682 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7745749394913496920, guid: 5ee0a74a20f2413438da687f1b7cc921,
+    type: 3}
+  m_PrefabInstance: {fileID: 2275967047170169098}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &765011456310909085 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1515468031694111127, guid: 5ee0a74a20f2413438da687f1b7cc921,
     type: 3}
   m_PrefabInstance: {fileID: 2275967047170169098}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 8425027577639769682}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: feb39eae0cb3af44aa6134176af8aaac, type: 3}

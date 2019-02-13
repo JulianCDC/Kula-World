@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &2845659016256569836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8801110485168020693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a10ba0c2163c84d48b473c56e5e56d03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4163671368465727238
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10,7 +22,7 @@ PrefabInstance:
     - target: {fileID: 4894153130699842515, guid: e1a3e5f962eee6449906dbf461ba1131,
         type: 3}
       propertyPath: m_Name
-      value: Block with hourglass
+      value: editable_Block with hourglass
       objectReference: {fileID: 0}
     - target: {fileID: 3299796772540583898, guid: e1a3e5f962eee6449906dbf461ba1131,
         type: 3}
@@ -70,7 +82,7 @@ PrefabInstance:
     - target: {fileID: 4924489405085784110, guid: e1a3e5f962eee6449906dbf461ba1131,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.38302225
+      value: -0.38302228
       objectReference: {fileID: 0}
     - target: {fileID: 4924489405085784110, guid: e1a3e5f962eee6449906dbf461ba1131,
         type: 3}
@@ -99,13 +111,19 @@ PrefabInstance:
       objectReference: {fileID: 312361870356206106}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1a3e5f962eee6449906dbf461ba1131, type: 3}
+--- !u!1 &8801110485168020693 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4894153130699842515, guid: e1a3e5f962eee6449906dbf461ba1131,
+    type: 3}
+  m_PrefabInstance: {fileID: 4163671368465727238}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &312361870356206106 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4439967023952850204, guid: e1a3e5f962eee6449906dbf461ba1131,
     type: 3}
   m_PrefabInstance: {fileID: 4163671368465727238}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 8801110485168020693}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: feb39eae0cb3af44aa6134176af8aaac, type: 3}
