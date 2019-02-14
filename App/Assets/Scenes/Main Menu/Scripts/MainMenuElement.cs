@@ -7,6 +7,6 @@ public class MainMenuElement : MonoBehaviour
     // list actions here
     public void LoadScene()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("ExempleScene");
+        // load a scene
     }
 }
