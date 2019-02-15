@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraControls : MonoBehaviour
+public class EditorActions : MonoBehaviour
 {
     public Transform FovTransform;
+    private GameObject selectedBlock;
+    private EditableBlockBehaviour selectedBlockBehaviour;
 
     void Start()
     {
@@ -13,6 +15,60 @@ public class CameraControls : MonoBehaviour
     }
 
     void Update()
+    {
+        CameraControls();
+        SelectBlockListener();
+    }
+
+    private void SelectBlockListener()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            RaycastHit hit = new RaycastHit();
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                GameObject hitObject = hit.collider.gameObject;
+                EditableBlockBehaviour hitObjectBehaviour = hitObject.GetComponent<EditableBlockBehaviour>();
+
+                if (hitObjectBehaviour != null)
+                {
+                    if (hitObject != this.selectedBlock)
+                    {
+                        if (this.selectedBlockBehaviour != null)
+                        {
+                            this.selectedBlockBehaviour.UnSelect();
+                        }
+                        this.selectedBlock = hitObject;
+                        this.selectedBlockBehaviour = hitObjectBehaviour;
+
+                        hitObjectBehaviour.Select();
+                    }
+                }
+                else
+                {
+                    clearSelectedObject();
+                }
+            }
+            else
+            {
+                clearSelectedObject();
+            }
+        }
+    }
+
+    private void clearSelectedObject()
+    {
+        if (this.selectedBlockBehaviour != null)
+        {
+            this.selectedBlockBehaviour.UnSelect();
+        }
+        this.selectedBlock = null;
+        this.selectedBlockBehaviour = null;
+    }
+
+    private void CameraControls()
     {
         float xMovement = Input.GetAxis("Mouse X");
         float yMovement = Input.GetAxis("Mouse Y");

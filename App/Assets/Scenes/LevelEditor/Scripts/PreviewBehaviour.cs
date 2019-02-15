@@ -21,7 +21,5 @@ public class PreviewBehaviour : MonoBehaviour
     {
         GameObject gameObject = Instantiate(LinkedObject, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
         gameObject.transform.parent = GameObject.Find("Map").transform;
-        this.editableBlockScript = gameObject.GetComponent<EditableBlockBehaviour>();
-        this.editableBlockScript.Select();
     }
 }

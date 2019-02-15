@@ -14,28 +14,7 @@ public class EditableBlockBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            RaycastHit hit = new RaycastHit();
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.collider.gameObject == this.gameObject && !this.selected)
-                {
-                    Select();
-                }
-
-                if (this.selected && hit.collider.gameObject != this.gameObject)
-                {
-                    UnSelect();
-                }
-            }
-            else
-            {
-                UnSelect();
-            }
-        }
+        
     }
 
     public void Select()
