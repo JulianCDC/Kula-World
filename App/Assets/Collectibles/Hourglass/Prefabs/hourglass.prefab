@@ -319,6 +319,7 @@ GameObject:
   - component: {fileID: 3701146732164363439}
   - component: {fileID: 3874508992893445100}
   - component: {fileID: 2136364582376899583}
+  - component: {fileID: 7777334480322986033}
   m_Layer: 0
   m_Name: hourglass
   m_TagString: Untagged
@@ -379,6 +380,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationDirection: 1
+--- !u!65 &7777334480322986033
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6877090313419604194}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 5, z: 8}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7624083562687024176
 GameObject:
   m_ObjectHideFlags: 0
