@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3882770309908941274}
   - component: {fileID: 3347434861342796819}
   - component: {fileID: 4632260605061317092}
+  - component: {fileID: 2110837164278710888}
   m_Layer: 0
   m_Name: gem
   m_TagString: Untagged
@@ -92,3 +93,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationDirection: 1
   value: 500
+--- !u!64 &2110837164278710888
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7219203811454827331}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 5e3ac78bc8e3d0e498964d9ebd58d2fd, type: 3}

@@ -41,6 +41,13 @@ ModelImporter:
     4300008: Cylinder019
     4300010: Cylinder020
     4300012: Cylinder011
+    6400000: Cylinder011
+    6400002: Cylinder012
+    6400004: Cylinder013
+    6400006: Cylinder017
+    6400008: Cylinder018
+    6400010: Cylinder019
+    6400012: Cylinder020
     7400000: Take 001
     9500000: //RootNode
   externalObjects: {}
@@ -76,7 +83,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
