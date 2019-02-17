@@ -30,9 +30,4 @@ public class ItemList : MonoBehaviour
             i += 1;
         }
     }
-
-    void Update()
-    {
-        
-    }
 }

@@ -23,7 +23,7 @@ public class ArrowBehaviour : MonoBehaviour
         {
             _direction = value;
 
-            Vector3 position = new Vector3();
+            Vector3 position = this.gameObject.transform.position;
             Quaternion rotation = new Quaternion();
 
             const float distanceFromOrigin = 1.4f;
@@ -31,27 +31,27 @@ public class ArrowBehaviour : MonoBehaviour
             switch (value)
             {
                 case Direction.up:
-                    position = new Vector3(0, distanceFromOrigin, 0);
+                    position += Vector3.up * distanceFromOrigin;
                     rotation = Quaternion.Euler(0, 90, 90);
                     break;
                 case Direction.down:
-                    position = new Vector3(0, -distanceFromOrigin, 0);
+                    position += Vector3.down * distanceFromOrigin;
                     rotation = Quaternion.Euler(0, 90, -90);
                     break;
                 case Direction.right:
-                    position = new Vector3(distanceFromOrigin, 0, 0);
+                    position += Vector3.right * distanceFromOrigin;
                     rotation = Quaternion.Euler(90, 0, 0);
                     break;
                 case Direction.left:
-                    position = new Vector3(-distanceFromOrigin, 0, 0);
+                    position += Vector3.left * distanceFromOrigin;
                     rotation = Quaternion.Euler(90, 0, 180);
                     break;
                 case Direction.front:
-                    position = new Vector3(0, 0, -distanceFromOrigin);
+                    position += Vector3.back * distanceFromOrigin;
                     rotation = Quaternion.Euler(90, 90, 0);
                     break;
                 case Direction.back:
-                    position = new Vector3(0, 0, distanceFromOrigin);
+                    position += Vector3.forward * distanceFromOrigin;
                     rotation = Quaternion.Euler(90, -90, 0);
                     break;
             }
