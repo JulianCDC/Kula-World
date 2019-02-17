@@ -9,15 +9,11 @@ public class EditorActions : MonoBehaviour
     private GameObject selectedBlock;
     private EditableBlockBehaviour selectedBlockBehaviour;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         CameraControls();
         SelectBlockListener();
+        DeleteBlockListener();
     }
 
     private void SelectBlockListener()
@@ -48,17 +44,17 @@ public class EditorActions : MonoBehaviour
                 }
                 else
                 {
-                    clearSelectedObject();
+                    ClearSelectedObject();
                 }
             }
             else
             {
-                clearSelectedObject();
+                ClearSelectedObject();
             }
         }
     }
 
-    private void clearSelectedObject()
+    private void ClearSelectedObject()
     {
         if (this.selectedBlockBehaviour != null)
         {
@@ -66,6 +62,15 @@ public class EditorActions : MonoBehaviour
         }
         this.selectedBlock = null;
         this.selectedBlockBehaviour = null;
+    }
+
+    private void DeleteBlockListener()
+    {
+        if (Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Delete))
+        {
+            Destroy(this.selectedBlock);
+            ClearSelectedObject();
+        }
     }
 
     private void CameraControls()
@@ -115,7 +120,7 @@ public class EditorActions : MonoBehaviour
     private void MoveCamera(int direction, float value)
     {
         Vector3 translation = new Vector3();
-        float sensibilityChanger = 1.62f;
+        const float sensibilityChanger = 1.62f;
 
         switch (direction)
         {
