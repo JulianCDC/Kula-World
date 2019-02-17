@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EditorActions : MonoBehaviour
 {
-    public Transform FovTransform;
+    public Transform fovTransform;
     private GameObject selectedBlock;
     private EditableBlockBehaviour selectedBlockBehaviour;
 
@@ -115,22 +115,23 @@ public class EditorActions : MonoBehaviour
     private void MoveCamera(int direction, float value)
     {
         Vector3 translation = new Vector3();
+        float sensibilityChanger = 1.62f;
 
         switch (direction)
         {
             case 0:
-                translation = new Vector3(value, 0);
+                translation = new Vector3(value / sensibilityChanger, 0);
                 break;
             case 1:
-                translation = new Vector3(0, value);
+                translation = new Vector3(0, value / sensibilityChanger);
                 break;
             case 2:
-                translation = new Vector3(0, 0, value);
+                translation = new Vector3(0, 0, value / sensibilityChanger);
                 break;
         }
 
 
-        this.FovTransform.Translate(translation);
+        this.fovTransform.Translate(translation);
     }
 
     private void PivotCamera(int direction, float value)
@@ -149,6 +150,6 @@ public class EditorActions : MonoBehaviour
         }
 
 
-        this.FovTransform.Rotate(rotation);
+        this.fovTransform.Rotate(rotation);
     }
 }
