@@ -12,11 +12,11 @@ public class EditorActions : MonoBehaviour
     void Update()
     {
         CameraControls();
-        SelectBlockListener();
+        SelectListener();
         DeleteBlockListener();
     }
 
-    private void SelectBlockListener()
+    private void SelectListener()
     {
         if (Input.GetButtonDown("Fire1"))
         {
@@ -27,8 +27,20 @@ public class EditorActions : MonoBehaviour
             {
                 GameObject hitObject = hit.collider.gameObject;
                 EditableBlockBehaviour hitObjectBehaviour = hitObject.GetComponent<EditableBlockBehaviour>();
+                ArrowBehaviour hitArrowBehaviour = hitObject.GetComponent<ArrowBehaviour>();
+                bool isBlock = false;
+                bool isArrow = false;
 
                 if (hitObjectBehaviour != null)
+                {
+                    isBlock = true;
+                }
+                else if (hitArrowBehaviour != null)
+                {
+                    isArrow = true;
+                }
+
+                if (isBlock)
                 {
                     if (hitObject != this.selectedBlock)
                     {
@@ -41,6 +53,10 @@ public class EditorActions : MonoBehaviour
 
                         hitObjectBehaviour.Select();
                     }
+                }
+                else if (isArrow)
+                {
+                   hitObjectBehaviour.Move(hitArrowBehaviour.direction);
                 }
                 else
                 {

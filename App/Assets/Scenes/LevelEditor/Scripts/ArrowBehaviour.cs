@@ -31,8 +31,12 @@ public class ArrowBehaviour : MonoBehaviour
             switch (value)
             {
                 case Direction.up:
+                    position = new Vector3(0, distanceFromOrigin, 0);
+                    rotation = Quaternion.Euler(0, 90, 90);
                     break;
                 case Direction.down:
+                    position = new Vector3(0, -distanceFromOrigin, 0);
+                    rotation = Quaternion.Euler(0, 90, -90);
                     break;
                 case Direction.right:
                     position = new Vector3(distanceFromOrigin, 0, 0);
@@ -56,4 +60,7 @@ public class ArrowBehaviour : MonoBehaviour
             this.gameObject.transform.rotation = rotation;
         }
     }
+
+    [NonSerialized]
+    public GameObject linkedObject;
 }
