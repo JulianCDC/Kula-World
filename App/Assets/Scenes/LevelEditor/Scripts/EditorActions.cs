@@ -56,7 +56,7 @@ public class EditorActions : MonoBehaviour
                 }
                 else if (isArrow)
                 {
-                   hitObjectBehaviour.Move(hitArrowBehaviour.direction);
+                   this.selectedBlockBehaviour.Move(hitArrowBehaviour.direction);
                 }
                 else
                 {

@@ -53,6 +53,30 @@ public class EditableBlockBehaviour : MonoBehaviour
 
     public void Move(ArrowBehaviour.Direction direction)
     {
+        Vector3 movement = Vector3.zero;
 
+        switch (direction)
+        {
+            case ArrowBehaviour.Direction.up:
+                movement = Vector3.up;
+                break;
+            case ArrowBehaviour.Direction.down:
+                movement = Vector3.down;
+                break;
+            case ArrowBehaviour.Direction.right:
+                movement = Vector3.right;
+                break;
+            case ArrowBehaviour.Direction.left:
+                movement = Vector3.left;
+                break;
+            case ArrowBehaviour.Direction.front:
+                movement = Vector3.back;
+                break;
+            case ArrowBehaviour.Direction.back:
+                movement = Vector3.forward;
+                break;
+        }
+
+        this.gameObject.transform.position = this.gameObject.transform.position + movement;
     }
 }
