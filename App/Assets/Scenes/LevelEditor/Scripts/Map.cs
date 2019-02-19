@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
+using UnityEngine;
 
 [XmlRoot("Map")]
 public class Map
@@ -49,14 +50,12 @@ public class Map
 
         mapInstance.Blocks.Add(blockXml);
         currentBlockId += 1;
-        WriteToTempLocation();
         return true;
     }
 
     public static bool DeleteBlock(XmlProperties blockXml)
     {
         mapInstance.Blocks.Remove(blockXml);
-        WriteToTempLocation();
         return true;
     }
 
@@ -77,7 +76,6 @@ public class Map
 
         mapInstance.Blocks.Add(blockToModify);
 
-        WriteToTempLocation();
         return true;
     }
 
@@ -95,9 +93,9 @@ public class Map
                 return false;
             }
 
-            if (property.hasItem)
+            if (blockXml.hasItem)
             {
-                
+                // TODO : check if item doesn't collide with block (preferably in another method)
             }
         }
 
@@ -112,7 +110,15 @@ public class Map
     public static void WriteToTempLocation()
     {
         var serializer = new XmlSerializer(typeof(Map));
-        var stream = new FileStream("./temp.map", FileMode.Create);
+        var stream = new FileStream(Application.temporaryCachePath + "/temp.map", FileMode.Create);
+        serializer.Serialize(stream, mapInstance);
+        stream.Close();
+    }
+
+    public static void WriteToLocation(string fileName)
+    {
+        XmlSerializer serializer = new XmlSerializer(typeof(Map));
+        FileStream stream = new FileStream(Application.persistentDataPath + "/maps/customs/" + fileName, FileMode.Create);
         serializer.Serialize(stream, mapInstance);
         stream.Close();
     }

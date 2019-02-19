@@ -746,9 +746,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52126c33e185cc4799eb0516246656a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionType: 0
-  actionScene:
-    m_Handle: 0
+  actionType: 1
+  actionSceneId: 0
   actionFunction:
     m_PersistentCalls:
       m_Calls: []
@@ -843,6 +842,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Save
+      objectReference: {fileID: 0}
+    - target: {fileID: 4316637653454451235, guid: 8d68261323f8ad644a6635dc5f08fa90,
+        type: 3}
+      propertyPath: actionType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2132232732704715699, guid: 8d68261323f8ad644a6635dc5f08fa90,
         type: 3}
@@ -1215,6 +1219,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Exit
+      objectReference: {fileID: 0}
+    - target: {fileID: 4316637653454451235, guid: 8d68261323f8ad644a6635dc5f08fa90,
+        type: 3}
+      propertyPath: actionType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4316637653454451235, guid: 8d68261323f8ad644a6635dc5f08fa90,
+        type: 3}
+      propertyPath: actionScene.m_Handle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4316637653454451235, guid: 8d68261323f8ad644a6635dc5f08fa90,
+        type: 3}
+      propertyPath: actionSceneId
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2132232732704715699, guid: 8d68261323f8ad644a6635dc5f08fa90,
         type: 3}
@@ -2227,8 +2246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionType: 0
-  actionScene:
-    m_Handle: 0
+  actionSceneId: 0
   actionFunction:
     m_PersistentCalls:
       m_Calls: []

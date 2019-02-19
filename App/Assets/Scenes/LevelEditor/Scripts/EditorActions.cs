@@ -9,6 +9,11 @@ public class EditorActions : MonoBehaviour
     private GameObject selectedBlock;
     private EditableBlockBehaviour selectedBlockBehaviour;
 
+    private void Start()
+    {
+        Map.mapInstance = new Map();
+    }
+
     void Update()
     {
         CameraControls();

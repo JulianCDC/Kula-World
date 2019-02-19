@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="Windows-1252"?>
-<Map xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Blocks>
-    <Block id="1" has_item="true" type="Block with apple" x="1" y="0" z="0" item_position="up" />
-    <Block id="2" has_item="true" type="Block with bouncy pill" x="-2" y="0" z="0" item_position="up" />
-    <Block id="3" has_item="true" type="Block with bouncy pill" x="0" y="1" z="-1" item_position="up" />
-  </Blocks>
-</Map>

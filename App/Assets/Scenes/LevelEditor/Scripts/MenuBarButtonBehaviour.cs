@@ -6,25 +6,15 @@ public class MenuBarButtonBehaviour : MonoBehaviour
 {
     public enum Type { action, scene };
     public Type actionType;
-    public UnityEngine.SceneManagement.Scene actionScene;
+    public int actionSceneId;
     public UnityEngine.Events.UnityEvent actionFunction;
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 
     public void ExecuteAction()
     {
         switch (actionType)
         {
             case Type.scene:
-                UnityEngine.SceneManagement.SceneManager.LoadScene(actionScene.buildIndex);
+                UnityEngine.SceneManagement.SceneManager.LoadScene(actionSceneId);
                 break;
             case Type.action:
                 actionFunction.Invoke();
