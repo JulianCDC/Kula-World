@@ -81,14 +81,27 @@ public class Map
 
     public bool CheckIfMoveIsPossible(int id, float newXPos, float newYPos, float newZPos)
     {
+        XmlProperties blockToCheck = mapInstance.Blocks.Find(x => x.id == id);
+        
+        foreach (XmlProperties blockProperty in this.Blocks)
+        {
+            if (blockProperty.id != id)
+            {
+                if (newXPos == blockProperty.xPos && newYPos == blockProperty.yPos && newZPos == blockProperty.zPos)
+                {
+                    return false;
+                }
+            }
+        }
+
         return true;
     }
 
     public bool CheckIfAddIsPossible(XmlProperties blockXml)
     {
-        foreach (XmlProperties property in this.Blocks)
+        foreach (XmlProperties blockProperty in this.Blocks)
         {
-            if (property.xPos == blockXml.xPos && property.yPos == blockXml.yPos && property.zPos == blockXml.zPos)
+            if (blockProperty.xPos == blockXml.xPos && blockProperty.yPos == blockXml.yPos && blockProperty.zPos == blockXml.zPos)
             {
                 return false;
             }
