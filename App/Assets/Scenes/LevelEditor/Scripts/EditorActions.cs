@@ -84,6 +84,7 @@ public class EditorActions : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Delete))
         {
+            Map.DeleteBlock(this.selectedBlockBehaviour.xmlProperties);
             Destroy(this.selectedBlock);
             ClearSelectedObject();
         }
@@ -147,7 +148,7 @@ public class EditorActions : MonoBehaviour
                 translation = new Vector3(0, value / sensibilityChanger);
                 break;
             case 2:
-                translation = new Vector3(0, 0, value / sensibilityChanger);
+                translation = new Vector3(0, 0, value);
                 break;
         }
 

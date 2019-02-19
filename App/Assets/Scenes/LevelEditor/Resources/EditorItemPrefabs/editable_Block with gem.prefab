@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a10ba0c2163c84d48b473c56e5e56d03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xmlProperties:
+    hasItem: 1
 --- !u!1001 &5649780259484863243
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24,6 +26,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: editable_Block with gem
       objectReference: {fileID: 0}
+    - target: {fileID: 992695804288814157, guid: dae077a9447c81642a3b35ebd664b6ea,
+        type: 3}
+      propertyPath: script
+      value: 
+      objectReference: {fileID: 8361514325591231468}
     - target: {fileID: 3041275660493644321, guid: dae077a9447c81642a3b35ebd664b6ea,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -99,11 +106,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 992695804288814157, guid: dae077a9447c81642a3b35ebd664b6ea,
-        type: 3}
-      propertyPath: script
-      value: 
-      objectReference: {fileID: 8361514325591231468}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dae077a9447c81642a3b35ebd664b6ea, type: 3}
 --- !u!1 &755611698742035747 stripped

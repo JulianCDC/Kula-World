@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a10ba0c2163c84d48b473c56e5e56d03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xmlProperties:
+    hasItem: 1
 --- !u!1001 &3091334388808624064
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24,6 +26,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: editable_Block with watermelon
       objectReference: {fileID: 0}
+    - target: {fileID: 8477613335066815662, guid: 6e96b2c00cbc6934ab1d9c616ec7b13f,
+        type: 3}
+      propertyPath: script
+      value: 
+      objectReference: {fileID: 7558436593504733124}
     - target: {fileID: 5932511624104608450, guid: 6e96b2c00cbc6934ab1d9c616ec7b13f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -94,11 +101,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8477613335066815662, guid: 6e96b2c00cbc6934ab1d9c616ec7b13f,
-        type: 3}
-      propertyPath: script
-      value: 
-      objectReference: {fileID: 7558436593504733124}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e96b2c00cbc6934ab1d9c616ec7b13f, type: 3}
 --- !u!1 &1626536298925476107 stripped

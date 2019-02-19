@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a10ba0c2163c84d48b473c56e5e56d03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xmlProperties:
+    hasItem: 1
 --- !u!1001 &7506700129828204111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79,6 +81,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 580768147165274354, guid: ddfd4567ea7aa0c4d93a61991fdf462c,
+        type: 3}
+      propertyPath: script
+      value: 
+      objectReference: {fileID: 6306926431085740567}
     - target: {fileID: 630104272175393387, guid: ddfd4567ea7aa0c4d93a61991fdf462c,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -94,11 +101,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 580768147165274354, guid: ddfd4567ea7aa0c4d93a61991fdf462c,
-        type: 3}
-      propertyPath: script
-      value: 
-      objectReference: {fileID: 6306926431085740567}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddfd4567ea7aa0c4d93a61991fdf462c, type: 3}
 --- !u!1 &3022157243059653848 stripped

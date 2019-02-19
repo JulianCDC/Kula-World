@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WithItemBehaviour : MonoBehaviour
 {
-    public enum Positions { up, right, left, down, front, back };
+    public enum Positions { up, right, left, down, front, back, none };
 
     public Positions itemPosition;
     private GameObject childCollectible;

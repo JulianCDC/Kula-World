@@ -8,15 +8,6 @@ public class PreviewBehaviour : MonoBehaviour
     [System.NonSerialized]
     public GameObject LinkedObject;
 
-    void Start()
-    {
-    }
-
-    void Update()
-    {
-        
-    }
-
     public void AddToScene()
     {
         GameObject gameObject = Instantiate(LinkedObject, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));

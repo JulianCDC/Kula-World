@@ -1,21 +1,49 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class EditableBlockBehaviour : MonoBehaviour
 {
+    public Map.XmlProperties xmlProperties;
+
     private ArrowBehaviour[] arrows = new ArrowBehaviour[6];
 
     void Start()
-    {
-        
-    }
+    {        
+        this.xmlProperties.objectType = this.gameObject.name.Replace("editable_", "").Replace("(Clone)", "");
+        this.xmlProperties.id = Map.currentBlockId;
 
-    void Update()
-    {
-        
+        WithItemBehaviour withItemBehaviour = this.gameObject.GetComponent<WithItemBehaviour>();
+        Fruit fruitBehaviour = this.gameObject.GetComponentInChildren<Fruit>();
+        bool isBlockWithItem = withItemBehaviour != null;
+        bool isBlockWithFruit = fruitBehaviour != null;
+
+        if (isBlockWithItem)
+        {
+            this.xmlProperties.itemPosition = withItemBehaviour.itemPosition;
+        }
+        else
+        {
+            this.xmlProperties.itemPosition = WithItemBehaviour.Positions.none;
+        }
+
+        if (isBlockWithFruit)
+        {
+            this.xmlProperties.fruit = fruitBehaviour.type;
+        }
+        else
+        {
+            this.xmlProperties.fruit = Fruit.fruits.none;
+        }
+
+        if (!Map.AddBlock(this.xmlProperties))
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     public void Select()
@@ -77,6 +105,11 @@ public class EditableBlockBehaviour : MonoBehaviour
                 break;
         }
 
-        this.gameObject.transform.position = this.gameObject.transform.position + movement;
+        Vector3 newPosition = this.gameObject.transform.position + movement;
+
+        if (Map.MoveItem(this.xmlProperties.id, newPosition.x, newPosition.y, newPosition.z))
+        {
+            this.gameObject.transform.position = this.gameObject.transform.position + movement;
+        }
     }
 }

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a10ba0c2163c84d48b473c56e5e56d03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xmlProperties:
+    hasItem: 1
 --- !u!1001 &5222952222292961188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24,6 +26,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: editable_Block with key
       objectReference: {fileID: 0}
+    - target: {fileID: 5605996720845326317, guid: 15db7f88e212ffc489b3676b3f8879c2,
+        type: 3}
+      propertyPath: script
+      value: 
+      objectReference: {fileID: 3608501850550643939}
     - target: {fileID: 7655710186247137665, guid: 15db7f88e212ffc489b3676b3f8879c2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -104,11 +111,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5605996720845326317, guid: 15db7f88e212ffc489b3676b3f8879c2,
-        type: 3}
-      propertyPath: script
-      value: 
-      objectReference: {fileID: 3608501850550643939}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15db7f88e212ffc489b3676b3f8879c2, type: 3}
 --- !u!1 &5504966081560420908 stripped
