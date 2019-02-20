@@ -7,38 +7,22 @@ using UnityEngine;
 [XmlRoot("Map")]
 public class Map
 {
-    [Serializable]
-    public struct XmlProperties
-    {
-        [XmlAttribute("id"), NonSerialized] public int id;
-        [XmlAttribute("has_item")] public bool hasItem;
-        [XmlAttribute("type"), NonSerialized] public string objectType;
-        [XmlAttribute("x"), NonSerialized] public float xPos;
-        [XmlAttribute("y"), NonSerialized] public float yPos;
-        [XmlAttribute("z"), NonSerialized] public float zPos;
-
-        [XmlAttribute("item_position"), NonSerialized]
-        public WithItemBehaviour.Positions itemPosition;
-
-        [XmlIgnore, NonSerialized] public Fruit.fruits fruit;
-    }
-
     [XmlArray("Blocks"), XmlArrayItem("Block")]
-    public List<XmlProperties> Blocks = new List<XmlProperties>();
+    public List<XmlBlock> blocks = new List<XmlBlock>();
 
     [XmlIgnore] public bool[] hasFruit = new bool[Enum.GetNames(typeof(Fruit.fruits)).Length];
 
     public static Map mapInstance = new Map();
     public static int currentBlockId = 1;
-    
+
     public Map()
     {
         hasFruit[hasFruit.Length - 1] = false; // Fruit.fruits.none always false
     }
 
-    public static bool AddBlock(XmlProperties blockXml)
+    public static bool AddBlock(XmlBlock blockXml) // TODO : clean
     {
-        if (!mapInstance.CheckIfAddIsPossible(blockXml))
+        if (!mapInstance.IsAddPossible(blockXml))
         {
             return false;
         }
@@ -48,60 +32,54 @@ public class Map
             mapInstance.hasFruit[(int) blockXml.fruit] = true;
         }
 
-        mapInstance.Blocks.Add(blockXml);
+        mapInstance.blocks.Add(blockXml);
         currentBlockId += 1;
         return true;
     }
 
-    public static bool DeleteBlock(XmlProperties blockXml)
+    public static bool DeleteBlock(XmlBlock blockXml)
     {
-        mapInstance.Blocks.Remove(blockXml);
+        mapInstance.blocks.Remove(blockXml);
         return true;
     }
 
-    public static bool MoveItem(int id, float newXPos, float newYPos, float newZPos)
+    public static void MoveBlockTo(EditableBlockBehaviour blockToMoveBehaviour, Vector3 newPosition)
     {
-        if (!mapInstance.CheckIfMoveIsPossible(id, newXPos, newYPos, newZPos))
+        if (mapInstance.CanBlockMoveTo(newPosition))
         {
-            return false;
+            blockToMoveBehaviour.transform.position = newPosition;
+
+            XmlBlock blockToModify =
+                mapInstance.blocks.Find(properties => properties == blockToMoveBehaviour.xmlBlock);
+
+            mapInstance.blocks.Remove(blockToModify);
+
+            blockToModify.xPos = newPosition.x;
+            blockToModify.yPos = newPosition.y;
+            blockToModify.zPos = newPosition.z;
+
+            mapInstance.blocks.Add(blockToModify);
         }
-
-        XmlProperties blockToModify = mapInstance.Blocks.Find(x => x.id == id);
-
-        mapInstance.Blocks.Remove(blockToModify);
-
-        blockToModify.xPos = newXPos;
-        blockToModify.yPos = newYPos;
-        blockToModify.zPos = newZPos;
-
-        mapInstance.Blocks.Add(blockToModify);
-
-        return true;
     }
 
-    public bool CheckIfMoveIsPossible(int id, float newXPos, float newYPos, float newZPos)
+    public bool CanBlockMoveTo(Vector3 newPosition)
     {
-        XmlProperties blockToCheck = mapInstance.Blocks.Find(x => x.id == id);
-        
-        foreach (XmlProperties blockProperty in this.Blocks)
+        foreach (XmlBlock blockProperty in this.blocks)
         {
-            if (blockProperty.id != id)
+            if (newPosition == blockProperty.position)
             {
-                if (newXPos == blockProperty.xPos && newYPos == blockProperty.yPos && newZPos == blockProperty.zPos)
-                {
-                    return false;
-                }
+                return false;
             }
         }
 
         return true;
     }
 
-    public bool CheckIfAddIsPossible(XmlProperties blockXml)
+    public bool IsAddPossible(XmlBlock blockXml)
     {
-        foreach (XmlProperties blockProperty in this.Blocks)
+        foreach (XmlBlock blockProperty in this.blocks)
         {
-            if (blockProperty.xPos == blockXml.xPos && blockProperty.yPos == blockXml.yPos && blockProperty.zPos == blockXml.zPos)
+            if (blockProperty.position == blockXml.position)
             {
                 return false;
             }
@@ -131,7 +109,8 @@ public class Map
     public static void WriteToLocation(string fileName)
     {
         XmlSerializer serializer = new XmlSerializer(typeof(Map));
-        FileStream stream = new FileStream(Application.persistentDataPath + "/maps/customs/" + fileName, FileMode.Create);
+        FileStream stream =
+            new FileStream(Application.persistentDataPath + "/maps/customs/" + fileName + ".map", FileMode.Create);
         serializer.Serialize(stream, mapInstance);
         stream.Close();
     }

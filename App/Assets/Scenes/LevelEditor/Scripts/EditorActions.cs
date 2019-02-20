@@ -89,7 +89,7 @@ public class EditorActions : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Delete))
         {
-            Map.DeleteBlock(this.selectedBlockBehaviour.xmlProperties);
+            Map.DeleteBlock(this.selectedBlockBehaviour.xmlBlock);
             Destroy(this.selectedBlock);
             ClearSelectedObject();
         }

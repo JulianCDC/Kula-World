@@ -8,14 +8,14 @@ using UnityEngine.UI;
 
 public class EditableBlockBehaviour : MonoBehaviour
 {
-    public Map.XmlProperties xmlProperties;
+    public XmlBlock xmlBlock;
 
     private ArrowBehaviour[] arrows = new ArrowBehaviour[6];
 
     void Start()
     {        
-        this.xmlProperties.objectType = this.gameObject.name.Replace("editable_", "").Replace("(Clone)", "");
-        this.xmlProperties.id = Map.currentBlockId;
+        this.xmlBlock.objectType = this.gameObject.name.Replace("editable_", "").Replace("(Clone)", "");
+        this.xmlBlock.id = Map.currentBlockId;
 
         WithItemBehaviour withItemBehaviour = this.gameObject.GetComponent<WithItemBehaviour>();
         Fruit fruitBehaviour = this.gameObject.GetComponentInChildren<Fruit>();
@@ -24,23 +24,23 @@ public class EditableBlockBehaviour : MonoBehaviour
 
         if (isBlockWithItem)
         {
-            this.xmlProperties.itemPosition = withItemBehaviour.itemPosition;
+            this.xmlBlock.itemPosition = withItemBehaviour.itemPosition;
         }
         else
         {
-            this.xmlProperties.itemPosition = WithItemBehaviour.Positions.none;
+            this.xmlBlock.itemPosition = WithItemBehaviour.Positions.none;
         }
 
         if (isBlockWithFruit)
         {
-            this.xmlProperties.fruit = fruitBehaviour.type;
+            this.xmlBlock.fruit = fruitBehaviour.type;
         }
         else
         {
-            this.xmlProperties.fruit = Fruit.fruits.none;
+            this.xmlBlock.fruit = Fruit.fruits.none;
         }
 
-        if (!Map.AddBlock(this.xmlProperties))
+        if (!Map.AddBlock(this.xmlBlock))
         {
             Destroy(this.gameObject);
         }
@@ -107,9 +107,6 @@ public class EditableBlockBehaviour : MonoBehaviour
 
         Vector3 newPosition = this.gameObject.transform.position + movement;
 
-        if (Map.MoveItem(this.xmlProperties.id, newPosition.x, newPosition.y, newPosition.z))
-        {
-            this.gameObject.transform.position = this.gameObject.transform.position + movement;
-        }
+        Map.MoveBlockTo(this, newPosition);
     }
 }
