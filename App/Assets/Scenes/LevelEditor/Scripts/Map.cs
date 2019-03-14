@@ -107,10 +107,16 @@ public class Map
     }
 
     public static void WriteToLocation(string fileName)
-    {
+    {   
         XmlSerializer serializer = new XmlSerializer(typeof(Map));
-        FileStream stream =
-            new FileStream(Application.persistentDataPath + "/maps/customs/" + fileName + ".map", FileMode.Create);
+
+        string mapDirectoryPath = Application.persistentDataPath + "/maps/customs/";
+        System.IO.Directory.CreateDirectory(mapDirectoryPath);
+
+        string filePath =
+            Helpers.GetAvailableFilePath(mapDirectoryPath + fileName + ".map");
+
+        FileStream stream = new FileStream(filePath, FileMode.Create);
         serializer.Serialize(stream, mapInstance);
         stream.Close();
     }

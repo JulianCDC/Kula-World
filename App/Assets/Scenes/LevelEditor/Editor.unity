@@ -753,6 +753,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  rootCanvas: {fileID: 1659419393}
 --- !u!114 &771914176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -845,8 +846,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4316637653454451235, guid: 8d68261323f8ad644a6635dc5f08fa90,
         type: 3}
+      propertyPath: actionFunction.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4316637653454451235, guid: 8d68261323f8ad644a6635dc5f08fa90,
+        type: 3}
       propertyPath: actionType
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4316637653454451235, guid: 8d68261323f8ad644a6635dc5f08fa90,
+        type: 3}
+      propertyPath: actionFunction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PromptForSave
+      objectReference: {fileID: 0}
+    - target: {fileID: 4316637653454451235, guid: 8d68261323f8ad644a6635dc5f08fa90,
+        type: 3}
+      propertyPath: actionFunction.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2132232732704715699, guid: 8d68261323f8ad644a6635dc5f08fa90,
         type: 3}
@@ -2249,9 +2265,21 @@ MonoBehaviour:
   actionSceneId: 0
   actionFunction:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2137872931}
+        m_MethodName: PromptForSave
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  rootCanvas: {fileID: 1659419393}
 --- !u!114 &2137872932
 MonoBehaviour:
   m_ObjectHideFlags: 0
