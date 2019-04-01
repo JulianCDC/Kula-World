@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['maintexture',['mainTexture',['../class_t_m_pro_1_1_t_m_p___sub_mesh_u_i.html#a455c7c479e81a37c0de77570b4bf3578',1,'TMPro::TMP_SubMeshUI']]],
+  ['major',['Major',['../class_semver_1_1_sem_version.html#a11294c417e3952d0429cbc7e398d0d49',1,'Semver::SemVersion']]],
+  ['mappinguvlineoffset',['mappingUvLineOffset',['../class_t_m_pro_1_1_t_m_p___text.html#a09c20ff5fa1b5a03b0c9d996449668da',1,'TMPro::TMP_Text']]],
+  ['margin',['margin',['../class_t_m_pro_1_1_t_m_p___text.html#a4b5ff3199be4781bc7b033d780bfb547',1,'TMPro::TMP_Text']]],
+  ['maskoffset',['maskOffset',['../class_t_m_pro_1_1_text_mesh_pro_u_g_u_i.html#aa3493316f1488b2f92d0f7edb56b1c56',1,'TMPro::TextMeshProUGUI']]],
+  ['masktype',['maskType',['../class_t_m_pro_1_1_text_mesh_pro.html#a9292c0fdebb6a1cdd791ced222eb5f89',1,'TMPro::TextMeshPro']]],
+  ['matchmaterialpreset',['matchMaterialPreset',['../class_t_m_pro_1_1_t_m_p___settings.html#a36e3ac5a0d8d49a625078c41791a5139',1,'TMPro::TMP_Settings']]],
+  ['material',['material',['../class_t_m_pro_1_1_t_m_p___sub_mesh.html#ad2670c4fc01057065ace1cbd7e48aa62',1,'TMPro.TMP_SubMesh.material()'],['../class_t_m_pro_1_1_t_m_p___sub_mesh_u_i.html#a6bd5b75c3ee5ddfdda01f26c7052bb97',1,'TMPro.TMP_SubMeshUI.material()']]],
+  ['materialforrendering',['materialForRendering',['../class_t_m_pro_1_1_text_mesh_pro_u_g_u_i.html#ace5f88e44a4fd41741e50b0b9adb2944',1,'TMPro.TextMeshProUGUI.materialForRendering()'],['../class_t_m_pro_1_1_t_m_p___sub_mesh_u_i.html#acf8eb0b73fe8fe9f4b12d71550739bb1',1,'TMPro.TMP_SubMeshUI.materialForRendering()']]],
+  ['maxheight',['maxHeight',['../class_t_m_pro_1_1_t_m_p___text.html#ab14de74ba7d6eb4609f428cc78f4a3fa',1,'TMPro::TMP_Text']]],
+  ['maxvisiblecharacters',['maxVisibleCharacters',['../class_t_m_pro_1_1_t_m_p___text.html#a3acb105723b8b2f70a392135f26dfbaf',1,'TMPro::TMP_Text']]],
+  ['maxvisiblelines',['maxVisibleLines',['../class_t_m_pro_1_1_t_m_p___text.html#a91ad865ced62808c08d2e48330b68533',1,'TMPro::TMP_Text']]],
+  ['maxvisiblewords',['maxVisibleWords',['../class_t_m_pro_1_1_t_m_p___text.html#ab96b06fb8776bb977d6d816ab849561e',1,'TMPro::TMP_Text']]],
+  ['maxwidth',['maxWidth',['../class_t_m_pro_1_1_t_m_p___text.html#aa6e088b3f1a54ed007c98797dbb64b90',1,'TMPro::TMP_Text']]],
+  ['mesh',['mesh',['../class_t_m_pro_1_1_text_mesh_pro.html#a2d197f964234bb89563b06b4614168f5',1,'TMPro.TextMeshPro.mesh()'],['../class_t_m_pro_1_1_text_mesh_pro_u_g_u_i.html#a0c6c3fd5daff551039308552d0e9fa3c',1,'TMPro.TextMeshProUGUI.mesh()'],['../class_t_m_pro_1_1_t_m_p___sub_mesh.html#ad6a306d193c7be147604ca07bbd9eb8b',1,'TMPro.TMP_SubMesh.mesh()'],['../class_t_m_pro_1_1_t_m_p___sub_mesh_u_i.html#a90820457f70262482c28723f1265876a',1,'TMPro.TMP_SubMeshUI.mesh()'],['../class_t_m_pro_1_1_t_m_p___text.html#af0f7359e71ac9ef7940c43c608bcea9f',1,'TMPro.TMP_Text.mesh()']]],
+  ['meshfilter',['meshFilter',['../class_t_m_pro_1_1_text_mesh_pro.html#a65b105c9a53bbcf8a45e19d1bbff146f',1,'TMPro.TextMeshPro.meshFilter()'],['../class_t_m_pro_1_1_t_m_p___sub_mesh.html#aa4bffef3b3907fab7cf2b3c7c632af3b',1,'TMPro.TMP_SubMesh.meshFilter()']]],
+  ['minheight',['minHeight',['../class_t_m_pro_1_1_t_m_p___text.html#aed588d5fd7ec93257c0be7894601d1df',1,'TMPro::TMP_Text']]],
+  ['minor',['Minor',['../class_semver_1_1_sem_version.html#a74229ba692723ce4079715c3cff26413',1,'Semver::SemVersion']]],
+  ['minwidth',['minWidth',['../class_t_m_pro_1_1_t_m_p___text.html#a33a9cad2c5d2664664fc4661729e831c',1,'TMPro::TMP_Text']]],
+  ['missingglyphcharacter',['missingGlyphCharacter',['../class_t_m_pro_1_1_t_m_p___settings.html#ad2690f7fd21007a9146f94d898154761',1,'TMPro::TMP_Settings']]]
+];
