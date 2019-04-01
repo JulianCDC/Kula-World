@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿/// <summary>
+/// The Main Behaviour for the LethargyPill GameObject
+/// </summary>
 public class Lethargy : Collectible
 {
     public override void Collected()

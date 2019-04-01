@@ -1,28 +1,54 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
+/// <summary>
+/// The behaviour of the buttons in the top bar menu
+/// </summary>
 public class MenuBarButtonBehaviour : MonoBehaviour
 {   
+    /// <summary>
+    /// Specify the possible type for the onclick action of the button
+    /// </summary>
     public enum Type
     {
+        /// <summary>
+        /// A Unity Event
+        /// </summary>
         action,
+        /// <summary>
+        /// The id of a scene
+        /// </summary>
         scene
     };
 
+    /// <summary>
+    /// The type of the action performed on click
+    /// </summary>
     public Type actionType;
+    /// <summary>
+    /// The id of the destination scene (ignored if <see cref="actionType"/> = <see cref="Type.action"/>)
+    /// </summary>
     public int actionSceneId;
-    public UnityEngine.Events.UnityEvent actionFunction;
+    /// <summary>
+    /// The action performed on click
+    /// </summary>
+    public UnityEvent actionFunction;
+    /// <summary>
+    /// The canvas the button belongs to
+    /// </summary>
     public GameObject rootCanvas;
 
+    /// <summary>
+    /// Launch the action assigned to this button
+    /// </summary>
     public void ExecuteAction()
     {
         switch (actionType)
         {
             case Type.scene:
-                UnityEngine.SceneManagement.SceneManager.LoadScene(actionSceneId);
+                SceneManager.LoadScene(actionSceneId);
                 break;
             case Type.action:
                 actionFunction.Invoke();
@@ -31,6 +57,10 @@ public class MenuBarButtonBehaviour : MonoBehaviour
     }
 
     // actions' functions
+    
+    /// <summary>
+    /// Open a prompt for choosing the name and saving the map
+    /// </summary>
     public void PromptForSave()
     {
         ClickCapturerBehaviour clickCapturer = ClickCapturerBehaviour.GenerateIn(rootCanvas.transform);

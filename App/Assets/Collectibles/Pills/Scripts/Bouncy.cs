@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿/// <summary>
+/// The Main Behaviour of a BouncyPill GameObject
+/// </summary>
 public class Bouncy : Collectible
 {
     public override void Collected()

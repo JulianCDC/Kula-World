@@ -1,19 +1,34 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// The actions performable by the user in the editor 
+/// </summary>
 public class EditorActions : MonoBehaviour
 {
+    /// <summary>
+    /// The Transform object of the camera
+    /// </summary>
     public Transform fovTransform;
+    /// <summary>
+    /// The block currently selected by the player
+    /// </summary>
     private GameObject selectedBlock;
+    /// <summary>
+    /// The EditableBlockBehaviour of the currently selected block
+    /// </summary>
     private EditableBlockBehaviour selectedBlockBehaviour;
 
+    /// <summary>
+    /// Generate the initial Map
+    /// </summary>
     private void Start()
     {
         Map.mapInstance = new Map();
     }
 
+    /// <summary>
+    /// Listeners for mouse and keyboard events
+    /// </summary>
     void Update()
     {
         CameraControls();
@@ -21,6 +36,15 @@ public class EditorActions : MonoBehaviour
         DeleteBlockListener();
     }
 
+    /// <summary>
+    /// Listener for block selection
+    /// </summary>
+    ///
+    /// Listen for left click. Create a Raycast on click and :
+    /// <list type="bullet">
+    ///    <item>trigger the <see cref="EditableBlockBehaviour.Select"/> method of the hit GameObject if it is an EditableBlock.</item>
+    ///    <item>call the <see cref="ClearSelectedObject"/> method</item>
+    /// </list>
     private void SelectListener()
     {
         if (Input.GetButtonDown("Fire1"))
@@ -53,6 +77,7 @@ public class EditorActions : MonoBehaviour
                         {
                             this.selectedBlockBehaviour.UnSelect();
                         }
+
                         this.selectedBlock = hitObject;
                         this.selectedBlockBehaviour = hitObjectBehaviour;
 
@@ -61,7 +86,7 @@ public class EditorActions : MonoBehaviour
                 }
                 else if (isArrow)
                 {
-                   this.selectedBlockBehaviour.Move(hitArrowBehaviour.direction);
+                    this.selectedBlockBehaviour.Move(hitArrowBehaviour.direction);
                 }
                 else
                 {
@@ -75,16 +100,24 @@ public class EditorActions : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Call the <see cref="EditableBlockBehaviour.UnSelect"/> method of <see cref="selectedBlock"/> and replace <see cref="selectedBlock"/> and <see cref="selectedBlockBehaviour"/> by null
+    /// </summary>
     private void ClearSelectedObject()
     {
         if (this.selectedBlockBehaviour != null)
         {
             this.selectedBlockBehaviour.UnSelect();
         }
+
         this.selectedBlock = null;
         this.selectedBlockBehaviour = null;
     }
 
+    /// <summary>
+    /// Listener for block deletion
+    /// </summary>
+    /// Listen for keyboard input of suppr or del to call <see cref="ClearSelectedObject"/>
     private void DeleteBlockListener()
     {
         if (Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Delete))
@@ -96,6 +129,17 @@ public class EditorActions : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Listener for camera movement
+    /// </summary>
+    ///
+    /// Listen for:
+    /// <list type="bullet">
+    ///    <item>Middle click for rotation and zoom</item>
+    ///    <item>Right click for movement</item>
+    /// </list>
+    ///
+    /// Call either <see cref="MoveCamera"/> or <see cref="PivotCamera"/>
     private void CameraControls()
     {
         float xMovement = Input.GetAxis("Mouse X");
@@ -140,6 +184,11 @@ public class EditorActions : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Move the camera in the specified direction
+    /// </summary>
+    /// <param name="direction">The direction in which to move the camera (0: x, 1: y, 2: z)</param>
+    /// <param name="value">The distance to travel</param>
     private void MoveCamera(int direction, float value)
     {
         Vector3 translation = new Vector3();
@@ -162,6 +211,11 @@ public class EditorActions : MonoBehaviour
         this.fovTransform.Translate(translation);
     }
 
+    /// <summary>
+    /// Rotate the camera in the specified direction
+    /// </summary>
+    /// <param name="direction">The direction in which to rotate the camera (0: y, 1: x)</param>
+    /// <param name="value">The distance to travel</param>
     private void PivotCamera(int direction, float value)
     {
         Vector3 rotation = new Vector3();

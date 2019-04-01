@@ -1,15 +1,23 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// The Main Behaviour for the list of Preview GameObject displayed in the Editor scene
+/// </summary>
 public class ItemList : MonoBehaviour
 {
+    /// <summary>
+    /// The textures of all the items to be displayd
+    /// </summary>
     private Texture2D[] textures;
+    /// <summary>
+    /// The template of an item in the list
+    /// </summary>
     public Image previewTemplate;
 
+    /// <summary>
+    /// Load all the <see cref="textures"/> in the list using <see cref="previewTemplate"/>
+    /// </summary>
     void Start()
     {
         textures = Resources.LoadAll<Texture2D>("EditorItemPreview");

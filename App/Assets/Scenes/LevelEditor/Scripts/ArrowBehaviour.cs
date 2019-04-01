@@ -1,21 +1,41 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>The Main Behaviour of an Arrow GameObject</summary>
 public class ArrowBehaviour : MonoBehaviour
 {
+    /// <summary>
+    ///     Specify the possible direction of the Arrow.
+    /// </summary>
     public enum Direction
     {
+        /// <summary>
+        /// Pointing up
+        /// </summary>
         up,
+        /// <summary>
+        /// Pointing down
+        /// </summary>
         down,
+        /// <summary>
+        /// Pointing right
+        /// </summary>
         right,
+        /// <summary>
+        /// Pointing left
+        /// </summary>
         left,
+        /// <summary>
+        /// Pointing to the front
+        /// </summary>
         front,
+        /// <summary>
+        /// Pointing to the back
+        /// </summary>
         back
     };
 
     private Direction _direction;
+    /// <summary>The direction the Arrow is pointing.</summary>
     public Direction direction
     {
         get { return _direction; }
@@ -60,7 +80,4 @@ public class ArrowBehaviour : MonoBehaviour
             this.gameObject.transform.rotation = rotation;
         }
     }
-
-    [NonSerialized]
-    public GameObject linkedObject;
 }

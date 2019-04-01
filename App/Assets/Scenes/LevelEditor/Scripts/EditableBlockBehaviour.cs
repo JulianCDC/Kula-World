@@ -1,17 +1,25 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Xml.Serialization;
 using UnityEngine;
-using UnityEngine.UI;
 
+/// <summary>
+/// The EditableBlock is a Block used in the Editor scene.
+/// </summary>
+/// It contains methods for edition and an instance to a variable containing a serialized version of the block <see cref="xmlBlock"/>.
 public class EditableBlockBehaviour : MonoBehaviour
 {
+    /// <summary>
+    /// The serialized version of the Block
+    /// </summary>
     public XmlBlock xmlBlock;
 
+    /// <summary>
+    /// An array containing the 6 Arrows' ArrowBehaviour created when clicking on an EditableBlock
+    /// </summary>
     private ArrowBehaviour[] arrows = new ArrowBehaviour[6];
 
+    /// <summary>
+    /// Set the serialized properties of the block
+    /// </summary>
     void Start()
     {        
         this.xmlBlock.objectType = this.gameObject.name.Replace("editable_", "").Replace("(Clone)", "");
@@ -46,16 +54,28 @@ public class EditableBlockBehaviour : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called when the Block is selected
+    /// </summary>
+    /// Call the method for creating the Arrows used for moving the object. See <see cref="ArrowBehaviour"/>
     public void Select()
     {
         CreateMovementArrow();
     }
 
+    /// <summary>
+    /// Called when the Block is unselected
+    /// </summary>
+    /// Call the method for destroying the Arrows used for moving the object. See <see cref="ArrowBehaviour"/>
     public void UnSelect()
     {
         DestroyMovementArrow();
     }
 
+    /// <summary>
+    /// Create the Arrows used for moving the object. See <see cref="ArrowBehaviour"/>
+    /// </summary>
+    /// Check the available direction for an ArrowBehaviour and instantiate an Arrow for each for the directions
     private void CreateMovementArrow()
     {
         ArrowBehaviour.Direction[] possibleDirections =
@@ -71,6 +91,9 @@ public class EditableBlockBehaviour : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Destroy the Arrows used for moving the object. See <see cref="ArrowBehaviour"/>
+    /// </summary>
     private void DestroyMovementArrow()
     {
         foreach (ArrowBehaviour arrow in arrows)
@@ -79,6 +102,12 @@ public class EditableBlockBehaviour : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Move the EditableBlock GameObject in the specified direction
+    /// </summary>
+    /// <param name="direction">The direction of the Arrow that was clicked to trigger this function</param>
+    /// Create a Vector3 from the direction and add this Vector3 to the GameObject's transform<br/>
+    /// Change the Block position inside the Map Object
     public void Move(ArrowBehaviour.Direction direction)
     {
         Vector3 movement = Vector3.zero;
