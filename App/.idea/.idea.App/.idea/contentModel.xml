@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\julia\.Rider2018.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\julia\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_App.791946128.00" t="ExcludeRecursive" />
+    <e p="C:\Users\julia\Documents\Dev\Unity\Kula-World\App" t="IncludeRecursive">
+      <e p="App.sln" t="IncludeFlat" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Block" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="BlockBehaviour.cs" t="Include" />
+            <e p="WithItemBehaviour.cs" t="Include" />
+            <e p="WithItemEditorDisplay.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Collectibles" t="Include">
+          <e p="Fruits" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="Fruit.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Hourglass" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="HourglassBehaviour.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Key" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="KeyBehaviour.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Pills" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="Bouncy.cs" t="Include" />
+              <e p="Lethargy.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Points" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="PointCollectible.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Player" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="PlayerBehaviour.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Resources" t="Include">
+          <e p="ClickCapturer" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="ClickCapturerBehaviour.cs" t="Include" />
+            </e>
+          </e>
+          <e p="TextPrompt" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="TextPrompt.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Scenes" t="Include">
+          <e p="LevelEditor" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="ArrowBehaviour.cs" t="Include" />
+              <e p="EditableBlockBehaviour.cs" t="Include" />
+              <e p="EditorActions.cs" t="Include" />
+              <e p="ItemList.cs" t="Include" />
+              <e p="Map.cs" t="Include" />
+              <e p="MenuBarButtonBehaviour.cs" t="Include" />
+              <e p="PreviewBehaviour.cs" t="Include" />
+              <e p="XmlBlock.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Main Menu" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="MainMenuElement.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="Abstract" t="Include">
+            <e p="Collectible.cs" t="Include" />
+          </e>
+          <e p="Helpers.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Library" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
+    </e>
+  </component>
+</project>
