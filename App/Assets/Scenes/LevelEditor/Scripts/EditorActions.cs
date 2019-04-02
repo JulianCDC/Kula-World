@@ -218,20 +218,18 @@ public class EditorActions : MonoBehaviour
     /// <param name="value">The distance to travel</param>
     private void PivotCamera(int direction, float value)
     {
-        Vector3 rotation = new Vector3();
+        Vector3 axis = Vector3.zero;
 
         switch (direction)
         {
             case 0:
-                rotation = new Vector3(0, value);
+                axis = Vector3.up;
                 break;
             case 1:
-                // invert value, otherwise rotation axis is inverted
-                rotation = new Vector3(-value, 0);
+                axis = Vector3.right;
                 break;
         }
 
-
-        this.fovTransform.Rotate(rotation);
+        this.fovTransform.RotateAround(this.fovTransform.position, axis, value);
     }
 }
