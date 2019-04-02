@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -598,8 +598,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 576, y: 253.5}
-  m_SizeDelta: {x: 1152, y: 507}
+  m_AnchoredPosition: {x: 652, y: 252.5}
+  m_SizeDelta: {x: 1304, y: 505}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1033236899
 MonoBehaviour:
@@ -928,6 +928,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2296613397354676490, guid: 12cc75b2f083dc94bb21196d4d15a904,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadEditor
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023626135794763587, guid: 12cc75b2f083dc94bb21196d4d15a904,
+        type: 3}
+      propertyPath: m_Text
+      value: Editor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12cc75b2f083dc94bb21196d4d15a904, type: 3}
