@@ -52,7 +52,7 @@ public class Map
             return false;
         }
 
-        if (blockXml.fruit != Fruit.fruits.none)
+        if (checkIfBlockHasFruit(blockXml))
         {
             mapInstance.hasFruit[(int) blockXml.fruit] = true;
         }
@@ -62,6 +62,11 @@ public class Map
         return true;
     }
 
+    public static bool checkIfBlockHasFruit(XmlBlock blockXml)
+    {
+        return blockXml.fruit != Fruit.fruits.none;
+    }
+
     /// <summary>
     /// Remove the block from the <see cref="mapInstance"/>
     /// </summary>
@@ -69,7 +74,13 @@ public class Map
     /// <returns>true if the block was successfully removed</returns>
     public static bool DeleteBlock(XmlBlock blockXml)
     {
-        mapInstance.blocks.Remove(blockXml);
+        mapInstance.blocks.RemoveAll(properties => properties.id == blockXml.id);
+
+        if (checkIfBlockHasFruit(blockXml))
+        {
+            mapInstance.hasFruit[(int) blockXml.fruit] = false;
+        }
+        
         return true;
     }
 
