@@ -184,4 +184,15 @@ public class Map
         serializer.Serialize(stream, mapInstance);
         stream.Close();
     }
+
+    public static Map Load(string fileName)
+    {
+        XmlSerializer mapSerialized = new XmlSerializer(typeof(Map));
+        
+        string mapPath = Const.MAP_DIRECTORY + fileName + ".map";
+        FileStream  readMapFile = new FileStream(mapPath, FileMode.Open);
+
+        Map deserializedMap = (Map) mapSerialized.Deserialize(readMapFile);
+        return deserializedMap;
+    }
 }

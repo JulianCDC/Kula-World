@@ -1,5 +1,4 @@
-using System;
-using System.Runtime.InteropServices;
+using System.IO;
 
 public static class Helpers
 {
@@ -17,13 +16,13 @@ public static class Helpers
 
     private static bool CheckIfFileExists(string path)
     {
-        return System.IO.File.Exists(path);
+        return File.Exists(path);
     }
 
     private static string GenerateNewPathWithNumber(string path, int number)
     {
-        string fileExtension = System.IO.Path.GetExtension(path);
-        string newPath = System.IO.Path.ChangeExtension(path, null);
+        string fileExtension = Path.GetExtension(path);
+        string newPath = Path.ChangeExtension(path, null);
         newPath = newPath + "_(" + number + ")" + fileExtension;
         if (CheckIfFileExists(newPath))
         {
