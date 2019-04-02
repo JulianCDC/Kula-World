@@ -174,7 +174,7 @@ public class Map
     {   
         XmlSerializer serializer = new XmlSerializer(typeof(Map));
 
-        string mapDirectoryPath = Application.persistentDataPath + "/maps/customs/";
+        string mapDirectoryPath = Const.MAP_DIRECTORY;
         System.IO.Directory.CreateDirectory(mapDirectoryPath);
 
         string filePath =
