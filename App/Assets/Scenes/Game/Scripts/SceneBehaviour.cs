@@ -1,16 +1,15 @@
-﻿using System.IO;
-using System.Xml.Serialization;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public class SceneBehaviour : MonoBehaviour
 {
+    private Map map;
     [SerializeField] private string mapName;
     [SerializeField] private GameObject mapObject;
     
     void Start()
     {
         LoadMap();
+        LoadPlayer();
     }
 
     void Update()
@@ -18,15 +17,21 @@ public class SceneBehaviour : MonoBehaviour
         
     }
 
+    private void LoadPlayer()
+    {
+        GameObject player = Resources.Load<GameObject>("Player");
+        Instantiate(player, new Vector3(0, 1, 0), new Quaternion());
+    }
+    
     private void LoadMap()
     {
-        Map map = Map.Load(this.mapName);
-        LoadMapIntoScene(map);
+        this.map = Map.Load(this.mapName);
+        LoadMapIntoScene();
     }
 
-    private void LoadMapIntoScene(Map map)
+    private void LoadMapIntoScene()
     {
-        foreach (XmlBlock block in map.blocks)
+        foreach (XmlBlock block in this.map.blocks)
         {
             GameObject blockGameObject = Resources.Load<GameObject>(block.objectType);
             configBlock(blockGameObject, block);

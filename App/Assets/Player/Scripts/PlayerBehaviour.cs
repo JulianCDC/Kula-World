@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 /// <summary>
 /// The behaviour of the player
@@ -14,11 +15,18 @@ public class PlayerBehaviour : MonoBehaviour
     /// </summary>
     private short jumpLength = 1;
 
+    [NonSerialized] private bool isMoving = false;
+
     void Start()
     {
     }
 
     void Update()
     {
+    }
+
+    public void FinishedMoving()
+    {
+        this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
     }
 }
