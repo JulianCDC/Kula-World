@@ -47,7 +47,18 @@ public class PlayerBehaviour : MonoBehaviour
             this.isMoving = false;
         }
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        GameObject collided = other.gameObject;
+        Collectible behaviour = collided.GetComponent<Collectible>();
+
+        if (behaviour != null)
+        {
+            behaviour.Collected();
+        }
+    }
+
     private void ListenForMovement()
     {
         if (Input.GetKeyDown("left"))

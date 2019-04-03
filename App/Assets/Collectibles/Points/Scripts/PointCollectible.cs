@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-/// <summary>
+﻿/// <summary>
 /// The behaviour for the collectibles changing the score of the player
 /// </summary>
 public class PointCollectible : Collectible
@@ -14,6 +10,7 @@ public class PointCollectible : Collectible
 
     public override void Collected()
     {
+        base.Collected();
         // increment player score by value
     }
 }

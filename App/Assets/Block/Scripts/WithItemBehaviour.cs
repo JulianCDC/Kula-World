@@ -45,7 +45,7 @@ public class WithItemBehaviour : MonoBehaviour
         this.initialPitch = rotation.eulerAngles.y;
         this.initialRoll = rotation.eulerAngles.z;
 
-        setItemPosition();
+        SetItemPosition();
     }
 
     void Update()
@@ -56,7 +56,7 @@ public class WithItemBehaviour : MonoBehaviour
     /// <summary>
     /// Set the item position depending on <see cref="itemPosition"/>
     /// </summary>
-    public void setItemPosition()
+    public void SetItemPosition()
     {
         Quaternion newRotation;
 

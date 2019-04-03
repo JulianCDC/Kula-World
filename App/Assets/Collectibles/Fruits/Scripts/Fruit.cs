@@ -25,6 +25,7 @@ public class Fruit : Collectible
 
     public override void Collected()
     {
+        base.Collected();
         // collect this.type in score
     }
 }

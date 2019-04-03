@@ -14,6 +14,7 @@ public class KeyBehaviour : Collectible
     /// </summary>
     public override void Collected()
     {
+        base.Collected();
         this.Obtained = true;
     }
 }

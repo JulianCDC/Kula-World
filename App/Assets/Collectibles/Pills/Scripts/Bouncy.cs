@@ -5,6 +5,7 @@ public class Bouncy : Collectible
 {
     public override void Collected()
     {
+        base.Collected();
         // increase ball speed & increment jump distance by 1
     }
 }

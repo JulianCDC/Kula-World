@@ -5,6 +5,7 @@ public class HourglassBehaviour : Collectible
 {
     public override void Collected()
     {
+        base.Collected();
         // add time to timer
     }
 }
