@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Timers;
 using UnityEngine;
 
 /// <summary>
@@ -6,23 +6,11 @@ using UnityEngine;
 /// </summary>
 public class PlayerBehaviour : MonoBehaviour
 {
-    /// <summary>
-    /// The speed of the player
-    /// </summary>
-    private float speed = 0.2f;
-    /// <summary>
-    /// The number of block the player will jump before touching the ground
-    /// </summary>
-    private short jumpLength = 1;
-
-    private Vector3 positionBeforeMovement = Vector3.zero;
     private bool isMoving;
     private Vector3 movingDirection = Vector3.zero;
-    private Rigidbody rb;
 
     void Start()
     {
-        this.rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -31,21 +19,16 @@ public class PlayerBehaviour : MonoBehaviour
         {
             ListenForMovement();
         }
-        else
-        {
-            Move();
-        }
     }
 
     private void Move()
     {
-        var position = this.gameObject.transform.position;
-        position = Vector3.MoveTowards(position, position + movingDirection, speed);
-        this.gameObject.transform.position = position;
-        if (this.transform.position == this.positionBeforeMovement + movingDirection)
-        {
-            this.isMoving = false;
-        }
+        iTween.MoveBy(this.gameObject, iTween.Hash("amount", movingDirection, "time", .25f * GameManager.Instance.playerSpeed, "easetype", iTween.EaseType.linear, "looptype", iTween.LoopType.none, "delay", .0, "oncomplete", "StopMoving"));
+    }
+
+    private void StopMoving()
+    {
+        isMoving = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -82,12 +65,8 @@ public class PlayerBehaviour : MonoBehaviour
             return;
         }
 
-        this.positionBeforeMovement = this.gameObject.transform.position;
         this.isMoving = true;
-    }
-    
-    public void FinishedMoving()
-    {
-        this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+
+        Move();
     }
 }

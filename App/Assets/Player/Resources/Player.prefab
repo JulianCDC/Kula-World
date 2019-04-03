@@ -94,9 +94,9 @@ GameObject:
   - component: {fileID: 2571667379300916636}
   - component: {fileID: 7705106144125959386}
   - component: {fileID: 6156562622046399002}
-  - component: {fileID: 2093328685467788705}
   - component: {fileID: 2882227545973036109}
   - component: {fileID: 7642424816903596453}
+  - component: {fileID: 2093328685467788705}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -177,18 +177,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2093328685467788705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7762188090563147905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9941af1043898a942bebd901400eeecf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &2882227545973036109
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -201,7 +189,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -217,3 +205,15 @@ Halo:
     serializedVersion: 2
     rgba: 4293220147
   m_Size: -0.4
+--- !u!114 &2093328685467788705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7762188090563147905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9941af1043898a942bebd901400eeecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
