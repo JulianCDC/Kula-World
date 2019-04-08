@@ -26,6 +26,7 @@ public class Fruit : Collectible
     public override void Collected()
     {
         base.Collected();
+        GameManager.Instance.playerScore += 2500;
         // collect this.type in score
     }
 }

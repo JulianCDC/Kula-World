@@ -23,7 +23,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Move()
     {
-        iTween.MoveBy(this.gameObject, iTween.Hash("amount", movingDirection, "time", .25f * GameManager.Instance.playerSpeed, "easetype", iTween.EaseType.linear, "looptype", iTween.LoopType.none, "delay", .0, "oncomplete", "StopMoving"));
+        // TODO : remplacer par méthode écrite manuellement un jour peut être
+        iTween.MoveBy(this.gameObject, iTween.Hash("amount", movingDirection, "time", .25f / GameManager.Instance.playerSpeed, "easetype", iTween.EaseType.linear, "looptype", iTween.LoopType.none, "delay", .0, "oncomplete", "StopMoving"));
     }
 
     private void StopMoving()

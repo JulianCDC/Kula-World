@@ -20,7 +20,7 @@ public class SceneBehaviour : MonoBehaviour
     private void LoadPlayer()
     {
         GameObject player = Resources.Load<GameObject>("Player");
-        Instantiate(player, new Vector3(0, 1, 0), new Quaternion());
+        Instantiate(player, new Vector3(0, 0.75f, 0), new Quaternion());
     }
     
     private void LoadMap()
