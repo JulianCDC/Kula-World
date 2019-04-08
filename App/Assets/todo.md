@@ -31,3 +31,4 @@ Si pas le temps, limiter le nombre de clé et de porte à 1
 ## Objets
 
 - [ ] Ajouter obstacles
+- [ ] Possibilité de changer les couleurs pour les objets qui implementent `Colorable`
