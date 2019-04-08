@@ -11,6 +11,13 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.maxTime = 60;
+        InvokeRepeating(nameof(Tick), 0f, 1.0f);
+    }
+
+    void Tick()
+    {
+        GameManager.Instance.elapsedTime += GameManager.Instance.secondsPerTick;
     }
 
     void Update()
