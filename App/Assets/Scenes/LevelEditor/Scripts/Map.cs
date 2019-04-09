@@ -163,7 +163,8 @@ public class Map
     {
         var serializer = new XmlSerializer(typeof(Map));
         var stream = new FileStream(Application.temporaryCachePath + "/temp.map", FileMode.Create);
-        serializer.Serialize(stream, mapInstance);
+        StreamWriter streamWriter = new StreamWriter(stream, System.Text.Encoding.UTF8);
+        serializer.Serialize(streamWriter, mapInstance);
         stream.Close();
     }
 
@@ -172,7 +173,7 @@ public class Map
     /// </summary>
     /// <param name="fileName">Name of the file</param>
     public static void WriteToLocation(string fileName)
-    {   
+    {
         XmlSerializer serializer = new XmlSerializer(typeof(Map));
 
         string mapDirectoryPath = Const.MAP_DIRECTORY;
@@ -182,7 +183,8 @@ public class Map
             Helpers.GetAvailableFilePath(mapDirectoryPath + fileName + ".map");
 
         FileStream stream = new FileStream(filePath, FileMode.Create);
-        serializer.Serialize(stream, mapInstance);
+        StreamWriter streamWriter = new StreamWriter(stream, System.Text.Encoding.UTF8);
+        serializer.Serialize(streamWriter, mapInstance);
         stream.Close();
     }
 
