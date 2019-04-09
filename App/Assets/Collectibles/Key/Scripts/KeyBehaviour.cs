@@ -16,5 +16,6 @@ public class KeyBehaviour : Collectible
     {
         base.Collected();
         this.Obtained = true;
+        Hud.CollectKey();
     }
 }

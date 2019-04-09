@@ -27,6 +27,6 @@ public class Fruit : Collectible
     {
         base.Collected();
         GameManager.Instance.playerScore += 2500;
-        // collect this.type in score
+        Hud.CollectFruit(this.type);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +19,7 @@ public class Hud : MonoBehaviour
     [SerializeField] private RawImage watermelon;
     [SerializeField] private RawImage strawberry;
 
-    private Dictionary<string, RawImage> fruits;
+    private Dictionary<Fruit.fruits, RawImage> fruits;
 
     public static Hud GetHud()
     {
@@ -28,19 +29,27 @@ public class Hud : MonoBehaviour
     private void Start()
     {
         hudInstance = this;
-        this.fruits = new Dictionary<string, RawImage>
+        this.fruits = new Dictionary<Fruit.fruits, RawImage>
         {
-            ["apple"] = apple,
-            ["banana"] = banana,
-            ["pumpkin"] = pumpkin,
-            ["watermelon"] = watermelon,
-            ["strawberry"] = strawberry
+            [Fruit.fruits.apple] = apple,
+            [Fruit.fruits.banana] = banana,
+            [Fruit.fruits.pumpkin] = pumpkin,
+            [Fruit.fruits.watermelon] = watermelon,
+            [Fruit.fruits.strawberry] = strawberry
         };
     }
 
-    public static void CollectFruit(string fruitName)
+    public static void CollectFruit(Fruit.fruits fruitType)
     {
-        RawImage fruit = hudInstance.fruits[fruitName];
+        RawImage fruit = hudInstance.fruits[fruitType];
+        Color currentColor = fruit.color;
+
+        fruit.color = new Color(currentColor.r, currentColor.g, currentColor.b, 1.0f);
+    }
+
+    public static void CollectKey()
+    {
+        hudInstance.key.GetComponent<RawImage>().texture = hudInstance.filledKey;
     }
 
     public static void ResetHud()
