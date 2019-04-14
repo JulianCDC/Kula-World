@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Xml.Serialization;
 using UnityEngine;
 
@@ -83,6 +84,11 @@ public class Map
         }
         
         return true;
+    }
+
+    public static bool isEmpty(Vector3 position)
+    {
+        return !mapInstance.blocks.Exists(properties => properties.position == position);
     }
 
     /// <summary>
@@ -196,6 +202,7 @@ public class Map
         FileStream  readMapFile = new FileStream(mapPath, FileMode.Open);
 
         Map deserializedMap = (Map) mapSerialized.Deserialize(readMapFile);
+        mapInstance = deserializedMap;
         return deserializedMap;
     }
 }
