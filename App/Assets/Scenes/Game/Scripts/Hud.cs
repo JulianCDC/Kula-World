@@ -45,9 +45,11 @@ public class Hud : MonoBehaviour
         Color currentColor = fruit.color;
 
         fruit.color = new Color(currentColor.r, currentColor.g, currentColor.b, 1.0f);
+
+        GameManager.Instance.collectedFruits += 1;
     }
 
-    public static void CollectKey()
+    public static void CollectKey(int keyId)
     {
         hudInstance.key.GetComponent<RawImage>().texture = hudInstance.filledKey;
     }

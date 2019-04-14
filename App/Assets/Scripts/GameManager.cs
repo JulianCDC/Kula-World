@@ -18,4 +18,7 @@ public class GameManager : Singleton<GameManager>
     public int maxTime;
     public int elapsedTime = 0;
     public int secondsPerTick = 1;
+    public int collectedFruits = 0;
+
+    public bool PlayerHasAllFruits => collectedFruits == 5;
 }

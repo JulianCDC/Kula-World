@@ -8,6 +8,8 @@ public class KeyBehaviour : Collectible
     /// </summary>
     public bool Obtained { get; private set; }
 
+    private int Id;
+
     /// <inheritdoc cref="Collectible.Collected"/>
     /// <summary>
     /// Set <see cref="Obtained"/> to true
@@ -16,6 +18,6 @@ public class KeyBehaviour : Collectible
     {
         base.Collected();
         this.Obtained = true;
-        Hud.CollectKey();
+        Hud.CollectKey(this.Id);
     }
 }
