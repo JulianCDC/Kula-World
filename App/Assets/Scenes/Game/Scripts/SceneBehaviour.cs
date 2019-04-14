@@ -19,8 +19,8 @@ public class SceneBehaviour : MonoBehaviour
 
     private void LoadPlayer()
     {
-        GameObject player = Resources.Load<GameObject>("Player");
-        Instantiate(player, new Vector3(0, 0.75f, 0), new Quaternion());
+        GameObject player = Resources.Load<GameObject>("Block with player");
+        Instantiate(player, new Vector3(0, 0, 0), new Quaternion());
     }
     
     private void LoadMap()
