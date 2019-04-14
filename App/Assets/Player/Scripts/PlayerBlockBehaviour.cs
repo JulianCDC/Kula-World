@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,21 +40,21 @@ public class PlayerBlockBehaviour : MonoBehaviour
 
     private void ListenForMovement()
     {
-        if (Input.GetKeyDown("left"))
+        if (Input.GetKeyDown("right"))
         {
-            this.movingDirection = Vector3.right;
+            this.movingDirection = this.axisMap["x"];
         }
-        else if (Input.GetKeyDown("right"))
+        else if (Input.GetKeyDown("left"))
         {
-            this.movingDirection = Vector3.left;
+            this.movingDirection = -this.axisMap["x"];
         }
         else if (Input.GetKeyDown("up"))
         {
-            this.movingDirection = Vector3.back;
+            this.movingDirection = this.axisMap["z"];
         }
         else if (Input.GetKeyDown("down"))
         {
-            this.movingDirection = Vector3.forward;
+            this.movingDirection = -this.axisMap["z"];
         }
         else
         {
