@@ -38,4 +38,6 @@ sysinfo.txt
 # JetBrains Rider
 .idea/
 .idea/*
-Plugins/Editor
+Plugins/Editor/JetBrains
+
+App/Assets/Plugins/Editor/JetBrains/
