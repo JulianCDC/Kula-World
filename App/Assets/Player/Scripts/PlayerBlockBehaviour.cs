@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Numerics;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 public class PlayerBlockBehaviour : MonoBehaviour
 {
@@ -20,7 +22,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
 
     private void Move()
     {
-        if (Map.isEmpty(this.transform.position + movingDirection))
+        if (Map.isEmpty(transform.position + transform.TransformDirection(movingDirection)))
         {
             Rotate();
         }
@@ -33,10 +35,10 @@ public class PlayerBlockBehaviour : MonoBehaviour
     private void Rotate()
     {
         movingDirection = new Vector3(movingDirection.z, movingDirection.x, movingDirection.y);
-        
-        iTween.RotateBy(this.gameObject, iTween.Hash("amount", movingDirection / 4, "time", .25f, "easetype", iTween.EaseType.linear, "oncomplete", nameof(StopMoving)));
-//        this.transform.Rotate(movingDirection * 90);
-//        StopMoving();
+
+        iTween.RotateBy(this.gameObject,
+            iTween.Hash("amount", movingDirection / 4, "time", .25f, "easetype", iTween.EaseType.linear, "oncomplete",
+                nameof(StopMoving)));
     }
 
     private void TranslatePlayer()
@@ -68,7 +70,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
     private void ListenForMovement()
     {
         Action movement;
-        
+
         if (Input.GetKeyDown("right"))
         {
             this.movingDirection = Vector3.right;
