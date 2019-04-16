@@ -24,6 +24,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
     {
         if (!Map.isEmpty(transform.position + transform.TransformDirection(movingDirection + Vector3.up)))
         {
+            StopMoving();
             // use slerp for transition
         }
         else if (Map.isEmpty(transform.position + transform.TransformDirection(movingDirection)))
