@@ -22,31 +22,35 @@ public class PlayerBlockBehaviour : MonoBehaviour
 
     private void Move()
     {
-        if (Map.isEmpty(transform.position + transform.TransformDirection(movingDirection)))
+        if (!Map.isEmpty(transform.position + transform.TransformDirection(movingDirection + Vector3.up)))
         {
-            Rotate();
+            // use slerp for transition
+        }
+        else if (Map.isEmpty(transform.position + transform.TransformDirection(movingDirection)))
+        {
+            Rotate(movingDirection);
         }
         else
         {
-            TranslatePlayer();
+            TranslatePlayer(movingDirection);
         }
     }
 
-    private void Rotate()
+    private void Rotate(Vector3 amount)
     {
-        movingDirection = new Vector3(movingDirection.z, movingDirection.x, movingDirection.y);
+        var rotationAmount = new Vector3(amount.z, amount.x, amount.y);
 
         iTween.RotateBy(this.gameObject,
-            iTween.Hash("amount", movingDirection / 4, "time", .25f, "easetype", iTween.EaseType.linear, "oncomplete",
+            iTween.Hash("amount", rotationAmount / 4, "time", .25f, "easetype", iTween.EaseType.linear, "oncomplete",
                 nameof(StopMoving)));
     }
 
-    private void TranslatePlayer()
+    private void TranslatePlayer(Vector3 amount)
     {
         // TODO : remplacer par méthode écrite manuellement un jour peut être
         iTween.MoveBy(this.gameObject,
-            iTween.Hash("amount", movingDirection, "time", .25f / GameManager.Instance.playerSpeed, "easetype",
-                iTween.EaseType.linear, "looptype", iTween.LoopType.none, "delay", .0, "oncomplete",
+            iTween.Hash("amount", amount, "time", .25f / GameManager.Instance.playerSpeed, "easetype",
+                iTween.EaseType.linear, "oncomplete",
                 nameof(StopMoving)));
     }
 
@@ -74,12 +78,12 @@ public class PlayerBlockBehaviour : MonoBehaviour
         if (Input.GetKeyDown("right"))
         {
             this.movingDirection = Vector3.right;
-            movement = Rotate;
+            movement = () => Rotate(movingDirection);
         }
         else if (Input.GetKeyDown("left"))
         {
             this.movingDirection = Vector3.left;
-            movement = Rotate;
+            movement = () => Rotate(movingDirection);
         }
         else if (Input.GetKeyDown("up"))
         {
