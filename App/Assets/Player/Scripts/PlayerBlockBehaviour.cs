@@ -41,7 +41,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
         var rotationAmount = new Vector3(amount.z, amount.x, amount.y);
 
         iTween.RotateBy(this.gameObject,
-            iTween.Hash("amount", rotationAmount / 4, "time", .25f, "easetype", iTween.EaseType.linear, "oncomplete",
+            iTween.Hash("amount", rotationAmount / 4, "time", .25f / GameManager.Instance.playerSpeed, "easetype", iTween.EaseType.linear, "oncomplete",
                 nameof(StopMoving)));
     }
 
