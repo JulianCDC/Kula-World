@@ -20,7 +20,7 @@ PrefabInstance:
     - target: {fileID: 4015432107909245979, guid: 08a306b1219312b4daf8ac3bbf48c886,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4015432107909245979, guid: 08a306b1219312b4daf8ac3bbf48c886,
         type: 3}
@@ -35,7 +35,7 @@ PrefabInstance:
     - target: {fileID: 4015432107909245979, guid: 08a306b1219312b4daf8ac3bbf48c886,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.000000030908623
       objectReference: {fileID: 0}
     - target: {fileID: 4015432107909245979, guid: 08a306b1219312b4daf8ac3bbf48c886,
         type: 3}
@@ -45,7 +45,7 @@ PrefabInstance:
     - target: {fileID: 4015432107909245979, guid: 08a306b1219312b4daf8ac3bbf48c886,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: -0.000000030908623
       objectReference: {fileID: 0}
     - target: {fileID: 4015432107909245979, guid: 08a306b1219312b4daf8ac3bbf48c886,
         type: 3}
@@ -70,17 +70,17 @@ PrefabInstance:
     - target: {fileID: 4015432107909245979, guid: 08a306b1219312b4daf8ac3bbf48c886,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.45
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4015432107909245979, guid: 08a306b1219312b4daf8ac3bbf48c886,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.45
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4015432107909245979, guid: 08a306b1219312b4daf8ac3bbf48c886,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.45
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08a306b1219312b4daf8ac3bbf48c886, type: 3}
@@ -91,6 +91,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8072150380965058523, guid: 32f9909871545de4f96ca72ec10a8996,
+        type: 3}
+      propertyPath: m_Name
+      value: Block with watermelon
+      objectReference: {fileID: 0}
     - target: {fileID: 2172626151049870290, guid: 32f9909871545de4f96ca72ec10a8996,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -145,11 +150,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8072150380965058523, guid: 32f9909871545de4f96ca72ec10a8996,
-        type: 3}
-      propertyPath: m_Name
-      value: Block with watermelon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32f9909871545de4f96ca72ec10a8996, type: 3}
