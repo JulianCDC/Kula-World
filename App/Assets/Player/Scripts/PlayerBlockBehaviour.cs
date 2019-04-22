@@ -29,8 +29,8 @@ public class PlayerBlockBehaviour : MonoBehaviour
     {
         if (!Map.isEmpty(transform.position + transform.TransformDirection(movingDirection + Vector3.up)))
         {
+            Climb();
             StopMoving();
-            // use slerp for transition
         }
         else if (Map.isEmpty(transform.position + transform.TransformDirection(movingDirection)))
         {
@@ -52,6 +52,19 @@ public class PlayerBlockBehaviour : MonoBehaviour
                 nameof(StopMoving)));
     }
 
+    private void Climb()
+    {
+        this.transform.Translate(movingDirection + Vector3.up);
+        this.transform.Rotate(Vector3.back * 90);
+        this.transform.Rotate(-new Vector3(movingDirection.z, movingDirection.x, movingDirection.y) * 90);
+        this.transform.Rotate(Vector3.down * 90);
+    }
+
+    private void Jump()
+    {
+        // TODO : Disable collision while jumping to prevent collecting item
+    }
+
     private void TranslatePlayer(Vector3 amount)
     {
         // TODO : remplacer par méthode écrite manuellement un jour peut être
@@ -64,7 +77,6 @@ public class PlayerBlockBehaviour : MonoBehaviour
     private void StopMoving()
     {
         isMoving = false;
-        movingDirection = Vector3.zero;
     }
 
     private void OnTriggerEnter(Collider other)
