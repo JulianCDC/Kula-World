@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 public class PlayerBlockBehaviour : MonoBehaviour
@@ -94,17 +94,17 @@ public class PlayerBlockBehaviour : MonoBehaviour
     {
         Action movement;
 
-        if (Input.GetKeyDown("right"))
+        if (Input.GetKey("right"))
         {
             this.movingDirection = Vector3.right;
             movement = () => Rotate(movingDirection);
         }
-        else if (Input.GetKeyDown("left"))
+        else if (Input.GetKey("left"))
         {
             this.movingDirection = Vector3.left;
             movement = () => Rotate(movingDirection);
         }
-        else if (Input.GetKeyDown("up"))
+        else if (Input.GetKey("up"))
         {
             this.movingDirection = Vector3.forward;
             movement = Move;
