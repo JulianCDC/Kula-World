@@ -1,22 +1,27 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Numerics;
 using UnityEngine;
-using Vector3 = UnityEngine.Vector3;
 
 public class PlayerBlockBehaviour : MonoBehaviour
 {
     private bool isMoving;
     private Vector3 movingDirection = Vector3.zero;
     [SerializeField] private GameObject player;
+    private PlayerBehaviour playerBehaviour;
 
-    void Update()
+    private void Start()
+    {
+        this.playerBehaviour = player.GetComponent<PlayerBehaviour>();
+    }
+
+    private void Update()
     {
         if (!this.isMoving)
         {
             ListenForMovement();
+        }
+        else
+        {
+            this.playerBehaviour.RotateAnimation(movingDirection);
         }
     }
 
@@ -42,7 +47,8 @@ public class PlayerBlockBehaviour : MonoBehaviour
         var rotationAmount = new Vector3(amount.z, amount.x, amount.y);
 
         iTween.RotateBy(this.gameObject,
-            iTween.Hash("amount", rotationAmount / 4, "time", .25f / GameManager.Instance.playerSpeed, "easetype", iTween.EaseType.linear, "oncomplete",
+            iTween.Hash("amount", rotationAmount / 4, "time", .25f / GameManager.Instance.playerSpeed, "easetype",
+                iTween.EaseType.linear, "oncomplete",
                 nameof(StopMoving)));
     }
 
