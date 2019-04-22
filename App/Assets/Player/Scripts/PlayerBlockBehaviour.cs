@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 public class PlayerBlockBehaviour : MonoBehaviour
@@ -107,11 +107,6 @@ public class PlayerBlockBehaviour : MonoBehaviour
         else if (Input.GetKeyDown("up"))
         {
             this.movingDirection = Vector3.forward;
-            movement = Move;
-        }
-        else if (Input.GetKeyDown("down"))
-        {
-            this.movingDirection = Vector3.back;
             movement = Move;
         }
         else
