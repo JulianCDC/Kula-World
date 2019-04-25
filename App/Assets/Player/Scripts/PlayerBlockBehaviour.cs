@@ -125,17 +125,17 @@ public class PlayerBlockBehaviour : MonoBehaviour
     {
         Action movement;
 
-        if (Input.GetKey("right"))
+        if (Input.GetAxis("Horizontal") > 0)
         {
             this.movingDirection = Vector3.right;
             movement = () => StartCoroutine(Rotate(movingDirection));
         }
-        else if (Input.GetKey("left"))
+        else if (Input.GetAxis("Horizontal") < 0)
         {
             this.movingDirection = Vector3.left;
             movement = () => StartCoroutine(Rotate(movingDirection));
         }
-        else if (Input.GetKey("up"))
+        else if (Input.GetAxis("Vertical") > 0)
         {
             this.movingDirection = Vector3.forward;
             movement = Move;
