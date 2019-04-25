@@ -18,7 +18,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void RotateAnimation(Vector3 rotationDirection)
     {
-        this.transform.Rotate(new Vector3(rotationDirection.z * rotationVelocity, 0, 0));
+        this.transform.Rotate(new Vector3(rotationDirection.z * rotationVelocity, 0, 0) * GameManager.Instance.playerSpeed);
     }
 
     void Tick()
