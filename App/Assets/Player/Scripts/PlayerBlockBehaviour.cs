@@ -98,6 +98,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
     private void StopMoving()
     {
         FixPosition();
+        FixRotation();
         isMoving = false;
     }
 
@@ -108,6 +109,15 @@ public class PlayerBlockBehaviour : MonoBehaviour
         var fixedZ = Math.Round(transform.position.z);
         
         transform.position = new Vector3((int) fixedX, (int) fixedY, (int) fixedZ);
+    }
+
+    private void FixRotation()
+    {
+        var fixedX = Math.Round(transform.eulerAngles.x);
+        var fixedY = Math.Round(transform.eulerAngles.y);
+        var fixedZ = Math.Round(transform.eulerAngles.z);
+
+        transform.eulerAngles = new Vector3((int) fixedX, (int) fixedY, (int) fixedZ);
     }
 
     private void OnTriggerEnter(Collider other)
