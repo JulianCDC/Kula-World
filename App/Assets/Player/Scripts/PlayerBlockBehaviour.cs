@@ -30,13 +30,12 @@ public class PlayerBlockBehaviour : MonoBehaviour
             this.playerBehaviour.RotateAnimation(movingDirection);
         }
     }
-    
+
     private void Move()
     {
         if (!Map.isEmpty(transform.position + transform.TransformDirection(movingDirection + Vector3.up)))
         {
-            Climb();
-            StopMoving();
+            StartCoroutine(Climb());
         }
         else if (Map.isEmpty(transform.position + transform.TransformDirection(movingDirection)))
         {
@@ -44,7 +43,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
         }
         else
         {
-            StartCoroutine(TranslatePlayer(movingDirection));
+            StartCoroutine(TranslatePlayer());
         }
     }
 
@@ -58,16 +57,29 @@ public class PlayerBlockBehaviour : MonoBehaviour
             this.transform.Rotate(rotationAmount * MovementLength);
             yield return new WaitForSeconds(MovementDuration);
         }
-        
+
         StopMoving();
     }
 
-    private void Climb()
+    private IEnumerator Climb()
     {
-        this.transform.Translate(movingDirection + Vector3.up);
-        this.transform.Rotate(Vector3.back * 90);
-        this.transform.Rotate(-new Vector3(movingDirection.z, movingDirection.x, movingDirection.y) * 90);
-        this.transform.Rotate(Vector3.down * 90);
+        var numberOfIterations = MovementInterationsCount;
+
+        var translationDestination = transform.TransformDirection(movingDirection + Vector3.up);
+
+        for (int i = 0; i < numberOfIterations; i++)
+        {
+            this.transform.transform.position += translationDestination * MovementLength;
+            this.transform.Rotate((Vector3.left * 90) * MovementLength);
+            yield return new WaitForSeconds(MovementDuration);
+        }
+
+        StopMoving();
+
+//        this.transform.Translate(movingDirection + Vector3.up);
+//        this.transform.Rotate(Vector3.back * 90);
+//        this.transform.Rotate(-new Vector3(movingDirection.z, movingDirection.x, movingDirection.y) * 90);
+//        this.transform.Rotate(Vector3.down * 90);
     }
 
     private void Jump()
@@ -75,7 +87,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
         // TODO : Disable collision while jumping to prevent collecting item
     }
 
-    private IEnumerator TranslatePlayer(Vector3 amount)
+    private IEnumerator TranslatePlayer()
     {
         var numberOfIterations = MovementInterationsCount;
 
@@ -84,7 +96,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
             this.transform.Translate(movingDirection * MovementLength);
             yield return new WaitForSeconds(MovementDuration);
         }
-        
+
         StopMoving();
     }
 
