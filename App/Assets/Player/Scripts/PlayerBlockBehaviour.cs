@@ -75,11 +75,6 @@ public class PlayerBlockBehaviour : MonoBehaviour
         }
 
         StopMoving();
-
-//        this.transform.Translate(movingDirection + Vector3.up);
-//        this.transform.Rotate(Vector3.back * 90);
-//        this.transform.Rotate(-new Vector3(movingDirection.z, movingDirection.x, movingDirection.y) * 90);
-//        this.transform.Rotate(Vector3.down * 90);
     }
 
     private void Jump()
