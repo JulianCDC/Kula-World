@@ -10,11 +10,18 @@ public class GameSceneBehaviour : MonoBehaviour
     {
         LoadMap();
         LoadPlayer();
-    }
-
-    void Update()
-    {
         
+        GameManager.Instance.maxTime = 60;
+        InvokeRepeating(nameof(Tick), 0f, 1.0f);
+    }
+    void Tick()
+    {
+        GameManager.Instance.elapsedTime += GameManager.Instance.secondsPerTick;
+
+        if (GameManager.Instance.elapsedTime == GameManager.Instance.maxTime)
+        {
+            GameOver();
+        }
     }
 
     private void LoadPlayer()
@@ -27,6 +34,11 @@ public class GameSceneBehaviour : MonoBehaviour
     {
         this.map = Map.Load(this.mapName);
         LoadMapIntoScene();
+    }
+
+    private void GameOver()
+    {
+        print("GameOver");
     }
 
     private void LoadMapIntoScene()
