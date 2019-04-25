@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invisibleBlock: {fileID: 0}
-  rotationVelocity: 6
+  rotationVelocity: 17.5
 --- !u!95 &7195051243148436977
 Animator:
   serializedVersion: 3
@@ -134,7 +134,7 @@ Animator:
   m_GameObject: {fileID: 7762188090563147905}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dbf3fdcdfde119e4daff55f16d693a78, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
