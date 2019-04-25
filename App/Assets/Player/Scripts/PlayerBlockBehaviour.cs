@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerBlockBehaviour : MonoBehaviour
@@ -7,6 +8,11 @@ public class PlayerBlockBehaviour : MonoBehaviour
     private Vector3 movingDirection = Vector3.zero;
     [SerializeField] private GameObject player;
     private PlayerBehaviour playerBehaviour;
+    private float playerSpeedBeforeMovement;
+
+    private float MovementInterationsCount => 1 / MovementLength;
+    private float MovementLength => 1 * playerSpeedBeforeMovement / 10;
+    private float MovementDuration => 0.1f / MovementInterationsCount;
 
     private void Start()
     {
@@ -24,7 +30,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
             this.playerBehaviour.RotateAnimation(movingDirection);
         }
     }
-
+    
     private void Move()
     {
         if (!Map.isEmpty(transform.position + transform.TransformDirection(movingDirection + Vector3.up)))
@@ -34,22 +40,26 @@ public class PlayerBlockBehaviour : MonoBehaviour
         }
         else if (Map.isEmpty(transform.position + transform.TransformDirection(movingDirection)))
         {
-            Rotate(movingDirection);
+            StartCoroutine(Rotate(movingDirection));
         }
         else
         {
-            TranslatePlayer(movingDirection);
+            StartCoroutine(TranslatePlayer(movingDirection));
         }
     }
 
-    private void Rotate(Vector3 amount)
+    private IEnumerator Rotate(Vector3 amount)
     {
-        var rotationAmount = new Vector3(amount.z, amount.x, amount.y);
+        var rotationAmount = new Vector3(amount.z, amount.x, amount.y) * 90;
+        var numberOfIterations = MovementInterationsCount;
 
-        iTween.RotateBy(this.gameObject,
-            iTween.Hash("amount", rotationAmount / 4, "time", .25f / GameManager.Instance.playerSpeed, "easetype",
-                iTween.EaseType.linear, "oncomplete",
-                nameof(StopMoving)));
+        for (int i = 0; i < numberOfIterations; i++)
+        {
+            this.transform.Rotate(rotationAmount * MovementLength);
+            yield return new WaitForSeconds(MovementDuration);
+        }
+        
+        StopMoving();
     }
 
     private void Climb()
@@ -65,13 +75,17 @@ public class PlayerBlockBehaviour : MonoBehaviour
         // TODO : Disable collision while jumping to prevent collecting item
     }
 
-    private void TranslatePlayer(Vector3 amount)
+    private IEnumerator TranslatePlayer(Vector3 amount)
     {
-        // TODO : remplacer par méthode écrite manuellement un jour peut être
-        iTween.MoveBy(this.gameObject,
-            iTween.Hash("amount", amount, "time", .25f / GameManager.Instance.playerSpeed, "easetype",
-                iTween.EaseType.linear, "oncomplete",
-                nameof(StopMoving)));
+        var numberOfIterations = MovementInterationsCount;
+
+        for (int i = 0; i < numberOfIterations; i++)
+        {
+            this.transform.Translate(movingDirection * MovementLength);
+            yield return new WaitForSeconds(MovementDuration);
+        }
+        
+        StopMoving();
     }
 
     private void StopMoving()
@@ -97,12 +111,12 @@ public class PlayerBlockBehaviour : MonoBehaviour
         if (Input.GetKey("right"))
         {
             this.movingDirection = Vector3.right;
-            movement = () => Rotate(movingDirection);
+            movement = () => StartCoroutine(Rotate(movingDirection));
         }
         else if (Input.GetKey("left"))
         {
             this.movingDirection = Vector3.left;
-            movement = () => Rotate(movingDirection);
+            movement = () => StartCoroutine(Rotate(movingDirection));
         }
         else if (Input.GetKey("up"))
         {
@@ -116,6 +130,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
 
         this.isMoving = true;
 
+        playerSpeedBeforeMovement = GameManager.Instance.playerSpeed;
         movement();
     }
 }
