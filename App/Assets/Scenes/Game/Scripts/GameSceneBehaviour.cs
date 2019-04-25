@@ -20,7 +20,7 @@ public class GameSceneBehaviour : MonoBehaviour
 
         if (GameManager.Instance.elapsedTime == GameManager.Instance.maxTime)
         {
-            GameOver();
+            GameSceneBehaviour.GameOver();
         }
     }
 
@@ -36,7 +36,7 @@ public class GameSceneBehaviour : MonoBehaviour
         LoadMapIntoScene();
     }
 
-    private void GameOver()
+    public static void GameOver()
     {
         print("GameOver");
     }

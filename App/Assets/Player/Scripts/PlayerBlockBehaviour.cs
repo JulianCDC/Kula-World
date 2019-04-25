@@ -134,9 +134,19 @@ public class PlayerBlockBehaviour : MonoBehaviour
     {
         FixPosition();
         FixRotation();
+        CheckIfGameOver();
         isMoving = false;
     }
 
+    
+    private void CheckIfGameOver()
+    {
+        if (Map.isEmpty(transform.position))
+        {
+            GameSceneBehaviour.GameOver();
+        }
+    }
+    
     private void FixPosition()
     {
         var fixedX = Math.Round(transform.position.x);
