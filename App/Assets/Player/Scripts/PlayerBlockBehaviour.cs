@@ -11,6 +11,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
     private SphereCollider playerCollider;
     private float playerSpeedBeforeMovement;
     private Transform transformBeforeMovement;
+    private bool willJump;
 
     private float MovementInterationsCount => 1 / MovementLength;
     private float MovementLength => 1 * playerSpeedBeforeMovement / 10;
@@ -104,6 +105,13 @@ public class PlayerBlockBehaviour : MonoBehaviour
         StopMoving();
 
         this.playerCollider.enabled = true;
+        ToggleJump();
+    }
+
+    private void ToggleJump()
+    {
+        willJump = !willJump;
+        Hud.ToggleJump();
     }
 
     private IEnumerator TranslatePlayer()
@@ -169,10 +177,15 @@ public class PlayerBlockBehaviour : MonoBehaviour
             this.movingDirection = Vector3.left;
             movement = () => StartCoroutine(Rotate(movingDirection));
         }
-        else if (Input.GetAxis("Jump") > 0 && Input.GetAxis("Vertical") > 0)
+        else if (willJump && Input.GetAxis("Vertical") > 0)
         {
             this.movingDirection = Vector3.forward;
             movement = () => StartCoroutine(Jump());
+        }
+        else if (Input.GetAxis("Jump") > 0)
+        {
+            ToggleJump();
+            return;
         }
         else if (Input.GetAxis("Vertical") > 0)
         {

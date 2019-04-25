@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Hud : MonoBehaviour
-{    
+{
     private static Hud hudInstance;
     public Text score;
     [SerializeField] private GameObject key;
     public Texture2D filledKey;
     [SerializeField] private Texture2D blackKey;
     public GameObject hourglass;
+    public RawImage jumpIndicator;
 
     [SerializeField] private RawImage apple;
     [SerializeField] private RawImage banana;
@@ -49,6 +48,15 @@ public class Hud : MonoBehaviour
         GameManager.Instance.collectedFruits += 1;
     }
 
+    public static void ToggleJump()
+    {
+        RawImage jumpIndicator = hudInstance.jumpIndicator;
+        Color currentColor = jumpIndicator.color;
+        
+        print(currentColor.a);
+        jumpIndicator.color = new Color(currentColor.r, currentColor.g, currentColor.b, currentColor.a == 1.0f ? 0.3921569f : 1.0f);
+    }
+
     public static void CollectKey(int keyId)
     {
         hudInstance.key.GetComponent<RawImage>().texture = hudInstance.filledKey;
@@ -56,6 +64,5 @@ public class Hud : MonoBehaviour
 
     public static void ResetHud()
     {
-        
     }
 }
