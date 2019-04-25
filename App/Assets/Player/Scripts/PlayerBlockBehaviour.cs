@@ -8,7 +8,9 @@ public class PlayerBlockBehaviour : MonoBehaviour
     private Vector3 movingDirection = Vector3.zero;
     [SerializeField] private GameObject player;
     private PlayerBehaviour playerBehaviour;
+    private SphereCollider playerCollider;
     private float playerSpeedBeforeMovement;
+    private Transform transformBeforeMovement;
 
     private float MovementInterationsCount => 1 / MovementLength;
     private float MovementLength => 1 * playerSpeedBeforeMovement / 10;
@@ -17,6 +19,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
     private void Start()
     {
         this.playerBehaviour = player.GetComponent<PlayerBehaviour>();
+        this.playerCollider = player.GetComponent<SphereCollider>();
     }
 
     private void Update()
@@ -77,9 +80,30 @@ public class PlayerBlockBehaviour : MonoBehaviour
         StopMoving();
     }
 
-    private void Jump()
+    private IEnumerator Jump()
     {
-        // TODO : Disable collision while jumping to prevent collecting item
+        this.playerCollider.enabled = false;
+
+        var numberOfIterations = MovementInterationsCount;
+
+        for (int i = 0; i < numberOfIterations; i++)
+        {
+            if (i < numberOfIterations / 2)
+            {
+                transform.Translate(Vector3.up * MovementLength);
+            }
+            else
+            {
+                transform.Translate(Vector3.down * MovementLength);
+            }
+
+            this.transform.Translate(movingDirection * (GameManager.Instance.playerJumpLength + 1) * MovementLength);
+            yield return new WaitForSeconds(MovementDuration);
+        }
+
+        StopMoving();
+
+        this.playerCollider.enabled = true;
     }
 
     private IEnumerator TranslatePlayer()
@@ -107,7 +131,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
         var fixedX = Math.Round(transform.position.x);
         var fixedY = Math.Round(transform.position.y);
         var fixedZ = Math.Round(transform.position.z);
-        
+
         transform.position = new Vector3((int) fixedX, (int) fixedY, (int) fixedZ);
     }
 
@@ -145,6 +169,11 @@ public class PlayerBlockBehaviour : MonoBehaviour
             this.movingDirection = Vector3.left;
             movement = () => StartCoroutine(Rotate(movingDirection));
         }
+        else if (Input.GetAxis("Jump") > 0 && Input.GetAxis("Vertical") > 0)
+        {
+            this.movingDirection = Vector3.forward;
+            movement = () => StartCoroutine(Jump());
+        }
         else if (Input.GetAxis("Vertical") > 0)
         {
             this.movingDirection = Vector3.forward;
@@ -158,6 +187,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
         this.isMoving = true;
 
         playerSpeedBeforeMovement = GameManager.Instance.playerSpeed;
+        transformBeforeMovement = transform;
         movement();
     }
 }
