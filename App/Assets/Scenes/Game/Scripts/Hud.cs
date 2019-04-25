@@ -53,7 +53,6 @@ public class Hud : MonoBehaviour
         RawImage jumpIndicator = hudInstance.jumpIndicator;
         Color currentColor = jumpIndicator.color;
         
-        print(currentColor.a);
         jumpIndicator.color = new Color(currentColor.r, currentColor.g, currentColor.b, currentColor.a == 1.0f ? 0.3921569f : 1.0f);
     }
 

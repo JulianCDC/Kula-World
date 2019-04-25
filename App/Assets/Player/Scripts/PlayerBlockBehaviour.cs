@@ -13,6 +13,8 @@ public class PlayerBlockBehaviour : MonoBehaviour
     private Transform transformBeforeMovement;
     private bool willJump;
 
+    private bool jumpButtonPressed;
+    
     private float MovementInterationsCount => 1 / MovementLength;
     private float MovementLength => 1 * playerSpeedBeforeMovement / 10;
     private float MovementDuration => 0.1f / MovementInterationsCount;
@@ -28,6 +30,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
         if (!this.isMoving)
         {
             ListenForMovement();
+            ListenForJumpToggle();
         }
         else
         {
@@ -163,6 +166,20 @@ public class PlayerBlockBehaviour : MonoBehaviour
         }
     }
 
+    private void ListenForJumpToggle()
+    {
+        if (Input.GetAxis("Jump") > 0 && !jumpButtonPressed)
+        {
+            jumpButtonPressed = true;
+            ToggleJump();
+        }
+        
+        if (Input.GetAxis("Jump") == 0)
+        {
+            jumpButtonPressed = false;
+        }
+    }
+    
     private void ListenForMovement()
     {
         Action movement;
@@ -181,11 +198,6 @@ public class PlayerBlockBehaviour : MonoBehaviour
         {
             this.movingDirection = Vector3.forward;
             movement = () => StartCoroutine(Jump());
-        }
-        else if (Input.GetAxis("Jump") > 0)
-        {
-            ToggleJump();
-            return;
         }
         else if (Input.GetAxis("Vertical") > 0)
         {
