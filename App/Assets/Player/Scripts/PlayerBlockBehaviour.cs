@@ -97,7 +97,17 @@ public class PlayerBlockBehaviour : MonoBehaviour
 
     private void StopMoving()
     {
+        FixPosition();
         isMoving = false;
+    }
+
+    private void FixPosition()
+    {
+        var fixedX = Math.Round(transform.position.x);
+        var fixedY = Math.Round(transform.position.y);
+        var fixedZ = Math.Round(transform.position.z);
+        
+        transform.position = new Vector3((int) fixedX, (int) fixedY, (int) fixedZ);
     }
 
     private void OnTriggerEnter(Collider other)
