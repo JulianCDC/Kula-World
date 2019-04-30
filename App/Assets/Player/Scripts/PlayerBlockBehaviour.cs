@@ -15,9 +15,10 @@ public class PlayerBlockBehaviour : MonoBehaviour
 
     private bool jumpButtonPressed;
     
-    private float MovementInterationsCount => 1 / MovementLength;
-    private float MovementLength => 1 * playerSpeedBeforeMovement / 10;
-    private float MovementDuration => 0.1f / MovementInterationsCount;
+    private float MovementLength => playerSpeedBeforeMovement <= 1 ? 1 * playerSpeedBeforeMovement / 10 : 0.1f;
+
+    private float MovementInterationsCount => playerSpeedBeforeMovement <= 1 ? 1 / MovementLength : 10;
+    private float MovementIterationDuration => playerSpeedBeforeMovement <= 1 ? 0.1f / MovementInterationsCount : 0.01f / playerSpeedBeforeMovement;
 
     private void Start()
     {
@@ -62,7 +63,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
         for (int i = 0; i < numberOfIterations; i++)
         {
             this.transform.Rotate(rotationAmount * MovementLength);
-            yield return new WaitForSeconds(MovementDuration);
+            yield return new WaitForSeconds(MovementIterationDuration);
         }
 
         StopMoving();
@@ -78,7 +79,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
         {
             this.transform.transform.position += translationDestination * MovementLength;
             this.transform.Rotate((Vector3.left * 90) * MovementLength);
-            yield return new WaitForSeconds(MovementDuration);
+            yield return new WaitForSeconds(MovementIterationDuration);
         }
 
         StopMoving();
@@ -102,7 +103,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
             }
 
             this.transform.Translate(movingDirection * (GameManager.Instance.playerJumpLength + 1) * MovementLength);
-            yield return new WaitForSeconds(MovementDuration);
+            yield return new WaitForSeconds(MovementIterationDuration);
         }
 
         StopMoving();
@@ -124,7 +125,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
         for (int i = 0; i < numberOfIterations; i++)
         {
             this.transform.Translate(movingDirection * MovementLength);
-            yield return new WaitForSeconds(MovementDuration);
+            yield return new WaitForSeconds(MovementIterationDuration);
         }
 
         StopMoving();
