@@ -27,6 +27,10 @@ Si pas le temps, limiter le nombre de clé et de porte à 1
 ## Jeu
 
 - [ ] Ajouter la possibilité de choisir le temps assigné au niveau (<span style="color:red">**Important**</span>)
+- [ ] Ajouter possibilité de controle à la manette
+      - [ ] Objets du menu sélectionnables avec la croix directionelle
+      - [ ] Lorsque qu'un objet est sélectionné pouvoir le déplacer avec la croix directionelle
+      - [ ] Trouver un bon moyen de pouvoir sélectionner un block déjà dans le jeu
 
 ## Objets
 
