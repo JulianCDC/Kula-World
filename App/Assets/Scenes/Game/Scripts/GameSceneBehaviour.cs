@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class GameSceneBehaviour : MonoBehaviour
 {
@@ -18,7 +18,7 @@ public class GameSceneBehaviour : MonoBehaviour
     {
         GameManager.Instance.elapsedTime += GameManager.Instance.secondsPerTick;
 
-        if (GameManager.Instance.elapsedTime == GameManager.Instance.maxTime)
+        if (GameManager.Instance.elapsedTime >= GameManager.Instance.maxTime)
         {
             GameSceneBehaviour.GameOver();
         }
