@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 4073208324603843959}
+  playerCamera: {fileID: 9101030308878997168}
 --- !u!1001 &5998273065885478390
 PrefabInstance:
   m_ObjectHideFlags: 0

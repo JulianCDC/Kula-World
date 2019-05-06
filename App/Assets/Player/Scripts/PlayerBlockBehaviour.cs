@@ -12,18 +12,23 @@ public class PlayerBlockBehaviour : MonoBehaviour
     private float playerSpeedBeforeMovement;
     private Transform transformBeforeMovement;
     private bool willJump;
+    [SerializeField] private Camera playerCamera;
+    private PlayerCameraBehaviour playerCameraBehaviour;
 
     private bool jumpButtonPressed;
-    
-    private float MovementLength => playerSpeedBeforeMovement <= 1 ? 1 * playerSpeedBeforeMovement / 10 : 0.1f;
 
+    private float MovementLength => playerSpeedBeforeMovement <= 1 ? 1 * playerSpeedBeforeMovement / 10 : 0.1f;
     private float MovementInterationsCount => playerSpeedBeforeMovement <= 1 ? 1 / MovementLength : 10;
-    private float MovementIterationDuration => playerSpeedBeforeMovement <= 1 ? 0.1f / MovementInterationsCount : 0.01f / playerSpeedBeforeMovement;
+
+    private float MovementIterationDuration => playerSpeedBeforeMovement <= 1
+        ? 0.1f / MovementInterationsCount
+        : 0.01f / playerSpeedBeforeMovement;
 
     private void Start()
     {
         this.playerBehaviour = player.GetComponent<PlayerBehaviour>();
         this.playerCollider = player.GetComponent<SphereCollider>();
+        this.playerCameraBehaviour = playerCamera.GetComponent<PlayerCameraBehaviour>();
     }
 
     private void Update()
@@ -135,11 +140,28 @@ public class PlayerBlockBehaviour : MonoBehaviour
     {
         FixPosition();
         FixRotation();
+        FixCameraPosition();
         CheckIfGameOver();
         isMoving = false;
     }
 
+    private void FixCameraPosition()
+    {
+        if (PlayerHasBlockBehind())
+        {
+            playerCameraBehaviour.ChangePositionTo(PlayerCameraBehaviour.Position.close);
+        }
+        else
+        {
+            playerCameraBehaviour.ChangePositionTo(PlayerCameraBehaviour.Position.normal);
+        }
+    }
     
+    private bool PlayerHasBlockBehind()
+    {
+        return !Map.isEmpty(transform.position + transform.TransformDirection(Vector3.back + Vector3.up));
+    }
+
     private void CheckIfGameOver()
     {
         if (Map.isEmpty(transform.position))
@@ -147,7 +169,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
             GameSceneBehaviour.GameOver();
         }
     }
-    
+
     private void FixPosition()
     {
         var fixedX = Math.Round(transform.position.x);
@@ -184,13 +206,13 @@ public class PlayerBlockBehaviour : MonoBehaviour
             jumpButtonPressed = true;
             ToggleJump();
         }
-        
+
         if (Input.GetAxis("Jump") == 0)
         {
             jumpButtonPressed = false;
         }
     }
-    
+
     private void ListenForMovement()
     {
         Action movement;

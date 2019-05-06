@@ -30,8 +30,8 @@ public class PlayerCameraBehaviour : MonoBehaviour
 
     private void LoadTransform(TransformStruct transformStruct)
     {
-        this.transform.position = new Vector3(transformStruct.position.x, transformStruct.position.y, transformStruct.position.z);
-        this.transform.rotation = Quaternion.Euler(new Vector3(transformStruct.rotation.x, transformStruct.rotation.y, transformStruct.rotation.z));
+        this.transform.localPosition = new Vector3(transformStruct.position.x, transformStruct.position.y, transformStruct.position.z);
+        this.transform.localRotation = Quaternion.Euler(new Vector3(transformStruct.rotation.x, transformStruct.rotation.y, transformStruct.rotation.z));
         this.transform.localScale = new Vector3(transformStruct.scale.x, transformStruct.scale.y, transformStruct.scale.z);
     }
 }
