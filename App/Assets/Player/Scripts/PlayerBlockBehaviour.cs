@@ -96,6 +96,17 @@ public class PlayerBlockBehaviour : MonoBehaviour
 
         var numberOfIterations = MovementInterationsCount;
 
+        var playerJumpLength = GameManager.Instance.playerJumpLength + 1;
+        Vector3 destinationDirection;
+        Vector3 destinationPosition;
+        
+        do
+        {
+            playerJumpLength -= 1;
+
+            destinationDirection = movingDirection * (playerJumpLength + 1);
+        } while (!CanJumpForwardOf(playerJumpLength));
+
         for (int i = 0; i < numberOfIterations; i++)
         {
             if (i < numberOfIterations / 2)
@@ -107,7 +118,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
                 transform.Translate(Vector3.down * MovementLength);
             }
 
-            this.transform.Translate(movingDirection * (GameManager.Instance.playerJumpLength + 1) * MovementLength);
+            this.transform.Translate(destinationDirection * MovementLength);
             yield return new WaitForSeconds(MovementIterationDuration);
         }
 
@@ -115,6 +126,26 @@ public class PlayerBlockBehaviour : MonoBehaviour
 
         this.playerCollider.enabled = true;
         ToggleJump();
+    }
+
+    private bool CanMoveBy(Vector3 direction)
+    {
+        return Map.isEmpty(transform.position + transform.TransformDirection(direction));
+    }
+
+    private bool CanJumpForwardOf(int jumpLength)
+    {
+        var playerJumpLength = jumpLength + 1;
+
+        for (int i = 1; i <= playerJumpLength; i++)
+        {
+            if (!CanMoveBy(Vector3.up + Vector3.forward * i))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private void ToggleJump()
@@ -156,7 +187,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
             playerCameraBehaviour.ChangePositionTo(PlayerCameraBehaviour.Position.normal);
         }
     }
-    
+
     private bool PlayerHasBlockBehind()
     {
         return !Map.isEmpty(transform.position + transform.TransformDirection(Vector3.back + Vector3.up));
