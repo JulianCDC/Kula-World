@@ -6,7 +6,7 @@ public class GameSceneBehaviour : MonoBehaviour
     private Map map;
     [SerializeField] private string mapName;
     [SerializeField] private GameObject mapObject;
-    private static bool gameOver;
+    public static bool gameOver;
     
     void Start()
     {

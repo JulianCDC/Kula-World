@@ -33,14 +33,17 @@ public class PlayerBlockBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (!this.isMoving)
+        if (!GameSceneBehaviour.gameOver)
         {
-            ListenForMovement();
-            ListenForJumpToggle();
-        }
-        else
-        {
-            this.playerBehaviour.RotateAnimation(movingDirection);
+            if (!this.isMoving)
+            {
+                ListenForMovement();
+                ListenForJumpToggle();
+            }
+            else
+            {
+                this.playerBehaviour.RotateAnimation(movingDirection);
+            }
         }
     }
 
