@@ -44,7 +44,10 @@ public abstract class Collectible : MonoBehaviour
     /// <summary>
     /// Called when the GameObject is Collected by the player
     /// </summary>
-    public abstract void Collected();
+    public virtual void Collected()
+    {
+        Destroy(this.gameObject);
+    }
 
     /// <summary>
     /// Put the base rotation of the GameObject into <see cref="yaw"/>, <see cref="roll"/>, <see cref="pitch"/>
