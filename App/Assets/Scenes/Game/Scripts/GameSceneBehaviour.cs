@@ -1,19 +1,30 @@
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameSceneBehaviour : MonoBehaviour
 {
     private Map map;
     [SerializeField] private string mapName;
     [SerializeField] private GameObject mapObject;
+    private static bool gameOver;
     
     void Start()
     {
+        ResetLevel();
+
         LoadMap();
         LoadPlayer();
         
-        GameManager.Instance.maxTime = 60;
+        GameManager.Instance.maxTime = 600;
         InvokeRepeating(nameof(Tick), 0f, 1.0f);
     }
+
+    private static void ResetLevel()
+    {
+        GameManager.Instance.NewLevel();
+        gameOver = false;
+    }
+    
     void Tick()
     {
         GameManager.Instance.elapsedTime += GameManager.Instance.secondsPerTick;
@@ -38,7 +49,17 @@ public class GameSceneBehaviour : MonoBehaviour
 
     public static void GameOver()
     {
-        print("GameOver");
+        if (!gameOver)
+        {
+            gameOver = true;
+            DisplayGameOverScreen();
+        }
+    }
+
+    private static void DisplayGameOverScreen()
+    {
+        var gameOverPopup = Resources.Load<GameObject>("GameOverPopup");
+        Instantiate(gameOverPopup, Hud.GetHud().transform);
     }
 
     private void LoadMapIntoScene()

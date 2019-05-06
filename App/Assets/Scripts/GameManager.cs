@@ -21,4 +21,20 @@ public class GameManager : Singleton<GameManager>
     public int collectedFruits = 0;
 
     public bool PlayerHasAllFruits => collectedFruits == 5;
+
+    public void NewLevel()
+    {
+        Reset();
+    }
+
+    private void Reset()
+    {
+        _playerScore = 0;
+        playerJumpLength = 1;
+        playerSpeed = 1;
+        maxTime = 0;
+        elapsedTime = 0;
+        secondsPerTick = 1;
+        collectedFruits = 0;
+    }
 }
