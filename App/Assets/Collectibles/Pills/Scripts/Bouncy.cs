@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 
 /// <summary>
 /// The Main Behaviour of a BouncyPill GameObject
@@ -15,9 +16,15 @@ public class Bouncy : Collectible
 
     private void SetExpiracyTimer()
     {
+        var cancelTokenSource = new CancellationTokenSource();
+        CancellationToken cancellationToken = cancelTokenSource.Token;
+        
+        GameManager.Instance.runningTasksTokens.Add(cancelTokenSource);
+
         Task.Delay(15000).ContinueWith(delegate
         {
+            cancellationToken.ThrowIfCancellationRequested();
             GameManager.Instance.playerSpeed /= 2;
-        });
+        }, cancellationToken);
     }
 }

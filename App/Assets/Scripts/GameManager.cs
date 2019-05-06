@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Threading;
 using UnityEditor;
 
 public class GameManager : Singleton<GameManager>
@@ -19,6 +21,7 @@ public class GameManager : Singleton<GameManager>
     public int elapsedTime = 0;
     public int secondsPerTick = 1;
     public int collectedFruits = 0;
+    public List<CancellationTokenSource> runningTasksTokens = new List<CancellationTokenSource>();
 
     public bool PlayerHasAllFruits => collectedFruits == 5;
 
@@ -36,5 +39,12 @@ public class GameManager : Singleton<GameManager>
         elapsedTime = 0;
         secondsPerTick = 1;
         collectedFruits = 0;
+
+        foreach (CancellationTokenSource cancellationTokenSource in runningTasksTokens)
+        {
+            cancellationTokenSource.Cancel();
+        }
+        
+        runningTasksTokens = new List<CancellationTokenSource>();
     }
 }
