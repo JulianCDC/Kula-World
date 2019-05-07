@@ -93,6 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   childText: {fileID: 4023626135794763587}
   textHoverColor: {r: 0.89566046, g: 0.9528302, b: 0, a: 1}
+  destinationSceneId: 0
 --- !u!114 &2296613397354676490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +138,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8434668080142744230}
-        m_MethodName: LoadScene
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

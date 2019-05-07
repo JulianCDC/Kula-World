@@ -11,6 +11,7 @@ public class MainMenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExit
 {
     [SerializeField] private Text childText;
     [SerializeField] private Color textHoverColor;
+    [SerializeField] private int destinationSceneId;
     private Color oldTextColor;
     
     
@@ -26,17 +27,9 @@ public class MainMenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExit
     }
     
     // list actions here
-    
-    /// <summary>
-    /// Load the Editor Scene
-    /// </summary>
-    public void LoadEditor()
-    {
-        SceneManager.LoadScene(1);
-    }
 
-    public void LoadGameplay()
+    public void OnClick()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(destinationSceneId);
     }
 }
