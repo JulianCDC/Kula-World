@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2703551094931976690}
   - component: {fileID: 4980020824931243550}
   - component: {fileID: 329175809989124966}
+  - component: {fileID: 2914108685996226998}
   m_Layer: 5
   m_Name: Level List Item
   m_TagString: Untagged
@@ -68,10 +69,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: b37f6b6a517d97f4685d0e20b02bee8e, type: 3}
-    m_FontSize: 14
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -94,3 +95,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 0
+--- !u!114 &2914108685996226998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3829681461220694286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf8aa4287f6f8174499b410b2d0d0c49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: {fileID: 4980020824931243550}
