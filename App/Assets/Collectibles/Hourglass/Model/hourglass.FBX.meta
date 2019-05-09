@@ -1,55 +1,11 @@
 fileFormatVersion: 2
-guid: b2d39594683240a469e5e8ecc3394ea4
+guid: 67358fd4681c93340b80e434d5f7bd49
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: Cylinder011
-    100002: Cylinder012
-    100004: Cylinder013
-    100006: Cylinder017
-    100008: Cylinder018
-    100010: Cylinder019
-    100012: Cylinder020
-    100014: //RootNode
-    400000: Cylinder011
-    400002: Cylinder012
-    400004: Cylinder013
-    400006: Cylinder017
-    400008: Cylinder018
-    400010: Cylinder019
-    400012: Cylinder020
-    400014: //RootNode
-    2100000: 'Material #37'
-    2300000: Cylinder011
-    2300002: Cylinder012
-    2300004: Cylinder013
-    2300006: Cylinder017
-    2300008: Cylinder018
-    2300010: Cylinder019
-    2300012: Cylinder020
-    3300000: Cylinder011
-    3300002: Cylinder012
-    3300004: Cylinder013
-    3300006: Cylinder017
-    3300008: Cylinder018
-    3300010: Cylinder019
-    3300012: Cylinder020
-    4300000: Cylinder012
-    4300002: Cylinder013
-    4300004: Cylinder017
-    4300006: Cylinder018
-    4300008: Cylinder019
-    4300010: Cylinder020
-    4300012: Cylinder011
-    6400000: Cylinder011
-    6400002: Cylinder012
-    6400004: Cylinder013
-    6400006: Cylinder017
-    6400008: Cylinder018
-    6400010: Cylinder019
-    6400012: Cylinder020
-    7400000: Take 001
-    9500000: //RootNode
+  serializedVersion: 25
+  internalIDToNameTable:
+  - first:
+      74: 1827226128182048838
+    second: Take 001
   externalObjects: {}
   materials:
     importMaterials: 0
@@ -77,13 +33,42 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
-    isReadable: 1
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      internalID: 1827226128182048838
+      firstFrame: 0
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
@@ -92,18 +77,19 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -112,10 +98,11 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 0
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -125,6 +112,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
