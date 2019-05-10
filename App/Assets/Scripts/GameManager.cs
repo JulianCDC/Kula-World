@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEditor;
@@ -15,6 +16,8 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public string currentLevel;
+    public bool officialLevel;
     public int playerJumpLength = 1;
     public float playerSpeed = 1;
     public int maxTime;
@@ -28,6 +31,28 @@ public class GameManager : Singleton<GameManager>
     public void NewLevel()
     {
         Reset();
+    }
+
+    public void NextLevel()
+    {
+        int previousLevel = int.Parse(this.currentLevel);
+        if (previousLevel % 5 == 0)
+        {
+            PlayerData.Save(previousLevel);
+        }
+
+        previousLevel += 1;
+
+        if (previousLevel <= Const.OFFICIAL_LEVELS_NUMBER)
+        {
+            this.currentLevel = previousLevel.ToString();
+        }
+        else
+        {
+            // TODO: win
+        }
+
+        NewLevel();
     }
 
     private void Reset()

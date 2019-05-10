@@ -205,4 +205,13 @@ public class Map
         mapInstance = deserializedMap;
         return deserializedMap;
     }
+
+    public static Map Load(FileStream map)
+    {
+        XmlSerializer mapSerialized = new XmlSerializer(typeof(Map));
+
+        Map deserializedMap = (Map) mapSerialized.Deserialize(map);
+        mapInstance = deserializedMap;
+        return deserializedMap;
+    }
 }

@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameSceneBehaviour : MonoBehaviour
 {
     private Map map;
-    [SerializeField] private string mapName;
     [SerializeField] private GameObject mapObject;
     public static bool gameOver;
     
@@ -43,8 +43,17 @@ public class GameSceneBehaviour : MonoBehaviour
     
     private void LoadMap()
     {
-        this.map = Map.Load(this.mapName);
-        LoadMapIntoScene();
+        if (!GameManager.Instance.officialLevel)
+        {
+            this.map = Map.Load(GameManager.Instance.currentLevel);
+            LoadMapIntoScene();
+        }
+        else
+        {
+            FileStream mapFile = new FileStream("./levels/" + GameManager.Instance.currentLevel + ".map", FileMode.Open);
+            this.map = Map.Load(mapFile);
+            LoadMapIntoScene();
+        }
     }
 
     public static void GameOver()

@@ -1,23 +1,46 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// The Main Behaviour for the Main Menu Scene
 /// </summary>
-public class MainMenuElement : MonoBehaviour
+public class MainMenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    // list actions here
+    [SerializeField] private Text childText;
+    [SerializeField] private Color textHoverColor;
+    [SerializeField] private int destinationSceneId;
+    private Color oldTextColor;
     
-    /// <summary>
-    /// Load the Editor Scene
-    /// </summary>
-    public void LoadEditor()
+    
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        SceneManager.LoadScene(1);
+        oldTextColor = childText.color;
+        childText.color = textHoverColor;
     }
 
-    public void LoadGameplay()
+    public void OnPointerExit(PointerEventData eventData)
     {
-        SceneManager.LoadScene(2);
+        childText.color = oldTextColor;
+    }
+    
+    // list actions here
+
+    public void LoadOfficial()
+    {
+        GameManager.Instance.currentLevel = PlayerData.GetProgress().ToString();
+        GameManager.Instance.officialLevel = true;
+    }
+
+    public void LoadCustom()
+    {
+        GameManager.Instance.officialLevel = false;
+    }
+    
+    public void OnClick()
+    {
+        SceneManager.LoadScene(destinationSceneId);
     }
 }
