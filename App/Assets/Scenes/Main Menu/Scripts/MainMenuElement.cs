@@ -28,6 +28,17 @@ public class MainMenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExit
     
     // list actions here
 
+    public void LoadOfficial()
+    {
+        GameManager.Instance.currentLevel = PlayerData.GetProgress().ToString();
+        GameManager.Instance.officialLevel = true;
+    }
+
+    public void LoadCustom()
+    {
+        GameManager.Instance.officialLevel = false;
+    }
+    
     public void OnClick()
     {
         SceneManager.LoadScene(destinationSceneId);
