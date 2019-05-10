@@ -15,6 +15,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public string currentLevel;
     public int playerJumpLength = 1;
     public float playerSpeed = 1;
     public int maxTime;

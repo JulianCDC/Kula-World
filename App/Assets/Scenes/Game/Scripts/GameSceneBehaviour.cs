@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 public class GameSceneBehaviour : MonoBehaviour
 {
     private Map map;
-    [SerializeField] private string mapName;
     [SerializeField] private GameObject mapObject;
     public static bool gameOver;
     
@@ -43,7 +42,7 @@ public class GameSceneBehaviour : MonoBehaviour
     
     private void LoadMap()
     {
-        this.map = Map.Load(this.mapName);
+        this.map = Map.Load(GameManager.Instance.currentLevel);
         LoadMapIntoScene();
     }
 

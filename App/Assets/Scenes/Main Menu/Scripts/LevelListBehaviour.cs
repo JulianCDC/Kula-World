@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelListBehaviour : MonoBehaviour
 {
@@ -27,5 +28,14 @@ public class LevelListBehaviour : MonoBehaviour
 
             mapEntryBehaviour.MapName = Path.GetFileNameWithoutExtension(Path.Combine(Const.MAP_DIRECTORY, file));
         }
+    }
+    
+    
+    public void LoadCustomLevel()
+    {
+        if (selectedEntryBehaviour == null) return;
+        
+        GameManager.Instance.currentLevel = selectedEntryBehaviour.MapName;
+        SceneManager.LoadScene(3);
     }
 }
