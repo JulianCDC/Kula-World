@@ -17,6 +17,8 @@ public class EditableBlockBehaviour : MonoBehaviour
     /// </summary>
     private ArrowBehaviour[] arrows = new ArrowBehaviour[6];
 
+    private bool selected;
+
     /// <summary>
     /// Set the serialized properties of the block
     /// </summary>
@@ -54,12 +56,71 @@ public class EditableBlockBehaviour : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (selected)
+        {
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                WithItemBehaviour withItemBehaviour = this.gameObject.GetComponent<WithItemBehaviour>();
+                withItemBehaviour.itemPosition = WithItemBehaviour.Positions.up;
+                withItemBehaviour.setItemPosition();
+            }
+
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                WithItemBehaviour withItemBehaviour = this.gameObject.GetComponent<WithItemBehaviour>();
+                withItemBehaviour.itemPosition = WithItemBehaviour.Positions.down;
+                withItemBehaviour.setItemPosition();
+                Map.ChangeItemPosition(withItemBehaviour, this);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.Q))
+            {
+                WithItemBehaviour withItemBehaviour = this.gameObject.GetComponent<WithItemBehaviour>();
+                withItemBehaviour.itemPosition = WithItemBehaviour.Positions.left;
+                withItemBehaviour.setItemPosition();
+                Map.ChangeItemPosition(withItemBehaviour, this);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                WithItemBehaviour withItemBehaviour = this.gameObject.GetComponent<WithItemBehaviour>();
+                withItemBehaviour.itemPosition = WithItemBehaviour.Positions.right;
+                withItemBehaviour.setItemPosition();
+                Map.ChangeItemPosition(withItemBehaviour, this);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.A))
+            {
+                WithItemBehaviour withItemBehaviour = this.gameObject.GetComponent<WithItemBehaviour>();
+                withItemBehaviour.itemPosition = WithItemBehaviour.Positions.back;
+                withItemBehaviour.setItemPosition();
+                Map.ChangeItemPosition(withItemBehaviour, this);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.E))
+            {
+                WithItemBehaviour withItemBehaviour = this.gameObject.GetComponent<WithItemBehaviour>();
+                withItemBehaviour.itemPosition = WithItemBehaviour.Positions.front;
+                withItemBehaviour.setItemPosition();
+                Map.ChangeItemPosition(withItemBehaviour, this);
+            }
+
+
+        }
+
+
+    }
+
     /// <summary>
     /// Called when the Block is selected
     /// </summary>
     /// Call the method for creating the Arrows used for moving the object. See <see cref="ArrowBehaviour"/>
     public void Select()
     {
+        selected = true;       
+
         CreateMovementArrow();
     }
 
@@ -69,6 +130,7 @@ public class EditableBlockBehaviour : MonoBehaviour
     /// Call the method for destroying the Arrows used for moving the object. See <see cref="ArrowBehaviour"/>
     public void UnSelect()
     {
+        selected = false;
         DestroyMovementArrow();
     }
 

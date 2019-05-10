@@ -56,6 +56,7 @@ public class EditorActions : MonoBehaviour
             {
                 GameObject hitObject = hit.collider.gameObject;
                 EditableBlockBehaviour hitObjectBehaviour = hitObject.GetComponent<EditableBlockBehaviour>();
+                
                 ArrowBehaviour hitArrowBehaviour = hitObject.GetComponent<ArrowBehaviour>();
                 bool isBlock = false;
                 bool isArrow = false;
@@ -82,6 +83,7 @@ public class EditorActions : MonoBehaviour
                         this.selectedBlockBehaviour = hitObjectBehaviour;
 
                         hitObjectBehaviour.Select();
+                        
                     }
                 }
                 else if (isArrow)
@@ -128,6 +130,8 @@ public class EditorActions : MonoBehaviour
             ClearSelectedObject();
         }
     }
+
+    
 
     /// <summary>
     /// Listener for camera movement

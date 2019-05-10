@@ -109,6 +109,15 @@ public class Map
         }
     }
 
+
+    public static void ChangeItemPosition(WithItemBehaviour withItemBehaviour, EditableBlockBehaviour itemBlockToChangeBehaviour)
+    {
+        XmlBlock itemBlockToChange =
+            mapInstance.blocks.Find(properties => properties == itemBlockToChangeBehaviour.xmlBlock);
+
+        itemBlockToChange.itemPosition = withItemBehaviour.itemPosition;
+    }
+
     /// <summary>
     /// Check if a block can move to the new position
     /// </summary>
