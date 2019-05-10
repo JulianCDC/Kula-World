@@ -34,7 +34,8 @@ public abstract class Collectible : MonoBehaviour
         /// <summary>
         /// GameObject will rotate on the z axis
         /// </summary>
-        z
+        z,
+        none
     };
     /// <summary>
     /// The direction of the rotation of the GameObject

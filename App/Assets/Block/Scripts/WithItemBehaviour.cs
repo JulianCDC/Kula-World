@@ -60,6 +60,12 @@ public class WithItemBehaviour : MonoBehaviour
     {
         Quaternion newRotation;
 
+        Collectible.RotationDirections nextRotationDirection = Collectible.RotationDirections.x;
+        if (this.childBehaviour.rotationDirection == Collectible.RotationDirections.none)
+        {
+            nextRotationDirection = Collectible.RotationDirections.none;
+        }
+        
         switch (this.itemPosition)
         {
             default:
@@ -94,6 +100,11 @@ public class WithItemBehaviour : MonoBehaviour
                 break;
         }
 
+        if (nextRotationDirection != Collectible.RotationDirections.x)
+        {
+            this.childBehaviour.rotationDirection = Collectible.RotationDirections.none;
+        }
+        
         this.childCollectible.transform.localRotation = newRotation;
     }
 }
