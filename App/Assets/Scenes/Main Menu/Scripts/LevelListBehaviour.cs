@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using UnityEngine;
 
 public class LevelListBehaviour : MonoBehaviour
 {
     [SerializeField] private GameObject listItem;
+    private LevelListItemBehaviour selectedEntryBehaviour;
     
     void Start()
     {
@@ -13,6 +12,18 @@ public class LevelListBehaviour : MonoBehaviour
         {
             var mapEntry = Instantiate(listItem, this.transform);
             LevelListItemBehaviour mapEntryBehaviour = mapEntry.GetComponent<LevelListItemBehaviour>();
+            
+            mapEntryBehaviour.AddOnSelectListener(delegate
+            {
+                if (selectedEntryBehaviour == mapEntryBehaviour) return;
+
+                if (selectedEntryBehaviour != null)
+                {
+                    selectedEntryBehaviour.Unselect();
+                }
+
+                selectedEntryBehaviour = mapEntryBehaviour;
+            });
 
             mapEntryBehaviour.MapName = Path.GetFileNameWithoutExtension(Path.Combine(Const.MAP_DIRECTORY, file));
         }
