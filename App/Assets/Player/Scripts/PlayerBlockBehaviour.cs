@@ -12,8 +12,6 @@ public class PlayerBlockBehaviour : MonoBehaviour
     private float playerSpeedBeforeMovement;
     private Transform transformBeforeMovement;
     private bool willJump;
-    [SerializeField] private Camera playerCamera;
-    private PlayerCameraBehaviour playerCameraBehaviour;
 
     private bool jumpButtonPressed;
 
@@ -28,7 +26,6 @@ public class PlayerBlockBehaviour : MonoBehaviour
     {
         this.playerBehaviour = player.GetComponent<PlayerBehaviour>();
         this.playerCollider = player.GetComponent<SphereCollider>();
-        this.playerCameraBehaviour = playerCamera.GetComponent<PlayerCameraBehaviour>();
     }
 
     private void Update()
@@ -174,21 +171,8 @@ public class PlayerBlockBehaviour : MonoBehaviour
     {
         FixPosition();
         FixRotation();
-        FixCameraPosition();
         CheckIfGameOver();
         isMoving = false;
-    }
-
-    private void FixCameraPosition()
-    {
-        if (PlayerHasBlockBehind())
-        {
-            playerCameraBehaviour.ChangePositionTo(PlayerCameraBehaviour.Position.close);
-        }
-        else
-        {
-            playerCameraBehaviour.ChangePositionTo(PlayerCameraBehaviour.Position.normal);
-        }
     }
 
     private bool PlayerHasBlockBehind()
