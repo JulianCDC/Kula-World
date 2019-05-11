@@ -25,7 +25,7 @@ PrefabInstance:
     - target: {fileID: 2172626151049870290, guid: 32f9909871545de4f96ca72ec10a8996,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 2172626151049870290, guid: 32f9909871545de4f96ca72ec10a8996,
         type: 3}
@@ -40,7 +40,7 @@ PrefabInstance:
     - target: {fileID: 2172626151049870290, guid: 32f9909871545de4f96ca72ec10a8996,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 2172626151049870290, guid: 32f9909871545de4f96ca72ec10a8996,
         type: 3}
@@ -66,6 +66,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Block with spikes
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040439457933056276, guid: 32f9909871545de4f96ca72ec10a8996,
+        type: 3}
+      propertyPath: itemPosition
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32f9909871545de4f96ca72ec10a8996, type: 3}
@@ -160,7 +165,7 @@ PrefabInstance:
     - target: {fileID: 4497240191458424448, guid: 01ee1be627acbfa46b976220c7ca7917,
         type: 3}
       propertyPath: permanent
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01ee1be627acbfa46b976220c7ca7917, type: 3}
