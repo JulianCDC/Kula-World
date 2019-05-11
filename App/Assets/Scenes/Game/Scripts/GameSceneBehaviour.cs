@@ -65,6 +65,11 @@ public class GameSceneBehaviour : MonoBehaviour
         }
     }
 
+    public static void Win()
+    {
+        
+    }
+
     private static void DisplayGameOverScreen()
     {
         var gameOverPopup = Resources.Load<GameObject>("GameOverPopup");
