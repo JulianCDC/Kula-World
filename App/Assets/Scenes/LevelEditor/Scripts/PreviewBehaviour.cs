@@ -18,7 +18,7 @@ public class PreviewBehaviour : MonoBehaviour
     /// </summary>
     public void AddToScene()
     {
-        GameObject gameObject = Instantiate(LinkedObject, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
+        GameObject gameObject = Instantiate(LinkedObject, new Vector3(0, 0, 0), Quaternion.Euler(0, 90, 0));
         gameObject.transform.parent = GameObject.Find("Map").transform;
     }
 }

@@ -91,7 +91,7 @@ public class EditableBlockBehaviour : MonoBehaviour
                 Map.ChangeItemPosition(withItemBehaviour, this);
             }
 
-            else if (Input.GetKeyDown(KeyCode.A))
+            else if (Input.GetKeyDown(KeyCode.E))
             {
                 WithItemBehaviour withItemBehaviour = this.gameObject.GetComponent<WithItemBehaviour>();
                 withItemBehaviour.itemPosition = WithItemBehaviour.Positions.back;
@@ -99,7 +99,7 @@ public class EditableBlockBehaviour : MonoBehaviour
                 Map.ChangeItemPosition(withItemBehaviour, this);
             }
 
-            else if (Input.GetKeyDown(KeyCode.E))
+            else if (Input.GetKeyDown(KeyCode.A))
             {
                 WithItemBehaviour withItemBehaviour = this.gameObject.GetComponent<WithItemBehaviour>();
                 withItemBehaviour.itemPosition = WithItemBehaviour.Positions.front;
