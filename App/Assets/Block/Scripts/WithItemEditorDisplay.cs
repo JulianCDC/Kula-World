@@ -26,6 +26,6 @@ public class WithItemEditorDisplay : MonoBehaviour
     void Update()
     {
         if (Application.isPlaying) return;
-        script.SetItemPosition();
+        script.UpdateItemPosition();
     }
 }
