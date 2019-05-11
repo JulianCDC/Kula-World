@@ -79,6 +79,6 @@ public abstract class Collectible : MonoBehaviour
                 break;
         }
 
-        transform.rotation = Quaternion.Euler(yaw, pitch, roll);
+        transform.localRotation = Quaternion.Euler(yaw, pitch, roll);
     }
 }

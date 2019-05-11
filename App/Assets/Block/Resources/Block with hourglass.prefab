@@ -7,11 +7,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8072150380965058523, guid: 32f9909871545de4f96ca72ec10a8996,
-        type: 3}
-      propertyPath: m_Name
-      value: Block with hourglass
-      objectReference: {fileID: 0}
     - target: {fileID: 2172626151049870290, guid: 32f9909871545de4f96ca72ec10a8996,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -81,6 +76,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072150380965058523, guid: 32f9909871545de4f96ca72ec10a8996,
+        type: 3}
+      propertyPath: m_Name
+      value: Block with hourglass
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32f9909871545de4f96ca72ec10a8996, type: 3}
@@ -171,11 +171,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 2136364582376899583, guid: ca85098d87a62574eb2cebd207a2f22f,
-        type: 3}
-      propertyPath: rotationDirection
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca85098d87a62574eb2cebd207a2f22f, type: 3}

@@ -105,5 +105,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09af5b1e6c19ae84f819d68237a4b5fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationDirection: 0
+  rotationDirection: 1
   color: 1

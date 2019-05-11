@@ -67,11 +67,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5742235448629161704, guid: eb9d4a69ac12857499c2cc175b6da301,
-        type: 3}
-      propertyPath: rotationDirection
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb9d4a69ac12857499c2cc175b6da301, type: 3}
 --- !u!1001 &2538723825709153595
@@ -81,11 +76,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8072150380965058523, guid: 32f9909871545de4f96ca72ec10a8996,
-        type: 3}
-      propertyPath: m_Name
-      value: Block with coin
-      objectReference: {fileID: 0}
     - target: {fileID: 2172626151049870290, guid: 32f9909871545de4f96ca72ec10a8996,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -139,6 +129,16 @@ PrefabInstance:
     - target: {fileID: 2172626151049870290, guid: 32f9909871545de4f96ca72ec10a8996,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072150380965058523, guid: 32f9909871545de4f96ca72ec10a8996,
+        type: 3}
+      propertyPath: m_Name
+      value: Block with coin
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040439457933056276, guid: 32f9909871545de4f96ca72ec10a8996,
+        type: 3}
+      propertyPath: itemPosition
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
