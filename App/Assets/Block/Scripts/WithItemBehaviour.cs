@@ -85,26 +85,34 @@ public class WithItemBehaviour : MonoBehaviour
         {
             default:
             case Positions.up:
+                newRotation = Quaternion.Euler(initialYaw, initialPitch, initialRoll); 
                 break;
             case Positions.right:
                 transform.Rotate(Vector3.right * 90);
+                newRotation = Quaternion.Euler(initialYaw + 60, initialPitch, initialRoll - 90); 
                 this.childBehaviour.rotationDirection = Collectible.RotationDirections.z;
                 break;
             case Positions.left:
                 transform.Rotate(Vector3.left * 90);
+                newRotation = Quaternion.Euler(initialYaw - 120, initialPitch, initialRoll - 90); 
                 this.childBehaviour.rotationDirection = Collectible.RotationDirections.z;
                 break;
             case Positions.down:
                 transform.Rotate(Vector3.down * 180);
+                newRotation = Quaternion.Euler(initialYaw + 150, initialPitch, initialRoll - 90); 
                 break;
             case Positions.front:
                 transform.Rotate(Vector3.up * 90);
+                newRotation = Quaternion.Euler(initialYaw + 60, initialPitch - 60, initialRoll - 270); 
                 this.childBehaviour.rotationDirection = Collectible.RotationDirections.z;
                 break;
             case Positions.back:
                 transform.Rotate(Vector3.down * 90);
+                newRotation = Quaternion.Euler(initialYaw + 60, initialPitch + 60, initialRoll - 90); 
                 this.childBehaviour.rotationDirection = Collectible.RotationDirections.z;
                 break;
         }
+        
+        this.childCollectible.transform.localRotation = newRotation;
     }
 }
