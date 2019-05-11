@@ -3,11 +3,6 @@
 /// </summary>
 public class KeyBehaviour : Collectible
 {
-    /// <summary>
-    /// Return if the object has been collected by the player
-    /// </summary>
-    public bool Obtained { get; private set; }
-
     private int Id;
 
     /// <inheritdoc cref="Collectible.Collected"/>
@@ -17,7 +12,7 @@ public class KeyBehaviour : Collectible
     public override void Collected()
     {
         base.Collected();
-        this.Obtained = true;
+        GameManager.Instance.retrievedKeys += 1;
         Hud.CollectKey(this.Id);
     }
 }

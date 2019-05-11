@@ -24,6 +24,8 @@ public class GameManager : Singleton<GameManager>
     public int elapsedTime = 0;
     public int secondsPerTick = 1;
     public int collectedFruits = 0;
+    public int requiredKeys = 0;
+    public int retrievedKeys = 0;
     public List<CancellationTokenSource> runningTasksTokens = new List<CancellationTokenSource>();
 
     public bool PlayerHasAllFruits => collectedFruits == 5;
@@ -49,7 +51,7 @@ public class GameManager : Singleton<GameManager>
         }
         else
         {
-            // TODO: win
+            GameSceneBehaviour.Win();
         }
 
         NewLevel();
@@ -64,6 +66,8 @@ public class GameManager : Singleton<GameManager>
         elapsedTime = 0;
         secondsPerTick = 1;
         collectedFruits = 0;
+        requiredKeys = 0;
+        retrievedKeys = 0;
 
         foreach (CancellationTokenSource cancellationTokenSource in runningTasksTokens)
         {
