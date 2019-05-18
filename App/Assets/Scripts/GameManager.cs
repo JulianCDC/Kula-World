@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -55,6 +56,7 @@ public class GameManager : Singleton<GameManager>
         }
 
         NewLevel();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void Reset()
@@ -62,7 +64,7 @@ public class GameManager : Singleton<GameManager>
         _playerScore = 0;
         playerJumpLength = 1;
         playerSpeed = 1;
-        maxTime = 0;
+        maxTime = 600;
         elapsedTime = 0;
         secondsPerTick = 1;
         collectedFruits = 0;

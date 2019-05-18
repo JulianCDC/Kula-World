@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Xml;
 using System.Xml.Serialization;
 using UnityEngine;
 
@@ -206,11 +207,12 @@ public class Map
         return deserializedMap;
     }
 
-    public static Map Load(FileStream map)
+    public static Map Load(TextAsset file)
     {
-        XmlSerializer mapSerialized = new XmlSerializer(typeof(Map));
+        var mapSerializer = new XmlSerializer(typeof(Map));
+        XmlReader xmlReader = XmlReader.Create(new MemoryStream(file.bytes));
 
-        Map deserializedMap = (Map) mapSerialized.Deserialize(map);
+        Map deserializedMap = (Map) mapSerializer.Deserialize(xmlReader);
         mapInstance = deserializedMap;
         return deserializedMap;
     }

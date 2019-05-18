@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -50,8 +51,8 @@ public class GameSceneBehaviour : MonoBehaviour
         }
         else
         {
-            FileStream mapFile = new FileStream("./levels/" + GameManager.Instance.currentLevel + ".map", FileMode.Open);
-            this.map = Map.Load(mapFile);
+            TextAsset map = (TextAsset) Resources.Load(GameManager.Instance.currentLevel + ".map");
+            this.map = Map.Load(map);
             LoadMapIntoScene();
         }
     }
