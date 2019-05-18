@@ -10,6 +10,9 @@ public class ItemList : MonoBehaviour
     /// The textures of all the items to be displayd
     /// </summary>
     private Texture2D[] textures;
+
+    [SerializeField] private Light sceneLight;
+
     /// <summary>
     /// The template of an item in the list
     /// </summary>
@@ -28,14 +31,34 @@ public class ItemList : MonoBehaviour
             Image image = Instantiate(previewTemplate, this.transform);
             PreviewBehaviour imageBehaviour = image.GetComponent<PreviewBehaviour>();
 
-            Sprite imageSprite = Sprite.Create(prefabTexture, new Rect(0, 0, 128, 128), new Vector2(0, 0));
 
             string prefabName = prefabTexture.name.ToLower().Replace("_", " ");
+            GameObject objectResource = Resources.Load<GameObject>("EditorItemPrefabs/editable_" + prefabName);
 
-            imageBehaviour.LinkedObject = Resources.Load<GameObject>("EditorItemPrefabs/editable_" + prefabName);
+            Sprite imageSprite = GeneratePreviewSpriteForGameObject(objectResource);
+
+            imageBehaviour.LinkedObject = objectResource;
 
             image.sprite = imageSprite;
             i += 1;
         }
+    }
+
+    private Sprite GeneratePreviewSpriteForGameObject(GameObject gameObject)
+    {
+        LightShadows oldShadows = sceneLight.shadows;
+        sceneLight.shadows = LightShadows.None;
+
+        GameObject previewObject = Instantiate(gameObject);
+        
+        RuntimePreviewGenerator.TransparentBackground = true;
+        Texture2D itemPreview = RuntimePreviewGenerator.GenerateModelPreview(previewObject.transform, 256, 256);
+
+        Sprite imageSprite = Sprite.Create(itemPreview, new Rect(0, 0, 256, 256), new Vector2(0, 0));
+
+        Destroy(previewObject);
+        sceneLight.shadows = oldShadows;
+
+        return imageSprite;
     }
 }
