@@ -34,7 +34,8 @@ public abstract class Collectible : MonoBehaviour
         /// <summary>
         /// GameObject will rotate on the z axis
         /// </summary>
-        z
+        z,
+        none
     };
     /// <summary>
     /// The direction of the rotation of the GameObject
@@ -44,7 +45,10 @@ public abstract class Collectible : MonoBehaviour
     /// <summary>
     /// Called when the GameObject is Collected by the player
     /// </summary>
-    public abstract void Collected();
+    public virtual void Collected()
+    {
+        Destroy(this.gameObject);
+    }
 
     /// <summary>
     /// Put the base rotation of the GameObject into <see cref="yaw"/>, <see cref="roll"/>, <see cref="pitch"/>
@@ -75,6 +79,6 @@ public abstract class Collectible : MonoBehaviour
                 break;
         }
 
-        transform.rotation = Quaternion.Euler(yaw, pitch, roll);
+        transform.localRotation = Quaternion.Euler(yaw, pitch, roll);
     }
 }

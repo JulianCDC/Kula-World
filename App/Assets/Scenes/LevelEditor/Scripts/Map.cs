@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
+using System.Xml;
 using System.Xml.Serialization;
 using UnityEngine;
 
@@ -16,6 +18,7 @@ public class Map
     [XmlArray("Blocks"), XmlArrayItem("Block")]
     public List<XmlBlock> blocks = new List<XmlBlock>();
 
+    // replace with HashSet
     /// <summary>
     /// An array of boolean set to true if a fruit has already been placed in the map. In the same order as <see cref="Fruit.fruits"/>
     /// </summary>
@@ -82,6 +85,11 @@ public class Map
         }
         
         return true;
+    }
+
+    public static bool isEmpty(Vector3 position)
+    {
+        return !mapInstance.blocks.Exists(properties => properties.position == position);
     }
 
     /// <summary>
@@ -171,7 +179,8 @@ public class Map
     {
         var serializer = new XmlSerializer(typeof(Map));
         var stream = new FileStream(Application.temporaryCachePath + "/temp.map", FileMode.Create);
-        serializer.Serialize(stream, mapInstance);
+        StreamWriter streamWriter = new StreamWriter(stream, System.Text.Encoding.UTF8);
+        serializer.Serialize(streamWriter, mapInstance);
         stream.Close();
     }
 
@@ -180,17 +189,40 @@ public class Map
     /// </summary>
     /// <param name="fileName">Name of the file</param>
     public static void WriteToLocation(string fileName)
-    {   
+    {
         XmlSerializer serializer = new XmlSerializer(typeof(Map));
 
-        string mapDirectoryPath = Application.persistentDataPath + "/maps/customs/";
+        string mapDirectoryPath = Const.MAP_DIRECTORY;
         System.IO.Directory.CreateDirectory(mapDirectoryPath);
 
         string filePath =
             Helpers.GetAvailableFilePath(mapDirectoryPath + fileName + ".map");
 
         FileStream stream = new FileStream(filePath, FileMode.Create);
-        serializer.Serialize(stream, mapInstance);
+        StreamWriter streamWriter = new StreamWriter(stream, System.Text.Encoding.UTF8);
+        serializer.Serialize(streamWriter, mapInstance);
         stream.Close();
+    }
+
+    public static Map Load(string fileName)
+    {
+        XmlSerializer mapSerialized = new XmlSerializer(typeof(Map));
+        
+        string mapPath = Const.MAP_DIRECTORY + fileName + ".map";
+        FileStream  readMapFile = new FileStream(mapPath, FileMode.Open);
+
+        Map deserializedMap = (Map) mapSerialized.Deserialize(readMapFile);
+        mapInstance = deserializedMap;
+        return deserializedMap;
+    }
+
+    public static Map Load(TextAsset file)
+    {
+        var mapSerializer = new XmlSerializer(typeof(Map));
+        XmlReader xmlReader = XmlReader.Create(new MemoryStream(file.bytes));
+
+        Map deserializedMap = (Map) mapSerializer.Deserialize(xmlReader);
+        mapInstance = deserializedMap;
+        return deserializedMap;
     }
 }

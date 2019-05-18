@@ -16,9 +16,8 @@ public class WithItemEditorDisplay : MonoBehaviour
     /// </summary>
     void Start()
     {
-#if UNITY_EDITOR
+        if (Application.isPlaying) return;
         script.Start();
-#endif
     }
     
     /// <summary>
@@ -26,8 +25,7 @@ public class WithItemEditorDisplay : MonoBehaviour
     /// </summary>
     void Update()
     {
-#if UNITY_EDITOR
-        script.setItemPosition();
-#endif
+        if (Application.isPlaying) return;
+        script.UpdateItemPosition();
     }
 }
