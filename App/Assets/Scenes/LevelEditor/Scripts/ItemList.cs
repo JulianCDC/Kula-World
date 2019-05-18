@@ -9,7 +9,7 @@ public class ItemList : MonoBehaviour
     /// <summary>
     /// The textures of all the items to be displayd
     /// </summary>
-    private Texture2D[] textures;
+    private GameObject[] previews;
 
     [SerializeField] private Light sceneLight;
 
@@ -23,21 +23,17 @@ public class ItemList : MonoBehaviour
     /// </summary>
     void Start()
     {
-        textures = Resources.LoadAll<Texture2D>("EditorItemPreview");
+        previews = Resources.LoadAll<GameObject>("EditorItemPrefabs");
 
         int i = 0;
-        foreach (Texture2D prefabTexture in textures)
+        foreach (GameObject prefab in previews)
         {
             Image image = Instantiate(previewTemplate, this.transform);
             PreviewBehaviour imageBehaviour = image.GetComponent<PreviewBehaviour>();
+            
+            Sprite imageSprite = GeneratePreviewSpriteForGameObject(prefab);
 
-
-            string prefabName = prefabTexture.name.ToLower().Replace("_", " ");
-            GameObject objectResource = Resources.Load<GameObject>("EditorItemPrefabs/editable_" + prefabName);
-
-            Sprite imageSprite = GeneratePreviewSpriteForGameObject(objectResource);
-
-            imageBehaviour.LinkedObject = objectResource;
+            imageBehaviour.LinkedObject = prefab;
 
             image.sprite = imageSprite;
             i += 1;
