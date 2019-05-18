@@ -30,6 +30,7 @@ public class WithItemBehaviour : MonoBehaviour
     /// The behaviour of <see cref="childCollectible"/>
     /// </summary>
     private Collectible childBehaviour;
+    private Transform initialCollectibleTransform;
 
     /// <summary>
     /// Initial yaw of the GameObject
@@ -52,6 +53,7 @@ public class WithItemBehaviour : MonoBehaviour
     public void Start()
     {
         this.childCollectible = this.transform.GetChild(0).gameObject;
+        this.initialCollectibleTransform = childCollectible.transform;
         this.childBehaviour = (Collectible) this.childCollectible.GetComponent(typeof(Collectible));
 
         Quaternion rotation = childCollectible.transform.rotation;
@@ -79,11 +81,11 @@ public class WithItemBehaviour : MonoBehaviour
         {
             nextRotationDirection = Collectible.RotationDirections.none;
         }
-        
+
         this.childCollectible.transform.localPosition = new Vector3(0, 0, 0);
         var oldRotation = this.childCollectible.transform.localRotation;
         this.childCollectible.transform.localRotation = Quaternion.Euler(0, 0, 0);
-        
+
         this.childCollectible.transform.Translate(Vector3.up * 1);
         this.childCollectible.transform.localRotation = oldRotation;
 
@@ -94,22 +96,18 @@ public class WithItemBehaviour : MonoBehaviour
                 break;
             case Positions.right:
                 transform.Rotate(Vector3.right * 90);
-                this.childBehaviour.rotationDirection = Collectible.RotationDirections.z;
                 break;
             case Positions.left:
                 transform.Rotate(Vector3.left * 90);
-                this.childBehaviour.rotationDirection = Collectible.RotationDirections.z;
                 break;
             case Positions.down:
                 transform.Rotate(Vector3.forward * 180);
                 break;
             case Positions.front:
                 transform.Rotate(Vector3.forward * 90);
-                this.childBehaviour.rotationDirection = Collectible.RotationDirections.z;
                 break;
             case Positions.back:
                 transform.Rotate(Vector3.back * 90);
-                this.childBehaviour.rotationDirection = Collectible.RotationDirections.z;
                 break;
         }
 
