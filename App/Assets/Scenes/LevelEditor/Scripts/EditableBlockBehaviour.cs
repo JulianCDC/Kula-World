@@ -139,7 +139,7 @@ public class EditableBlockBehaviour : MonoBehaviour
         int i = 0;
         foreach (ArrowBehaviour.Direction direction in possibleDirections)
         {
-            GameObject arrow = Instantiate(Resources.Load<GameObject>("prefabs/arrow"), this.gameObject.transform);
+            GameObject arrow = Instantiate(Resources.Load<GameObject>("prefabs/arrow"), this.gameObject.transform.position, Quaternion.Euler(0, 0, 0));
             arrows[i] = arrow.GetComponent<ArrowBehaviour>();
             arrows[i].direction = direction;
             i++;
@@ -166,7 +166,7 @@ public class EditableBlockBehaviour : MonoBehaviour
     public void Move(ArrowBehaviour.Direction direction)
     {
         Vector3 movement = Vector3.zero;
-
+        
         switch (direction)
         {
             case ArrowBehaviour.Direction.up:
@@ -181,16 +181,20 @@ public class EditableBlockBehaviour : MonoBehaviour
             case ArrowBehaviour.Direction.left:
                 movement = Vector3.left;
                 break;
-            case ArrowBehaviour.Direction.front:
-                movement = Vector3.back;
+            case ArrowBehaviour.Direction.front: 
+                movement = Vector3.forward;
                 break;
             case ArrowBehaviour.Direction.back:
-                movement = Vector3.forward;
+                movement = Vector3.back;
                 break;
         }
 
-        Vector3 newPosition = this.gameObject.transform.position + movement;
-
-        Map.MoveBlockTo(this, newPosition);
+        this.transform.position += movement;
+        foreach (var arrowBehaviour in this.arrows)
+        {
+            arrowBehaviour.transform.position += movement;
+        }
+        
+        Map.MoveBlockTo(this, this.gameObject.transform.position);
     }
 }

@@ -66,11 +66,11 @@ public class ArrowBehaviour : MonoBehaviour
                     position += Vector3.left * distanceFromOrigin;
                     rotation = Quaternion.Euler(90, 0, 180);
                     break;
-                case Direction.front:
+                case Direction.back:
                     position += Vector3.back * distanceFromOrigin;
                     rotation = Quaternion.Euler(90, 90, 0);
                     break;
-                case Direction.back:
+                case Direction.front:
                     position += Vector3.forward * distanceFromOrigin;
                     rotation = Quaternion.Euler(90, -90, 0);
                     break;
