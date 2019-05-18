@@ -6,6 +6,7 @@ public class Hud : MonoBehaviour
 {
     private static Hud hudInstance;
     public Text score;
+    public Text totalScore;
     [SerializeField] private GameObject key;
     public Texture2D filledKey;
     [SerializeField] private Texture2D blackKey;
@@ -28,6 +29,7 @@ public class Hud : MonoBehaviour
     private void Start()
     {
         hudInstance = this;
+        totalScore.text = GameManager.Instance.TotalScore.ToString();
         this.fruits = new Dictionary<Fruit.fruits, RawImage>
         {
             [Fruit.fruits.apple] = apple,

@@ -184,7 +184,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
     {
         if (Map.isEmpty(transform.position))
         {
-            GameSceneBehaviour.GameOver();
+            GameSceneBehaviour.PlayerDeath();
         }
     }
 

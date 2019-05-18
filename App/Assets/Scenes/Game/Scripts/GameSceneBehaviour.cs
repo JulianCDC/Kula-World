@@ -8,24 +8,19 @@ public class GameSceneBehaviour : MonoBehaviour
     private Map map;
     [SerializeField] private GameObject mapObject;
     public static bool gameOver;
-    
+    private static GameObject player;
+
     void Start()
     {
-        ResetLevel();
-
+        gameOver = false;
+        
         LoadMap();
         LoadPlayer();
-        
+
         GameManager.Instance.maxTime = 600;
         InvokeRepeating(nameof(Tick), 0f, 1.0f);
     }
 
-    private static void ResetLevel()
-    {
-        GameManager.Instance.NewLevel();
-        gameOver = false;
-    }
-    
     void Tick()
     {
         GameManager.Instance.elapsedTime += GameManager.Instance.secondsPerTick;
@@ -36,12 +31,12 @@ public class GameSceneBehaviour : MonoBehaviour
         }
     }
 
-    private void LoadPlayer()
+    private static void LoadPlayer()
     {
-        GameObject player = Resources.Load<GameObject>("Block with player");
-        Instantiate(player, new Vector3(0, 0, 0), new Quaternion());
+        GameObject playerResource = Resources.Load<GameObject>("Block with player");
+        player = Instantiate(playerResource, new Vector3(0, 0, 0), new Quaternion());
     }
-    
+
     private void LoadMap()
     {
         if (!GameManager.Instance.officialLevel)
@@ -51,9 +46,24 @@ public class GameSceneBehaviour : MonoBehaviour
         }
         else
         {
-            TextAsset map = (TextAsset) Resources.Load(GameManager.Instance.currentLevel + ".map");
-            this.map = Map.Load(map);
+            TextAsset mapAsset = (TextAsset) Resources.Load(GameManager.Instance.currentLevel + ".map");
+            this.map = Map.Load(mapAsset);
             LoadMapIntoScene();
+        }
+    }
+
+    public static void PlayerDeath()
+    {
+        GameManager.Instance.Death();
+        
+        if (GameManager.Instance.TotalScore < 0)
+        {
+            GameOver();
+        }
+        else
+        {
+            Destroy(player);
+            LoadPlayer();
         }
     }
 
@@ -68,7 +78,6 @@ public class GameSceneBehaviour : MonoBehaviour
 
     public static void Win()
     {
-        
     }
 
     private static void DisplayGameOverScreen()
@@ -90,7 +99,7 @@ public class GameSceneBehaviour : MonoBehaviour
     private void configBlock(GameObject blockGameObject, XmlBlock xmlBlock)
     {
         configBlockPosition(blockGameObject.transform, xmlBlock);
-        
+
         BlockBehaviour blockBehaviour = blockGameObject.GetComponent<BlockBehaviour>();
 
         if (xmlBlock.hasItem)

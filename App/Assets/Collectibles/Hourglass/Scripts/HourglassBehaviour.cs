@@ -10,7 +10,7 @@ public class HourglassBehaviour : Collectible
         base.Collected();
         int bonusScore = 12 * GameManager.Instance.elapsedTime / 10;
         bonusScore = bonusScore < 1 ? 10 : bonusScore * 10;
-        GameManager.Instance.playerScore += 1200 - bonusScore;
+        GameManager.Instance.PlayerScore += 1200 - bonusScore;
         GameManager.Instance.elapsedTime = GameManager.Instance.maxTime - GameManager.Instance.elapsedTime;
     }
 }

@@ -29,7 +29,7 @@ public class Coin : Collectible, Collorable<CoinColors>
     public override void Collected()
     {
         base.Collected();
-        GameManager.Instance.playerScore += pointValue;
+        GameManager.Instance.PlayerScore += pointValue;
     }
 
 }

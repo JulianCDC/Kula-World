@@ -14,7 +14,7 @@ public class Gem : Collectible, Collorable<GemColors>
     public override void Collected()
     {
         base.Collected();
-        GameManager.Instance.playerScore += 2975;
+        GameManager.Instance.PlayerScore += 2975;
     }
 
 }

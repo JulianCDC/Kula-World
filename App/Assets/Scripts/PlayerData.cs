@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class PlayerData
 {
-    private static string filePath = Application.persistentDataPath + "/progress.kw";
+    private static readonly string filePath = Application.persistentDataPath + "/progress.kw";
     private static int playerSavedLevel = -1;
 
     public static void Save(int levelId)

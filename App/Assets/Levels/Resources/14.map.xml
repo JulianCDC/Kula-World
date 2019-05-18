@@ -2,5 +2,6 @@
 <Map xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Blocks>
     <Block id="1" has_item="false" type="Block" x="0" y="0" z="0" item_position="none" />
+    <Block id="2" has_item="true" type="Block with exit" x="1" y="0" z="0" item_position="up" />
   </Blocks>
 </Map>

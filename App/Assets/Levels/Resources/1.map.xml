@@ -3,5 +3,6 @@
   <Blocks>
     <Block id="1" has_item="false" type="Block" x="0" y="0" z="0" item_position="none" />
     <Block id="2" has_item="true" type="Block with exit" x="1" y="0" z="0" item_position="up" />
+    <Block id="3" has_item="true" type="Block with apple" x="2" y="0" z="0" item_position="up" />
   </Blocks>
 </Map>
