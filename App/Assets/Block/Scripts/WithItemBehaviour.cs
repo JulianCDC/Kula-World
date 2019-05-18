@@ -101,14 +101,14 @@ public class WithItemBehaviour : MonoBehaviour
                 this.childBehaviour.rotationDirection = Collectible.RotationDirections.z;
                 break;
             case Positions.down:
-                transform.Rotate(Vector3.down * 180);
+                transform.Rotate(Vector3.forward * 180);
                 break;
             case Positions.front:
-                transform.Rotate(Vector3.up * 90);
+                transform.Rotate(Vector3.forward * 90);
                 this.childBehaviour.rotationDirection = Collectible.RotationDirections.z;
                 break;
             case Positions.back:
-                transform.Rotate(Vector3.down * 90);
+                transform.Rotate(Vector3.back * 90);
                 this.childBehaviour.rotationDirection = Collectible.RotationDirections.z;
                 break;
         }
