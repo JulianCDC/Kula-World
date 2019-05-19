@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6008692808521158386}
   - component: {fileID: 1284616740670490752}
   - component: {fileID: 4484863177687338416}
+  - component: {fileID: 5100799780386124064}
   m_Layer: 0
   m_Name: pumpkin
   m_TagString: Untagged
@@ -40,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2456967664844971967}
-  m_Mesh: {fileID: 4300000, guid: b89d2ba0015b456438129a6429194446, type: 3}
+  m_Mesh: {fileID: -3339082285309697363, guid: 9e4247bb4c662864cba0799085c41b6f, type: 3}
 --- !u!23 &1284616740670490752
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -92,3 +93,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationDirection: 1
   type: 4
+--- !u!64 &5100799780386124064
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2456967664844971967}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: b89d2ba0015b456438129a6429194446, type: 3}

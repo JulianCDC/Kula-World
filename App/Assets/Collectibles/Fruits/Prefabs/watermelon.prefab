@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4464945630689257487}
   - component: {fileID: 7500987202216928562}
   - component: {fileID: 4142697882182141563}
+  - component: {fileID: 3023178757183725741}
   m_Layer: 0
   m_Name: watermelon
   m_TagString: Untagged
@@ -40,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4731311911456510052}
-  m_Mesh: {fileID: 4300000, guid: 29ea45a168e9bfb4baa400cf638d811f, type: 3}
+  m_Mesh: {fileID: 973877516759717424, guid: 1ad35ad38b507044781b1f46f0ae9090, type: 3}
 --- !u!23 &7500987202216928562
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -92,3 +93,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationDirection: 1
   type: 2
+--- !u!64 &3023178757183725741
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4731311911456510052}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 29ea45a168e9bfb4baa400cf638d811f, type: 3}
