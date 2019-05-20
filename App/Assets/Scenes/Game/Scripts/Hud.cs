@@ -7,10 +7,10 @@ public class Hud : MonoBehaviour
     private static Hud hudInstance;
     public Text score;
     public Text totalScore;
+    public Text timeDisplay;
     [SerializeField] private GameObject key;
     public Texture2D filledKey;
     [SerializeField] private Texture2D blackKey;
-    public GameObject hourglass;
     public RawImage jumpIndicator;
 
     [SerializeField] private RawImage apple;

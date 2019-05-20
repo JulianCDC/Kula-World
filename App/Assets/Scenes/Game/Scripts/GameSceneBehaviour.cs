@@ -21,6 +21,7 @@ public class GameSceneBehaviour : MonoBehaviour
     void Tick()
     {
         GameManager.Instance.elapsedTime += GameManager.Instance.secondsPerTick;
+        Hud.GetHud().timeDisplay.text = $"{GameManager.Instance.elapsedTime} / {GameManager.Instance.maxTime}";
 
         if (GameManager.Instance.elapsedTime >= GameManager.Instance.maxTime)
         {
