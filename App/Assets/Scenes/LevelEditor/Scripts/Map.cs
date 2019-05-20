@@ -18,6 +18,8 @@ public class Map
     [XmlArray("Blocks"), XmlArrayItem("Block")]
     public List<XmlBlock> blocks = new List<XmlBlock>();
 
+    [XmlElement("Meta")] public MapMetadata metadata;
+
     // replace with HashSet
     /// <summary>
     /// An array of boolean set to true if a fruit has already been placed in the map. In the same order as <see cref="Fruit.fruits"/>
@@ -87,6 +89,18 @@ public class Map
         return true;
     }
 
+    public static void ChangeItemPosition(XmlBlock blockXml, WithItemBehaviour.Positions newPosition)
+    {
+        XmlBlock block = mapInstance.blocks.Find(properties => properties.id == blockXml.id);
+
+        mapInstance.blocks.Remove(block);
+
+        block.itemPosition = newPosition;
+
+        mapInstance.blocks.Add(block);
+
+    }
+
     public static bool isEmpty(Vector3 position)
     {
         return !mapInstance.blocks.Exists(properties => properties.position == position);
@@ -118,13 +132,6 @@ public class Map
     }
 
 
-    public static void ChangeItemPosition(WithItemBehaviour withItemBehaviour, EditableBlockBehaviour itemBlockToChangeBehaviour)
-    {
-        XmlBlock itemBlockToChange =
-            mapInstance.blocks.Find(properties => properties == itemBlockToChangeBehaviour.xmlBlock);
-
-        itemBlockToChange.itemPosition = withItemBehaviour.itemPosition;
-    }
 
     /// <summary>
     /// Check if a block can move to the new position
