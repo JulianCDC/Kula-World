@@ -85,6 +85,7 @@ public class GameSceneBehaviour : MonoBehaviour
 
     public static void Win()
     {
+        print("Win");
     }
 
     private static void DisplayGameOverScreen()
