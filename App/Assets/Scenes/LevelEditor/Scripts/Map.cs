@@ -60,6 +60,11 @@ public class Map
             mapInstance.hasFruit[(int) blockXml.fruit] = true;
         }
 
+        if (checkIfExitExist(blockXml))
+        {
+            return false;
+        }
+
         mapInstance.blocks.Add(blockXml);
         currentBlockId += 1;
         return true;
@@ -68,6 +73,18 @@ public class Map
     public static bool checkIfBlockHasFruit(XmlBlock blockXml)
     {
         return blockXml.fruit != Fruit.fruits.none;
+    }
+
+    public static bool checkIfExitExist(XmlBlock blockXml)
+    {
+        XmlBlock block =  mapInstance.blocks.Find(properties => properties.objectType == blockXml.objectType);
+
+        if(block.objectType == "Block with exit")
+        {
+            return true;
+        }
+
+        return false;
     }
 
     /// <summary>
