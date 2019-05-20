@@ -67,41 +67,42 @@ public class EditableBlockBehaviour : MonoBehaviour
             {
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.up;
                 blockWithItemBehaviour.UpdateItemPosition();
+                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.up);
             }
 
             else if (Input.GetKeyDown(KeyCode.S))
             {
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.down;
                 blockWithItemBehaviour.UpdateItemPosition();
-                Map.ChangeItemPosition(blockWithItemBehaviour, this);
+                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.down);
             }
 
             else if (Input.GetKeyDown(KeyCode.Q))
             {
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.left;
                 blockWithItemBehaviour.UpdateItemPosition();
-                Map.ChangeItemPosition(blockWithItemBehaviour, this);
+                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.left);
             }
 
             else if (Input.GetKeyDown(KeyCode.D))
             {
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.right;
                 blockWithItemBehaviour.UpdateItemPosition();
-                Map.ChangeItemPosition(blockWithItemBehaviour, this);
+                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.right);
             }
 
             else if (Input.GetKeyDown(KeyCode.E))
             {
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.back;
                 blockWithItemBehaviour.UpdateItemPosition();
-                Map.ChangeItemPosition(blockWithItemBehaviour, this);
+                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.back);
             }
 
             else if (Input.GetKeyDown(KeyCode.A))
             {
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.front;
                 blockWithItemBehaviour.UpdateItemPosition();
-                Map.ChangeItemPosition(blockWithItemBehaviour, this);
+                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.front);
             }
         }
     }

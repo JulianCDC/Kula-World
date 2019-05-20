@@ -87,6 +87,18 @@ public class Map
         return true;
     }
 
+    public static void ChangeItemPosition(XmlBlock blockXml, WithItemBehaviour.Positions newPosition)
+    {
+        XmlBlock block = mapInstance.blocks.Find(properties => properties.id == blockXml.id);
+
+        mapInstance.blocks.Remove(block);
+
+        block.itemPosition = newPosition;
+
+        mapInstance.blocks.Add(block);
+
+    }
+
     public static bool isEmpty(Vector3 position)
     {
         return !mapInstance.blocks.Exists(properties => properties.position == position);
@@ -118,13 +130,6 @@ public class Map
     }
 
 
-    public static void ChangeItemPosition(WithItemBehaviour withItemBehaviour, EditableBlockBehaviour itemBlockToChangeBehaviour)
-    {
-        XmlBlock itemBlockToChange =
-            mapInstance.blocks.Find(properties => properties == itemBlockToChangeBehaviour.xmlBlock);
-
-        itemBlockToChange.itemPosition = withItemBehaviour.itemPosition;
-    }
 
     /// <summary>
     /// Check if a block can move to the new position
