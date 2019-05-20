@@ -18,6 +18,8 @@ public class Map
     [XmlArray("Blocks"), XmlArrayItem("Block")]
     public List<XmlBlock> blocks = new List<XmlBlock>();
 
+    [XmlElement("Meta")] public MapMetadata metadata;
+
     // replace with HashSet
     /// <summary>
     /// An array of boolean set to true if a fruit has already been placed in the map. In the same order as <see cref="Fruit.fruits"/>
