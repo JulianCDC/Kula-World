@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class GameSceneBehaviour : MonoBehaviour
 {
@@ -15,6 +16,14 @@ public class GameSceneBehaviour : MonoBehaviour
         LoadPlayer();
 
         InvokeRepeating(nameof(Tick), 0f, 1.0f);
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonUp("Reset"))
+        {
+            PlayerDeath();
+        }
     }
 
     void Tick()
@@ -55,7 +64,7 @@ public class GameSceneBehaviour : MonoBehaviour
             this.map = Map.Load(mapAsset);
             LoadMapIntoScene();
         }
-        
+
         LoadMapMetadata();
     }
 

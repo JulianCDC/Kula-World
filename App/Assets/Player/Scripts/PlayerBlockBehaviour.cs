@@ -215,7 +215,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
     {
         FixPosition();
         FixRotation();
-        CheckIfGameOver();
+        CheckIfPlayerDeath();
         isMoving = false;
     }
 
@@ -224,7 +224,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
         return !Map.isEmpty(transform.position + transform.TransformDirection(Vector3.back + Vector3.up));
     }
 
-    private void CheckIfGameOver()
+    private void CheckIfPlayerDeath()
     {
         if (Map.isEmpty(transform.position))
         {
