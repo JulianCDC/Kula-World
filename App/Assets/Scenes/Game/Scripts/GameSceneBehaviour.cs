@@ -14,7 +14,6 @@ public class GameSceneBehaviour : MonoBehaviour
         LoadMap();
         LoadPlayer();
 
-        GameManager.Instance.maxTime = 600;
         InvokeRepeating(nameof(Tick), 0f, 1.0f);
     }
 
@@ -27,6 +26,14 @@ public class GameSceneBehaviour : MonoBehaviour
         {
             GameOver();
         }
+    }
+
+    private void LoadMapMetadata()
+    {
+        MapMetadata metadata = this.map.metadata;
+
+        GameManager.Instance.maxTime = metadata.timeToFinish > 0 ? metadata.timeToFinish : 600;
+        GameManager.Instance.requiredKeys = metadata.numberOfKeys;
     }
 
     private static void LoadPlayer()
@@ -48,6 +55,8 @@ public class GameSceneBehaviour : MonoBehaviour
             this.map = Map.Load(mapAsset);
             LoadMapIntoScene();
         }
+        
+        LoadMapMetadata();
     }
 
     public static void PlayerDeath()
