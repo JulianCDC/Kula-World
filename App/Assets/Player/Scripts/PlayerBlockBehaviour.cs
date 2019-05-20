@@ -159,17 +159,16 @@ public class PlayerBlockBehaviour : MonoBehaviour
 
     private bool IsOutsideMapBound()
     {
-        return this.transform.position.x > 256
-               || this.transform.position.y > 256
-               || this.transform.position.z > 256
-               || this.transform.position.x < -256
-               || this.transform.position.y < -256
-               || this.transform.position.z < -256;
+        return this.transform.position.x > Const.MAP_BOUND
+               || this.transform.position.y > Const.MAP_BOUND
+               || this.transform.position.z > Const.MAP_BOUND
+               || this.transform.position.x < -Const.MAP_BOUND
+               || this.transform.position.y < -Const.MAP_BOUND
+               || this.transform.position.z < -Const.MAP_BOUND;
     }
 
     private bool CanFall()
     {
-        print(this.transform.position);
         return Map.isEmpty(this.transform.position);
     }
 
