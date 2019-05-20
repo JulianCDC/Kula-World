@@ -3,7 +3,16 @@
 /// </summary>
 public class KeyBehaviour : Collectible
 {
+    private static int currentNumberOfKeys;
     private int Id;
+
+    protected override void Start()
+    {
+        base.Start();
+
+        currentNumberOfKeys += 1;
+        this.Id = currentNumberOfKeys;
+    }
 
     /// <inheritdoc cref="Collectible.Collected"/>
     /// <summary>
