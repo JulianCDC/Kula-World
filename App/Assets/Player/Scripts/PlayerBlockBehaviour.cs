@@ -99,7 +99,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
         var playerJumpLength = GameManager.Instance.playerJumpLength + 1;
         Vector3 destinationDirection;
         Vector3 destinationPosition;
-        
+
         do
         {
             playerJumpLength -= 1;
@@ -122,10 +122,55 @@ public class PlayerBlockBehaviour : MonoBehaviour
             yield return new WaitForSeconds(MovementIterationDuration);
         }
 
-        StopMoving();
+        if (CanFall())
+        {
+            StartCoroutine(Fall());
+        }
+        else
+        {
+            StopMoving();
+        }
 
         this.playerCollider.enabled = true;
         ToggleJump();
+    }
+
+    private IEnumerator Fall()
+    {
+        var numberOfIterations = MovementInterationsCount;
+
+        var translationDestination = transform.TransformDirection(movingDirection + Vector3.up);
+
+        for (int i = 0; i < numberOfIterations; i++)
+        {
+            this.transform.transform.Translate(Vector3.down * MovementLength);
+            yield return new WaitForSeconds(MovementIterationDuration);
+        }
+
+        if (!CanFall() || IsOutsideMapBound())
+        {
+            StopMoving();
+        }
+        else
+        {
+            StartCoroutine(Fall());
+        }
+    }
+
+    private bool IsOutsideMapBound()
+    {
+        return this.transform.position.x > 256
+               || this.transform.position.y > 256
+               || this.transform.position.z > 256
+               || this.transform.position.x < -256
+               || this.transform.position.y < -256
+               || this.transform.position.z < -256;
+    }
+
+    private bool CanFall()
+    {
+        print(this.transform.position);
+        return Map.isEmpty(this.transform.position);
     }
 
     private bool CanMoveBy(Vector3 direction)
