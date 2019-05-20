@@ -1,7 +1,4 @@
-﻿using System.IO;
-using System.Xml;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public class GameSceneBehaviour : MonoBehaviour
 {
@@ -13,7 +10,7 @@ public class GameSceneBehaviour : MonoBehaviour
     void Start()
     {
         gameOver = false;
-        
+
         LoadMap();
         LoadPlayer();
 
@@ -27,7 +24,7 @@ public class GameSceneBehaviour : MonoBehaviour
 
         if (GameManager.Instance.elapsedTime >= GameManager.Instance.maxTime)
         {
-            GameSceneBehaviour.GameOver();
+            GameOver();
         }
     }
 
@@ -55,7 +52,7 @@ public class GameSceneBehaviour : MonoBehaviour
     public static void PlayerDeath()
     {
         GameManager.Instance.Death();
-        
+
         if (GameManager.Instance.TotalScore < 0)
         {
             GameOver();
@@ -91,12 +88,12 @@ public class GameSceneBehaviour : MonoBehaviour
         foreach (XmlBlock block in this.map.blocks)
         {
             GameObject blockGameObject = Resources.Load<GameObject>(block.objectType);
-            configBlock(blockGameObject, block);
+            ConfigBlock(blockGameObject, block);
             Instantiate(blockGameObject, mapObject.transform);
         }
     }
 
-    private void configBlock(GameObject blockGameObject, XmlBlock xmlBlock)
+    private void ConfigBlock(GameObject blockGameObject, XmlBlock xmlBlock)
     {
         configBlockPosition(blockGameObject.transform, xmlBlock);
 
@@ -105,6 +102,7 @@ public class GameSceneBehaviour : MonoBehaviour
         if (xmlBlock.hasItem)
         {
             WithItemBehaviour blockWithItemBehaviour = blockGameObject.GetComponent<WithItemBehaviour>();
+            blockWithItemBehaviour.itemPosition = xmlBlock.itemPosition;
         }
     }
 
