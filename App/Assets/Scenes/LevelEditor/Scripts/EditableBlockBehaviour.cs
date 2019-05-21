@@ -8,6 +8,8 @@ using UnityEngine;
 public class EditableBlockBehaviour : MonoBehaviour
 {
     public XmlBlock xmlBlock;
+
+    private LayerMask oldLayerMask;
     
     private ArrowBehaviour[] arrows = new ArrowBehaviour[6];
     private GameObject blockPlaceholder;
@@ -129,26 +131,29 @@ public class EditableBlockBehaviour : MonoBehaviour
         {
             this.transform.position = placeholderInstance.transform.position;
             Map.MoveBlockTo(this, transform.position);
-
-            Destroy(placeholderInstance);
         }
 
         if (this.transform.position == Vector3.zero)
         {
             Map.DeleteBlock(this.xmlBlock);
-            Destroy(placeholderInstance);
             Destroy(gameObject);
         }
+        
+        Destroy(placeholderInstance);
     }
 
     public void Cancel()
     {
         selected = false;
         Destroy(placeholderInstance);
+        Show();
     }
 
     private void Hide()
     {
+        oldLayerMask = gameObject.layer;
+        gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+        
         this.GetComponent<Renderer>().enabled = false;
 
         foreach (Transform child in transform)
@@ -159,6 +164,8 @@ public class EditableBlockBehaviour : MonoBehaviour
 
     private void Show()
     {
+        gameObject.layer = oldLayerMask;
+        
         this.GetComponent<Renderer>().enabled = true;
         
         foreach (Transform child in transform)
