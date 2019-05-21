@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 /// <summary>
@@ -156,10 +157,7 @@ public class EditableBlockBehaviour : MonoBehaviour
         
         this.GetComponent<Renderer>().enabled = false;
 
-        foreach (Transform child in transform)
-        {
-            child.GetComponent<Renderer>().enabled = false;
-        }
+        SetRendererStateInChildren(false, transform);
     }
 
     private void Show()
@@ -167,12 +165,24 @@ public class EditableBlockBehaviour : MonoBehaviour
         gameObject.layer = oldLayerMask;
         
         this.GetComponent<Renderer>().enabled = true;
-        
-        foreach (Transform child in transform)
-        {
-            child.GetComponent<Renderer>().enabled = true;
-        }
+
+        SetRendererStateInChildren(true, transform);
     }
+
+    private void SetRendererStateInChildren(bool newState, Transform parent)
+    {
+        foreach (Transform child in parent)
+        {
+            try
+            {
+                child.GetComponent<Renderer>().enabled = newState;
+            }
+            catch (Exception exception)
+            {
+                SetRendererStateInChildren(newState, child);
+            }
+        }
+    } 
 
     private void GeneratePlaceholder()
     {
