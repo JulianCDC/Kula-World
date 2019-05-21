@@ -9,14 +9,6 @@ public class EditorActions : MonoBehaviour
     /// The Transform object of the camera
     /// </summary>
     public Transform fovTransform;
-    /// <summary>
-    /// The block currently selected by the player
-    /// </summary>
-    private GameObject selectedBlock;
-    /// <summary>
-    /// The EditableBlockBehaviour of the currently selected block
-    /// </summary>
-    private EditableBlockBehaviour selectedBlockBehaviour;
 
 
     /// <summary>
@@ -35,17 +27,9 @@ public class EditorActions : MonoBehaviour
         CameraControls();
         SelectListener();
         DeleteBlockListener();
+        CancelListener();
     }
 
-    /// <summary>
-    /// Listener for block selection
-    /// </summary>
-    ///
-    /// Listen for left click. Create a Raycast on click and :
-    /// <list type="bullet">
-    ///    <item>trigger the <see cref="EditableBlockBehaviour.Select"/> method of the hit GameObject if it is an EditableBlock.</item>
-    ///    <item>call the <see cref="ClearSelectedObject"/> method</item>
-    /// </list>
     private void SelectListener()
     {
         if (Input.GetButtonDown("Fire1"))
@@ -57,39 +41,20 @@ public class EditorActions : MonoBehaviour
             {
                 GameObject hitObject = hit.collider.gameObject;
                 EditableBlockBehaviour hitObjectBehaviour = hitObject.GetComponent<EditableBlockBehaviour>();
-                
-                ArrowBehaviour hitArrowBehaviour = hitObject.GetComponent<ArrowBehaviour>();
-                bool isBlock = false;
-                bool isArrow = false;
 
-                if (hitObjectBehaviour != null)
+                bool isBlock = hitObjectBehaviour != null;
+
+                if (EditorManager.Instance.selectedBlock != null)
                 {
-                    isBlock = true;
-                }
-                else if (hitArrowBehaviour != null)
-                {
-                    isArrow = true;
+                    EditorManager.Instance.selectedBlockBehaviour.UnSelect();
                 }
 
                 if (isBlock)
                 {
-                    if (hitObject != this.selectedBlock)
-                    {
-                        if (this.selectedBlockBehaviour != null)
-                        {
-                            this.selectedBlockBehaviour.UnSelect();
-                        }
+                    EditorManager.Instance.selectedBlock = hitObject;
+                    EditorManager.Instance.selectedBlockBehaviour = hitObjectBehaviour;
 
-                        this.selectedBlock = hitObject;
-                        this.selectedBlockBehaviour = hitObjectBehaviour;
-
-                        hitObjectBehaviour.Select();
-                        
-                    }
-                }
-                else if (isArrow)
-                {
-                    this.selectedBlockBehaviour.Move(hitArrowBehaviour.direction);
+                    hitObjectBehaviour.Select();
                 }
                 else
                 {
@@ -108,31 +73,39 @@ public class EditorActions : MonoBehaviour
     /// </summary>
     private void ClearSelectedObject()
     {
-        if (this.selectedBlockBehaviour != null)
+        if (EditorManager.Instance.selectedBlockBehaviour != null)
         {
-            this.selectedBlockBehaviour.UnSelect();
+            EditorManager.Instance.selectedBlockBehaviour.UnSelect();
         }
 
-        this.selectedBlock = null;
-        this.selectedBlockBehaviour = null;
+        EditorManager.Instance.selectedBlock = null;
+        EditorManager.Instance.selectedBlockBehaviour = null;
     }
-
-    /// <summary>
-    /// Listener for block deletion
-    /// </summary>
-    /// Listen for keyboard input of suppr or del to call <see cref="ClearSelectedObject"/>
+    
     private void DeleteBlockListener()
     {
         if (Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Delete))
         {
-            if (this.selectedBlockBehaviour == null) return;
-            Map.DeleteBlock(this.selectedBlockBehaviour.xmlBlock);
-            Destroy(this.selectedBlock);
+            if (EditorManager.Instance.selectedBlockBehaviour == null) return;
+
+            Map.DeleteBlock(EditorManager.Instance.selectedBlockBehaviour.xmlBlock);
+            Destroy(EditorManager.Instance.selectedBlock);
             ClearSelectedObject();
         }
     }
 
-    
+    private void CancelListener()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            if (EditorManager.Instance.selectedBlockBehaviour == null) return;
+
+            EditorManager.Instance.selectedBlockBehaviour.Cancel();
+            EditorManager.Instance.selectedBlock = null;
+            EditorManager.Instance.selectedBlockBehaviour = null;
+        }
+    }
+
 
     /// <summary>
     /// Listener for camera movement
