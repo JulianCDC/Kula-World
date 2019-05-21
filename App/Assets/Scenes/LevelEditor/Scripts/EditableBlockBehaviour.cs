@@ -61,46 +61,50 @@ public class EditableBlockBehaviour : MonoBehaviour
     {
         if (selected && isBlockWithItem)
         {
+            WithItemBehaviour.Positions previousPosition = blockWithItemBehaviour.itemPosition;
+
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.up;
                 blockWithItemBehaviour.UpdateItemPosition();
-                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.up);
+                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.up, this);
             }
 
             else if (Input.GetKeyDown(KeyCode.S))
             {
-                blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.down;
-                blockWithItemBehaviour.UpdateItemPosition();
-                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.down);
+
+                blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.down;                
+                blockWithItemBehaviour.UpdateItemPosition();  
+                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.down, this);
+                              
             }
 
             else if (Input.GetKeyDown(KeyCode.Q))
             {
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.left;
                 blockWithItemBehaviour.UpdateItemPosition();
-                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.left);
+                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.left, this);
             }
 
             else if (Input.GetKeyDown(KeyCode.D))
             {
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.right;
                 blockWithItemBehaviour.UpdateItemPosition();
-                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.right);
+                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.right, this);
             }
 
             else if (Input.GetKeyDown(KeyCode.E))
             {
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.back;
                 blockWithItemBehaviour.UpdateItemPosition();
-                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.back);
+                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.back, this);
             }
 
             else if (Input.GetKeyDown(KeyCode.A))
             {
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.front;
                 blockWithItemBehaviour.UpdateItemPosition();
-                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.front);
+                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.front, this);
             }
         }
 

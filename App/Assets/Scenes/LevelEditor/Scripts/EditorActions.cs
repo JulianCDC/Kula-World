@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 
 /// <summary>
 /// The actions performable by the user in the editor 
@@ -106,7 +107,18 @@ public class EditorActions : MonoBehaviour
         }
     }
 
+    public void ManageTime( string userTime)
+    {
+        int time;
+        bool isInt =  int.TryParse(userTime, out time);
+        if (isInt && time > 0)
+        {
+            Map.mapInstance.metadata.timeToFinish = time;
+        }
 
+
+    }
+    
     /// <summary>
     /// Listener for camera movement
     /// </summary>

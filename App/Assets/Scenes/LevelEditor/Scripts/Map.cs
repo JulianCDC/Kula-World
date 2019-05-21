@@ -109,7 +109,7 @@ public class Map
         return true;
     }
 
-    public static void ChangeItemPosition(XmlBlock blockXml, WithItemBehaviour.Positions newPosition)
+    public static void ChangeItemPosition(XmlBlock blockXml, WithItemBehaviour.Positions newPosition, EditableBlockBehaviour realBlock)
     {
         XmlBlock block = mapInstance.blocks.Find(properties => properties.id == blockXml.id);
 
@@ -117,9 +117,23 @@ public class Map
 
         block.itemPosition = newPosition;
 
-        mapInstance.blocks.Add(block);
+        mapInstance.blocks.Add(block);       
+        
 
     }
+
+
+    public static bool IsCollided(EditableBlockBehaviour realBlock)
+    {
+        if ( !Map.isEmpty(realBlock.transform.position + realBlock.transform.TransformDirection(Vector3.up)))
+        {
+            return true;
+        }
+        
+        return false;
+    }
+
+    
 
     public static bool isEmpty(Vector3 position)
     {

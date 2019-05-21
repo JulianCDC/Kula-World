@@ -1,4 +1,4 @@
-# Todo
+﻿# Todo
 
 ## Fruits
 
@@ -18,11 +18,11 @@ Si pas le temps, limiter le nombre de clé et de porte à 1
 
 ## Blocks
 
-- [ ] Ajouter la possibilité de choisir la position de l'objet assigné à un block (<span style="color:red">**Important**</span>)
+- [*] Ajouter la possibilité de choisir la position de l'objet assigné à un block (<span style="color:red">**Important**</span>)
 
 - [ ] Améliorer le déplacement des blocks (par exemple permettre de les glisser plutôt que de recliquer sur les flèches)
 
-- [ ] Ajouter block de sortie
+- [*] Ajouter block de sortie
 
 ## Jeu
 
