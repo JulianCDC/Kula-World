@@ -9,6 +9,7 @@ public class EditorActions : MonoBehaviour
 {
     public Transform fovTransform;
     [SerializeField] private Camera mainCamera;
+    private bool cameraIsUnlocked;
     private GameObject currentlyPlacing;
 
     private float cameraYaw = 0;
@@ -16,14 +17,19 @@ public class EditorActions : MonoBehaviour
 
     private void Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        LockCamera();
         Map.mapInstance = new Map();
     }
 
     void Update()
     {
-        CameraControls();
+        CameraLockListener();
+
+        if (!cameraIsUnlocked)
+        {
+            CameraControls();
+        }
+
         SelectListener();
         DeleteBlockListener();
         CancelListener();
@@ -35,6 +41,35 @@ public class EditorActions : MonoBehaviour
             EditorManager.Instance.selectedBlockBehaviour.Select();
             EditorManager.Instance.SelectedBlock.transform.parent = GameObject.Find("Map").transform;
         }
+    }
+
+    private void CameraLockListener()
+    {
+        if (Input.GetKeyUp(KeyCode.G))
+        {
+            if (cameraIsUnlocked)
+            {
+                LockCamera();
+            }
+            else
+            {
+                UnlockCamera();
+            }
+        }
+    }
+
+    private void UnlockCamera()
+    {
+        cameraIsUnlocked = true;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    private void LockCamera()
+    {
+        cameraIsUnlocked = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void SelectListener()
@@ -135,7 +170,8 @@ public class EditorActions : MonoBehaviour
     private void MoveCamera()
     {
         float sensibility = 0.5f;
-        
-        mainCamera.transform.Translate(Input.GetAxis("Horizontal editor") * sensibility, 0, Input.GetAxis("Vertical editor") * sensibility);
+
+        mainCamera.transform.Translate(Input.GetAxis("Horizontal editor") * sensibility, 0,
+            Input.GetAxis("Vertical editor") * sensibility);
     }
 }
