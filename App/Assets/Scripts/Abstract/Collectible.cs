@@ -47,7 +47,30 @@ public abstract class Collectible : MonoBehaviour
     /// </summary>
     public virtual void Collected()
     {
+        ParticleSystem collectedParticle = Resources.Load<ParticleSystem>("Particles/Collected");
+        collectedParticle = Instantiate(collectedParticle, gameObject.transform.position, gameObject.transform.rotation);
+        var shape = collectedParticle.shape;
+
+        shape.mesh = GetMesh();
+        shape.scale = transform.localScale;
+        
         Destroy(this.gameObject);
+    }
+
+    private Mesh GetMesh()
+    {
+        var meshCollider = GetComponent<MeshCollider>();
+
+        if (meshCollider == null)
+        {
+            var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            var mesh = cube.GetComponent<MeshFilter>().mesh;
+            Destroy(cube);
+
+            return mesh;
+        }
+
+        return meshCollider.sharedMesh;
     }
 
     /// <summary>
