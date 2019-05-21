@@ -7,18 +7,25 @@ using UnityEngine;
 public class PreviewBehaviour : MonoBehaviour
 {
     private EditableBlockBehaviour editableBlockScript;
-    /// <summary>
-    /// The object that will be instantiated when the preview is clicked
-    /// </summary>
-    [NonSerialized]
-    public GameObject LinkedObject;
+    [NonSerialized] public GameObject LinkedObject;
 
-    /// <summary>
-    /// Add <see cref="LinkedObject"/> to the <see cref="Map"/> GameObject in the scene
-    /// </summary>
     public void AddToScene()
     {
-        GameObject gameObject = Instantiate(LinkedObject, new Vector3(0, 0, 0), Quaternion.Euler(0, 90, 0));
-        gameObject.transform.parent = GameObject.Find("Map").transform;
+        GenerateAt0();
+        editableBlockScript.Select();
+    }
+
+    public void GenerateAt0()
+    {
+        GameObject createdBlock = Instantiate(LinkedObject, new Vector3(0, 0, 0), Quaternion.Euler(0, 90, 0));
+        EditorManager.Instance.SelectedBlock = createdBlock;
+        editableBlockScript = createdBlock.GetComponent<EditableBlockBehaviour>();
+        createdBlock.transform.parent = GameObject.Find("Map").transform;
+    }
+
+    public void GenerateInitial()
+    {
+        GenerateAt0();
+        Destroy(editableBlockScript);
     }
 }

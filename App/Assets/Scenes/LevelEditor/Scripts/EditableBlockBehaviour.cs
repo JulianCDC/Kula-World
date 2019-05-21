@@ -7,26 +7,21 @@ using UnityEngine;
 /// It contains methods for edition and an instance to a variable containing a serialized version of the block <see cref="xmlBlock"/>.
 public class EditableBlockBehaviour : MonoBehaviour
 {
-    /// <summary>
-    /// The serialized version of the Block
-    /// </summary>
     public XmlBlock xmlBlock;
-
-    /// <summary>
-    /// An array containing the 6 Arrows' ArrowBehaviour created when clicking on an EditableBlock
-    /// </summary>
+    
     private ArrowBehaviour[] arrows = new ArrowBehaviour[6];
+    private GameObject blockPlaceholder;
+    private GameObject placeholderInstance;
 
     private WithItemBehaviour blockWithItemBehaviour;
     private bool isBlockWithItem;
 
     private bool selected;
 
-    /// <summary>
-    /// Set the serialized properties of the block
-    /// </summary>
     void Start()
     {
+        blockPlaceholder = Resources.Load<GameObject>("Prefabs/BlockPlaceholder");
+
         this.xmlBlock.objectType = this.gameObject.name.Replace("editable_", "").Replace("(Clone)", "");
         this.xmlBlock.id = Map.currentBlockId;
 
@@ -55,6 +50,9 @@ public class EditableBlockBehaviour : MonoBehaviour
 
         if (!Map.AddBlock(this.xmlBlock))
         {
+            Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+            GameObject error = Instantiate(Resources.Load<GameObject>("Prefabs/Error"), canvas.transform);
+            Destroy(error, 5);
             Destroy(this.gameObject);
         }
     }
@@ -105,97 +103,91 @@ public class EditableBlockBehaviour : MonoBehaviour
                 Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.front);
             }
         }
+
+        if (selected)
+        {
+            GeneratePlaceholder();
+        }
     }
 
-    /// <summary>
-    /// Called when the Block is selected
-    /// </summary>
-    /// Call the method for creating the Arrows used for moving the object. See <see cref="ArrowBehaviour"/>
     public void Select()
     {
         selected = true;
-
-        CreateMovementArrow();
+        Hide();
     }
 
-    /// <summary>
-    /// Called when the Block is unselected
-    /// </summary>
-    /// Call the method for destroying the Arrows used for moving the object. See <see cref="ArrowBehaviour"/>
     public void UnSelect()
     {
         selected = false;
-        DestroyMovementArrow();
-    }
+        Show();
 
-    /// <summary>
-    /// Create the Arrows used for moving the object. See <see cref="ArrowBehaviour"/>
-    /// </summary>
-    /// Check the available direction for an ArrowBehaviour and instantiate an Arrow for each for the directions
-    private void CreateMovementArrow()
-    {
-        ArrowBehaviour.Direction[] possibleDirections =
-            (ArrowBehaviour.Direction[]) Enum.GetValues(typeof(ArrowBehaviour.Direction));
-
-        int i = 0;
-        foreach (ArrowBehaviour.Direction direction in possibleDirections)
+        if (Map.mapInstance.CanBlockMoveTo(placeholderInstance.transform.position))
         {
-            GameObject arrow = Instantiate(Resources.Load<GameObject>("prefabs/arrow"), this.gameObject.transform.position, Quaternion.Euler(0, 0, 0));
-            arrows[i] = arrow.GetComponent<ArrowBehaviour>();
-            arrows[i].direction = direction;
-            i++;
+            this.transform.position = placeholderInstance.transform.position;
+            Map.MoveBlockTo(this, transform.position);
+
+            Destroy(placeholderInstance);
+        }
+
+        if (this.transform.position == Vector3.zero)
+        {
+            Map.DeleteBlock(this.xmlBlock);
+            Destroy(placeholderInstance);
+            Destroy(gameObject);
         }
     }
 
-    /// <summary>
-    /// Destroy the Arrows used for moving the object. See <see cref="ArrowBehaviour"/>
-    /// </summary>
-    private void DestroyMovementArrow()
+    public void Cancel()
     {
-        foreach (ArrowBehaviour arrow in arrows)
+        selected = false;
+        Destroy(placeholderInstance);
+    }
+
+    private void Hide()
+    {
+        this.GetComponent<Renderer>().enabled = false;
+
+        foreach (Transform child in transform)
         {
-            Destroy(arrow.gameObject);
+            child.GetComponent<Renderer>().enabled = false;
         }
     }
 
-    /// <summary>
-    /// Move the EditableBlock GameObject in the specified direction
-    /// </summary>
-    /// <param name="direction">The direction of the Arrow that was clicked to trigger this function</param>
-    /// Create a Vector3 from the direction and add this Vector3 to the GameObject's transform<br/>
-    /// Change the Block position inside the Map Object
-    public void Move(ArrowBehaviour.Direction direction)
+    private void Show()
     {
-        Vector3 movement = Vector3.zero;
+        this.GetComponent<Renderer>().enabled = true;
         
-        switch (direction)
+        foreach (Transform child in transform)
         {
-            case ArrowBehaviour.Direction.up:
-                movement = Vector3.up;
-                break;
-            case ArrowBehaviour.Direction.down:
-                movement = Vector3.down;
-                break;
-            case ArrowBehaviour.Direction.right:
-                movement = Vector3.right;
-                break;
-            case ArrowBehaviour.Direction.left:
-                movement = Vector3.left;
-                break;
-            case ArrowBehaviour.Direction.front: 
-                movement = Vector3.forward;
-                break;
-            case ArrowBehaviour.Direction.back:
-                movement = Vector3.back;
-                break;
+            child.GetComponent<Renderer>().enabled = true;
         }
+    }
 
-        this.transform.position += movement;
-        foreach (var arrowBehaviour in this.arrows)
+    private void GeneratePlaceholder()
+    {
+        RaycastHit hit = new RaycastHit();
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit))
         {
-            arrowBehaviour.transform.position += movement;
+            GameObject hitObject = hit.collider.gameObject;
+            BlockBehaviour hitObjectBehaviour = hitObject.GetComponent<BlockBehaviour>();
+
+            bool isBlock = hitObjectBehaviour != null;
+
+            if (isBlock)
+            {
+                Destroy(this.placeholderInstance);
+                this.placeholderInstance = Instantiate(blockPlaceholder, roundPointToBlock(hit.point),
+                    Quaternion.Euler(0, 0, 0));
+            }
         }
-        
-        Map.MoveBlockTo(this, this.gameObject.transform.position);
+    }
+
+    private Vector3 roundPointToBlock(Vector3 point)
+    {
+        var roundedVector = new Vector3((float) Math.Round(point.x), (float) Math.Round(point.y),
+            (float) Math.Round(point.z));
+        return roundedVector;
     }
 }

@@ -39,7 +39,7 @@ public class MenuBarButtonBehaviour : MonoBehaviour
     /// The canvas the button belongs to
     /// </summary>
     public GameObject rootCanvas;
-
+    
     /// <summary>
     /// Launch the action assigned to this button
     /// </summary>
@@ -63,32 +63,41 @@ public class MenuBarButtonBehaviour : MonoBehaviour
     /// </summary>
     public void PromptForSave()
     {
-        ClickCapturerBehaviour clickCapturer = ClickCapturerBehaviour.GenerateIn(rootCanvas.transform);
-        clickCapturer.Transparency = 0f;
-        
-        GameObject prompt = Resources.Load<GameObject>("TextPrompt/Prefabs/TextPrompt");
-        prompt = Instantiate(prompt, rootCanvas.transform);
-        
-        TextPrompt promptBehaviour = prompt.GetComponent<TextPrompt>();
-
-        promptBehaviour.Text = "What will be the name of the map ?";
-        promptBehaviour.Placeholder = "name...";
-
-        Action closePrompt = () =>
+        if(Map.fruityBlock == 5)
         {
-            Destroy(clickCapturer.gameObject);
-            promptBehaviour.Destroy();
-        };
-        
-        promptBehaviour.OkAction = () =>
-        {
-            string chosenFileName = promptBehaviour.UserInputText;
-            string formattedFileName = Helpers.FormatFileName(chosenFileName);
-            
-            Map.WriteToLocation(formattedFileName);
-            closePrompt();
-        };
+            ClickCapturerBehaviour clickCapturer = ClickCapturerBehaviour.GenerateIn(rootCanvas.transform);
+            clickCapturer.Transparency = 0f;
 
-        promptBehaviour.CancelAction = () => { closePrompt(); };
+            GameObject prompt = Resources.Load<GameObject>("TextPrompt/Prefabs/TextPrompt");
+            prompt = Instantiate(prompt, rootCanvas.transform);
+
+            TextPrompt promptBehaviour = prompt.GetComponent<TextPrompt>();
+
+            promptBehaviour.Text = "What will be the name of the map ?";
+            promptBehaviour.Placeholder = "name...";
+
+            Action closePrompt = () =>
+            {
+                Destroy(clickCapturer.gameObject);
+                promptBehaviour.Destroy();
+            };
+
+            promptBehaviour.OkAction = () =>
+            {
+                string chosenFileName = promptBehaviour.UserInputText;
+                string formattedFileName = Helpers.FormatFileName(chosenFileName);
+
+                Map.WriteToLocation(formattedFileName);
+                closePrompt();
+            };
+
+            promptBehaviour.CancelAction = () => { closePrompt(); };
+        }
+        else
+        {
+            Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+            GameObject errorSave = Instantiate(Resources.Load<GameObject>("Prefabs/ErrorSave"), canvas.transform);
+            Destroy(errorSave, 5);
+        } 
     }
 }

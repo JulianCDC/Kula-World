@@ -45,6 +45,7 @@ public class Map
         hasFruit[hasFruit.Length - 1] = false; // Fruit.fruits.none always false
     }
 
+    public static int fruityBlock = 0;
     /// <summary>
     /// Add a block to the <see cref="mapInstance"/> if possible
     /// </summary>
@@ -60,6 +61,7 @@ public class Map
         if (checkIfBlockHasFruit(blockXml))
         {
             mapInstance.hasFruit[(int) blockXml.fruit] = true;
+            fruityBlock += 1;
         }
 
         if (checkIfExitExist(blockXml))
@@ -101,6 +103,7 @@ public class Map
         if (checkIfBlockHasFruit(blockXml))
         {
             mapInstance.hasFruit[(int) blockXml.fruit] = false;
+            fruityBlock -= 1;
         }
         
         return true;
@@ -148,7 +151,11 @@ public class Map
         }
     }
 
-
+    public int GetIdAtPosition(Vector3 position)
+    {
+        XmlBlock block = mapInstance.blocks.Find(properties => properties.position == position);
+        return block.id;
+    }
 
     /// <summary>
     /// Check if a block can move to the new position
@@ -177,11 +184,6 @@ public class Map
     {
         foreach (XmlBlock blockProperty in this.blocks)
         {
-            if (blockProperty.position == blockXml.position)
-            {
-                return false;
-            }
-
             if (blockXml.hasItem)
             {
                 // TODO : check if item doesn't collide with block (preferably in another method)
