@@ -9,7 +9,16 @@ public class ItemList : MonoBehaviour
     private GameObject[] previews;
     [SerializeField] private Light sceneLight;
     public Image previewTemplate;
+<<<<<<< Updated upstream
     
+=======
+
+
+
+    /// <summary>
+    /// Load all the <see cref="textures"/> in the list using <see cref="previewTemplate"/>
+    /// </summary>
+>>>>>>> Stashed changes
     void Start()
     {
         previews = Resources.LoadAll<GameObject>("EditorItemPrefabs");
