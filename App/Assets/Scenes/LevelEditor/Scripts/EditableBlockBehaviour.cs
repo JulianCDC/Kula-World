@@ -55,6 +55,14 @@ public class EditableBlockBehaviour : MonoBehaviour
 
         if (!Map.AddBlock(this.xmlBlock))
         {
+            // TODO erreur
+            Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+            GameObject error = Instantiate(Resources.Load<GameObject>("Prefabs/Error"), canvas.transform); //trouver le canvas
+            // TODO attends 5 seconde
+
+            Destroy(error, 5);
+
+            //Destroy(error);
             Destroy(this.gameObject);
         }
     }
