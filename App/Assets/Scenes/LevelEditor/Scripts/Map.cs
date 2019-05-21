@@ -148,7 +148,11 @@ public class Map
         }
     }
 
-
+    public int GetIdAtPosition(Vector3 position)
+    {
+        XmlBlock block = mapInstance.blocks.Find(properties => properties.position == position);
+        return block.id;
+    }
 
     /// <summary>
     /// Check if a block can move to the new position
@@ -177,11 +181,6 @@ public class Map
     {
         foreach (XmlBlock blockProperty in this.blocks)
         {
-            if (blockProperty.position == blockXml.position)
-            {
-                return false;
-            }
-
             if (blockXml.hasItem)
             {
                 // TODO : check if item doesn't collide with block (preferably in another method)

@@ -6,21 +6,10 @@ using UnityEngine.UI;
 /// </summary>
 public class ItemList : MonoBehaviour
 {
-    /// <summary>
-    /// The textures of all the items to be displayd
-    /// </summary>
     private GameObject[] previews;
-
     [SerializeField] private Light sceneLight;
-
-    /// <summary>
-    /// The template of an item in the list
-    /// </summary>
     public Image previewTemplate;
-
-    /// <summary>
-    /// Load all the <see cref="textures"/> in the list using <see cref="previewTemplate"/>
-    /// </summary>
+    
     void Start()
     {
         previews = Resources.LoadAll<GameObject>("EditorItemPrefabs");
@@ -30,12 +19,18 @@ public class ItemList : MonoBehaviour
         {
             Image image = Instantiate(previewTemplate, this.transform);
             PreviewBehaviour imageBehaviour = image.GetComponent<PreviewBehaviour>();
-            
+
             Sprite imageSprite = GeneratePreviewSpriteForGameObject(prefab);
 
             imageBehaviour.LinkedObject = prefab;
 
             image.sprite = imageSprite;
+            
+            if (i == 0)
+            {
+                imageBehaviour.AddToScene();
+            }
+            
             i += 1;
         }
     }
