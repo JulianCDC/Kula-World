@@ -8,7 +8,7 @@ using UnityEngine;
 public class EditableBlockBehaviour : MonoBehaviour
 {
     public XmlBlock xmlBlock;
-
+    
     private ArrowBehaviour[] arrows = new ArrowBehaviour[6];
     private GameObject blockPlaceholder;
     private GameObject placeholderInstance;
@@ -113,11 +113,13 @@ public class EditableBlockBehaviour : MonoBehaviour
     public void Select()
     {
         selected = true;
+        Hide();
     }
 
     public void UnSelect()
     {
         selected = false;
+        Show();
 
         if (Map.mapInstance.CanBlockMoveTo(placeholderInstance.transform.position))
         {
@@ -139,6 +141,26 @@ public class EditableBlockBehaviour : MonoBehaviour
     {
         selected = false;
         Destroy(placeholderInstance);
+    }
+
+    private void Hide()
+    {
+        this.GetComponent<Renderer>().enabled = false;
+
+        foreach (Transform child in transform)
+        {
+            child.GetComponent<Renderer>().enabled = false;
+        }
+    }
+
+    private void Show()
+    {
+        this.GetComponent<Renderer>().enabled = true;
+        
+        foreach (Transform child in transform)
+        {
+            child.GetComponent<Renderer>().enabled = true;
+        }
     }
 
     private void GeneratePlaceholder()

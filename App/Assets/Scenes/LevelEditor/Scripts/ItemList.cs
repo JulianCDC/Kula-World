@@ -28,7 +28,7 @@ public class ItemList : MonoBehaviour
             
             if (i == 0)
             {
-                imageBehaviour.AddToScene();
+                imageBehaviour.GenerateInitial();
             }
             
             i += 1;
