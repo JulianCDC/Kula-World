@@ -7,10 +7,11 @@ public class Hud : MonoBehaviour
     private static Hud hudInstance;
     public Text score;
     public Text totalScore;
-    [SerializeField] private GameObject key;
+    public Text timeDisplay;
+    [SerializeField] private GameObject keyPrefab;
+    [SerializeField] private GameObject keys;
     public Texture2D filledKey;
     [SerializeField] private Texture2D blackKey;
-    public GameObject hourglass;
     public RawImage jumpIndicator;
 
     [SerializeField] private RawImage apple;
@@ -38,6 +39,8 @@ public class Hud : MonoBehaviour
             [Fruit.fruits.watermelon] = watermelon,
             [Fruit.fruits.strawberry] = strawberry
         };
+        
+        this.SetNumberOfKeys(GameManager.Instance.requiredKeys);
     }
 
     public static void CollectFruit(Fruit.fruits fruitType)
@@ -54,16 +57,22 @@ public class Hud : MonoBehaviour
     {
         RawImage jumpIndicator = hudInstance.jumpIndicator;
         Color currentColor = jumpIndicator.color;
-        
-        jumpIndicator.color = new Color(currentColor.r, currentColor.g, currentColor.b, currentColor.a == 1.0f ? 0.3921569f : 1.0f);
+
+        jumpIndicator.color = new Color(currentColor.r, currentColor.g, currentColor.b,
+            currentColor.a == 1.0f ? 0.3921569f : 1.0f);
     }
 
     public static void CollectKey(int keyId)
     {
-        hudInstance.key.GetComponent<RawImage>().texture = hudInstance.filledKey;
+        Transform collectedKey = hudInstance.keys.transform.GetChild(keyId - 1);
+        collectedKey.GetComponent<RawImage>().texture = hudInstance.filledKey;
     }
 
-    public static void ResetHud()
+    public void SetNumberOfKeys(int numberOfKeys)
     {
+        for(int i = 0; i < numberOfKeys; i++)
+        {
+            Instantiate(this.keyPrefab, this.keys.transform);
+        }
     }
 }

@@ -99,7 +99,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
         var playerJumpLength = GameManager.Instance.playerJumpLength + 1;
         Vector3 destinationDirection;
         Vector3 destinationPosition;
-        
+
         do
         {
             playerJumpLength -= 1;
@@ -122,10 +122,54 @@ public class PlayerBlockBehaviour : MonoBehaviour
             yield return new WaitForSeconds(MovementIterationDuration);
         }
 
-        StopMoving();
+        if (CanFall())
+        {
+            StartCoroutine(Fall());
+        }
+        else
+        {
+            StopMoving();
+        }
 
         this.playerCollider.enabled = true;
         ToggleJump();
+    }
+
+    private IEnumerator Fall()
+    {
+        var numberOfIterations = MovementInterationsCount;
+
+        var translationDestination = transform.TransformDirection(movingDirection + Vector3.up);
+
+        for (int i = 0; i < numberOfIterations; i++)
+        {
+            this.transform.transform.Translate(Vector3.down * MovementLength);
+            yield return new WaitForSeconds(MovementIterationDuration);
+        }
+
+        if (!CanFall() || IsOutsideMapBound())
+        {
+            StopMoving();
+        }
+        else
+        {
+            StartCoroutine(Fall());
+        }
+    }
+
+    private bool IsOutsideMapBound()
+    {
+        return this.transform.position.x > Const.MAP_BOUND
+               || this.transform.position.y > Const.MAP_BOUND
+               || this.transform.position.z > Const.MAP_BOUND
+               || this.transform.position.x < -Const.MAP_BOUND
+               || this.transform.position.y < -Const.MAP_BOUND
+               || this.transform.position.z < -Const.MAP_BOUND;
+    }
+
+    private bool CanFall()
+    {
+        return Map.isEmpty(this.transform.position);
     }
 
     private bool CanMoveBy(Vector3 direction)
@@ -171,7 +215,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
     {
         FixPosition();
         FixRotation();
-        CheckIfGameOver();
+        CheckIfPlayerDeath();
         isMoving = false;
     }
 
@@ -180,7 +224,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
         return !Map.isEmpty(transform.position + transform.TransformDirection(Vector3.back + Vector3.up));
     }
 
-    private void CheckIfGameOver()
+    private void CheckIfPlayerDeath()
     {
         if (Map.isEmpty(transform.position))
         {

@@ -1,7 +1,5 @@
-﻿using System.IO;
-using System.Xml;
+﻿using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameSceneBehaviour : MonoBehaviour
 {
@@ -13,22 +11,38 @@ public class GameSceneBehaviour : MonoBehaviour
     void Start()
     {
         gameOver = false;
-        
+
         LoadMap();
         LoadPlayer();
 
-        GameManager.Instance.maxTime = 600;
         InvokeRepeating(nameof(Tick), 0f, 1.0f);
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonUp("Reset"))
+        {
+            PlayerDeath();
+        }
     }
 
     void Tick()
     {
         GameManager.Instance.elapsedTime += GameManager.Instance.secondsPerTick;
+        Hud.GetHud().timeDisplay.text = $"{GameManager.Instance.elapsedTime} / {GameManager.Instance.maxTime}";
 
         if (GameManager.Instance.elapsedTime >= GameManager.Instance.maxTime)
         {
-            GameSceneBehaviour.GameOver();
+            GameOver();
         }
+    }
+
+    private void LoadMapMetadata()
+    {
+        MapMetadata metadata = this.map.metadata;
+
+        GameManager.Instance.maxTime = metadata.timeToFinish > 0 ? metadata.timeToFinish : 600;
+        GameManager.Instance.requiredKeys = metadata.numberOfKeys;
     }
 
     private static void LoadPlayer()
@@ -50,12 +64,14 @@ public class GameSceneBehaviour : MonoBehaviour
             this.map = Map.Load(mapAsset);
             LoadMapIntoScene();
         }
+
+        LoadMapMetadata();
     }
 
     public static void PlayerDeath()
     {
         GameManager.Instance.Death();
-        
+
         if (GameManager.Instance.TotalScore < 0)
         {
             GameOver();
@@ -78,6 +94,7 @@ public class GameSceneBehaviour : MonoBehaviour
 
     public static void Win()
     {
+        print("Win");
     }
 
     private static void DisplayGameOverScreen()
@@ -91,12 +108,12 @@ public class GameSceneBehaviour : MonoBehaviour
         foreach (XmlBlock block in this.map.blocks)
         {
             GameObject blockGameObject = Resources.Load<GameObject>(block.objectType);
-            configBlock(blockGameObject, block);
+            ConfigBlock(blockGameObject, block);
             Instantiate(blockGameObject, mapObject.transform);
         }
     }
 
-    private void configBlock(GameObject blockGameObject, XmlBlock xmlBlock)
+    private void ConfigBlock(GameObject blockGameObject, XmlBlock xmlBlock)
     {
         configBlockPosition(blockGameObject.transform, xmlBlock);
 
@@ -105,6 +122,7 @@ public class GameSceneBehaviour : MonoBehaviour
         if (xmlBlock.hasItem)
         {
             WithItemBehaviour blockWithItemBehaviour = blockGameObject.GetComponent<WithItemBehaviour>();
+            blockWithItemBehaviour.itemPosition = xmlBlock.itemPosition;
         }
     }
 
