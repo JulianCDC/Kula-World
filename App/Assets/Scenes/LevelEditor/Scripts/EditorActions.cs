@@ -1,34 +1,33 @@
 ﻿using UnityEngine;
 using System;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// The actions performable by the user in the editor 
 /// </summary>
 public class EditorActions : MonoBehaviour
 {
-    /// <summary>
-    /// The Transform object of the camera
-    /// </summary>
     public Transform fovTransform;
-
-
-    /// <summary>
-    /// Generate the initial Map
-    /// </summary>
+    private GameObject currentlyPlacing;
+    
     private void Start()
     {
         Map.mapInstance = new Map();
     }
-
-    /// <summary>
-    /// Listeners for mouse and keyboard events
-    /// </summary>
+    
     void Update()
     {
         CameraControls();
         SelectListener();
         DeleteBlockListener();
         CancelListener();
+        
+        if (EditorManager.Instance.newBlock != null && EditorManager.Instance.SelectedBlock == null)
+        {
+            EditorManager.Instance.SelectedBlock = Instantiate(EditorManager.Instance.newBlock, Vector3.zero, Quaternion.Euler(Vector3.up * 90));
+            EditorManager.Instance.selectedBlockBehaviour.Select();
+            EditorManager.Instance.SelectedBlock.transform.parent = GameObject.Find("Map").transform;
+        }
     }
 
     private void SelectListener()
@@ -45,14 +44,14 @@ public class EditorActions : MonoBehaviour
 
                 bool isBlock = hitObjectBehaviour != null;
 
-                if (EditorManager.Instance.selectedBlock != null)
+                if (EditorManager.Instance.SelectedBlock != null)
                 {
                     EditorManager.Instance.selectedBlockBehaviour.UnSelect();
                 }
 
                 if (isBlock)
                 {
-                    EditorManager.Instance.selectedBlock = hitObject;
+                    EditorManager.Instance.SelectedBlock = hitObject;
                     EditorManager.Instance.selectedBlockBehaviour = hitObjectBehaviour;
 
                     hitObjectBehaviour.Select();
@@ -68,10 +67,7 @@ public class EditorActions : MonoBehaviour
             }
         }
     }
-
-    /// <summary>
-    /// Call the <see cref="EditableBlockBehaviour.UnSelect"/> method of <see cref="selectedBlock"/> and replace <see cref="selectedBlock"/> and <see cref="selectedBlockBehaviour"/> by null
-    /// </summary>
+    
     private void ClearSelectedObject()
     {
         if (EditorManager.Instance.selectedBlockBehaviour != null)
@@ -79,7 +75,7 @@ public class EditorActions : MonoBehaviour
             EditorManager.Instance.selectedBlockBehaviour.UnSelect();
         }
 
-        EditorManager.Instance.selectedBlock = null;
+        EditorManager.Instance.SelectedBlock = null;
         EditorManager.Instance.selectedBlockBehaviour = null;
     }
     
@@ -90,7 +86,7 @@ public class EditorActions : MonoBehaviour
             if (EditorManager.Instance.selectedBlockBehaviour == null) return;
 
             Map.DeleteBlock(EditorManager.Instance.selectedBlockBehaviour.xmlBlock);
-            Destroy(EditorManager.Instance.selectedBlock);
+            Destroy(EditorManager.Instance.SelectedBlock);
             ClearSelectedObject();
         }
     }
@@ -99,11 +95,7 @@ public class EditorActions : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
-            if (EditorManager.Instance.selectedBlockBehaviour == null) return;
-
-            EditorManager.Instance.selectedBlockBehaviour.Cancel();
-            EditorManager.Instance.selectedBlock = null;
-            EditorManager.Instance.selectedBlockBehaviour = null;
+            EditorManager.Instance.ClearPreSelection();
         }
     }
 

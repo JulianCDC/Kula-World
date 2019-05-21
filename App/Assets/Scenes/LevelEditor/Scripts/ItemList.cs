@@ -22,7 +22,7 @@ public class ItemList : MonoBehaviour
 
             Sprite imageSprite = GeneratePreviewSpriteForGameObject(prefab);
 
-            imageBehaviour.LinkedObject = prefab;
+            imageBehaviour.linkedObject = prefab;
 
             image.sprite = imageSprite;
             
