@@ -24,4 +24,9 @@ public class KeyBehaviour : Collectible
         GameManager.Instance.retrievedKeys += 1;
         Hud.CollectKey(this.Id);
     }
+
+    public static void ResetKeys()
+    {
+        currentNumberOfKeys = 0;
+    }
 }
