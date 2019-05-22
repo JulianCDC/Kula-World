@@ -76,6 +76,11 @@ public class MenuBarButtonBehaviour : MonoBehaviour
             promptBehaviour.Text = "What will be the name of the map ?";
             promptBehaviour.Placeholder = "name...";
 
+            promptBehaviour.TimeHint = "What will be the time to finish the map";
+            promptBehaviour.TimePlaceholder = "Time";
+
+
+
             Action closePrompt = () =>
             {
                 Destroy(clickCapturer.gameObject);
@@ -84,6 +89,9 @@ public class MenuBarButtonBehaviour : MonoBehaviour
 
             promptBehaviour.OkAction = () =>
             {
+                int nbSecond = promptBehaviour.TimeInSecond;
+                Map.mapInstance.metadata.timeToFinish = nbSecond;
+
                 string chosenFileName = promptBehaviour.UserInputText;
                 string formattedFileName = Helpers.FormatFileName(chosenFileName);
 

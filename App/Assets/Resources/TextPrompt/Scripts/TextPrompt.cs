@@ -15,6 +15,12 @@ public class TextPrompt : MonoBehaviour
     [SerializeField] private Text hint;
     [SerializeField] private Text inputPlaceholder;
 
+    [SerializeField] private InputField timeInput;
+    [SerializeField] private Text timeHint;
+    [SerializeField] private Text timePlaceholder;
+
+
+
     /// <summary>
     /// The action performed on click on <see cref="okButton"/>
     /// </summary>
@@ -37,6 +43,33 @@ public class TextPrompt : MonoBehaviour
     public String UserInputText
     {
         get { return userInput.text; }
+    }
+
+    public int TimeInSecond
+    {
+        get
+        {
+            int time;
+            bool isInt = int.TryParse(timeInput.text, out time);
+            if (isInt)
+            {
+                return time;
+            }
+            else
+            {
+                return 600;
+            }
+        }
+    }
+
+    public String TimeHint
+    {
+        set { this.timeHint.text = value; }
+    }
+
+    public String TimePlaceholder
+    {
+        set { this.timePlaceholder.text = value; }
     }
 
     /// <summary>
