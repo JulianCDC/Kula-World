@@ -60,6 +60,7 @@ public class EditorActions : MonoBehaviour
 
     private void UnlockCamera()
     {
+        EditorManager.Instance.canPlaceBlock = false;
         cameraIsUnlocked = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -67,6 +68,7 @@ public class EditorActions : MonoBehaviour
 
     private void LockCamera()
     {
+        EditorManager.Instance.canPlaceBlock = true;
         cameraIsUnlocked = false;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

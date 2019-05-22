@@ -134,8 +134,11 @@ public class EditableBlockBehaviour : MonoBehaviour
 
         if (Map.mapInstance.CanBlockMoveTo(placeholderInstance.transform.position))
         {
-            this.transform.position = placeholderInstance.transform.position;
-            Map.MoveBlockTo(this, transform.position);
+            if (EditorManager.Instance.canPlaceBlock)
+            {
+                this.transform.position = placeholderInstance.transform.position;
+                Map.MoveBlockTo(this, transform.position);
+            }
         }
 
         if (this.transform.position == Vector3.zero)

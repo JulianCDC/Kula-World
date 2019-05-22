@@ -63,8 +63,10 @@ public class MenuBarButtonBehaviour : MonoBehaviour
     /// </summary>
     public void PromptForSave()
     {
-        if(Map.fruityBlock == 5)
+        if (Map.fruityBlock == 5)
         {
+            EditorManager.Instance.canPlaceBlock = false;
+            
             ClickCapturerBehaviour clickCapturer = ClickCapturerBehaviour.GenerateIn(rootCanvas.transform);
             clickCapturer.Transparency = 0f;
 
@@ -78,6 +80,8 @@ public class MenuBarButtonBehaviour : MonoBehaviour
 
             Action closePrompt = () =>
             {
+                EditorManager.Instance.canPlaceBlock = true;
+
                 Destroy(clickCapturer.gameObject);
                 promptBehaviour.Destroy();
             };

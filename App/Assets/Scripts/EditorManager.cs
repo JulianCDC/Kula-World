@@ -8,6 +8,7 @@ public class EditorManager : Singleton<EditorManager>
     public GameObject newBlock;
     private GameObject selectedPreviewTile;
     private PreviewBehaviour selectedPreviewTileBehaviour;
+    public bool canPlaceBlock = true;
 
     public GameObject SelectedBlock
     {
