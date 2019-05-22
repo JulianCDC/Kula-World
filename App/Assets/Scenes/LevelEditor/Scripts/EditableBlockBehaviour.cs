@@ -11,7 +11,7 @@ public class EditableBlockBehaviour : MonoBehaviour
     public XmlBlock xmlBlock;
 
     private LayerMask oldLayerMask;
-    
+
     private ArrowBehaviour[] arrows = new ArrowBehaviour[6];
     private GameObject blockPlaceholder;
     private GameObject placeholderInstance;
@@ -56,9 +56,9 @@ public class EditableBlockBehaviour : MonoBehaviour
             Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
             GameObject error = Instantiate(Resources.Load<GameObject>("Prefabs/Error"), canvas.transform);
             Destroy(error, 5);
-            
+
             EditorManager.Instance.ClearPreSelection();
-            
+
             Destroy(placeholderInstance);
             Destroy(this.gameObject);
         }
@@ -81,10 +81,9 @@ public class EditableBlockBehaviour : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.S))
             {
                 GUIBehaviour.Instance.Toggle(ref GUIBehaviour.Instance.down);
-                blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.down;                
-                blockWithItemBehaviour.UpdateItemPosition();  
+                blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.down;
+                blockWithItemBehaviour.UpdateItemPosition();
                 Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.down, this);
-                              
             }
 
             else if (Input.GetKeyDown(KeyCode.Q))
@@ -151,7 +150,7 @@ public class EditableBlockBehaviour : MonoBehaviour
             Map.DeleteBlock(this.xmlBlock);
             Destroy(gameObject);
         }
-        
+
         Destroy(placeholderInstance);
     }
 
@@ -166,7 +165,7 @@ public class EditableBlockBehaviour : MonoBehaviour
     {
         oldLayerMask = gameObject.layer;
         gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-        
+
         this.GetComponent<Renderer>().enabled = false;
 
         SetRendererStateInChildren(false, transform);
@@ -175,7 +174,7 @@ public class EditableBlockBehaviour : MonoBehaviour
     private void Show()
     {
         gameObject.layer = oldLayerMask;
-        
+
         this.GetComponent<Renderer>().enabled = true;
 
         SetRendererStateInChildren(true, transform);
@@ -194,7 +193,7 @@ public class EditableBlockBehaviour : MonoBehaviour
                 SetRendererStateInChildren(newState, child);
             }
         }
-    } 
+    }
 
     private void GeneratePlaceholder()
     {
@@ -219,8 +218,9 @@ public class EditableBlockBehaviour : MonoBehaviour
 
     private Vector3 roundPointToBlock(Vector3 point)
     {
-        var roundedVector = new Vector3((float) Math.Round(point.x), (float) Math.Round(point.y),
-            (float) Math.Round(point.z));
+        var roundedVector = new Vector3((float) Math.Round(point.x, MidpointRounding.AwayFromZero),
+            (float) Math.Round(point.y, MidpointRounding.AwayFromZero),
+            (float) Math.Round(point.z, MidpointRounding.AwayFromZero));
         return roundedVector;
     }
 }
