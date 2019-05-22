@@ -23,6 +23,7 @@ public class PreviewBehaviour : MonoBehaviour
     {
         EditorManager.Instance.newBlock = linkedObject;
         EditorManager.Instance.SelectedPreviewTile = this.gameObject;
+        GUIBehaviour.Instance.Toggle(ref GUIBehaviour.Instance.up);
     }
 
     public void Select()

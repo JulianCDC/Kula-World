@@ -72,6 +72,7 @@ public class EditableBlockBehaviour : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Z))
             {
+                GUIBehaviour.Instance.Toggle(ref GUIBehaviour.Instance.up);
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.up;
                 blockWithItemBehaviour.UpdateItemPosition();
                 Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.up, this);
@@ -79,7 +80,7 @@ public class EditableBlockBehaviour : MonoBehaviour
 
             else if (Input.GetKeyDown(KeyCode.S))
             {
-
+                GUIBehaviour.Instance.Toggle(ref GUIBehaviour.Instance.down);
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.down;                
                 blockWithItemBehaviour.UpdateItemPosition();  
                 Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.down, this);
@@ -88,6 +89,7 @@ public class EditableBlockBehaviour : MonoBehaviour
 
             else if (Input.GetKeyDown(KeyCode.Q))
             {
+                GUIBehaviour.Instance.Toggle(ref GUIBehaviour.Instance.left);
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.left;
                 blockWithItemBehaviour.UpdateItemPosition();
                 Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.left, this);
@@ -95,6 +97,7 @@ public class EditableBlockBehaviour : MonoBehaviour
 
             else if (Input.GetKeyDown(KeyCode.D))
             {
+                GUIBehaviour.Instance.Toggle(ref GUIBehaviour.Instance.right);
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.right;
                 blockWithItemBehaviour.UpdateItemPosition();
                 Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.right, this);
@@ -102,6 +105,7 @@ public class EditableBlockBehaviour : MonoBehaviour
 
             else if (Input.GetKeyDown(KeyCode.E))
             {
+                GUIBehaviour.Instance.Toggle(ref GUIBehaviour.Instance.back);
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.back;
                 blockWithItemBehaviour.UpdateItemPosition();
                 Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.back, this);
@@ -109,6 +113,7 @@ public class EditableBlockBehaviour : MonoBehaviour
 
             else if (Input.GetKeyDown(KeyCode.A))
             {
+                GUIBehaviour.Instance.Toggle(ref GUIBehaviour.Instance.front);
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.front;
                 blockWithItemBehaviour.UpdateItemPosition();
                 Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.front, this);
