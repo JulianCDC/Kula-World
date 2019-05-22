@@ -45,7 +45,6 @@ public class Map
         hasFruit[hasFruit.Length - 1] = false; // Fruit.fruits.none always false
     }
 
-    public static int fruityBlock = 0;
     /// <summary>
     /// Add a block to the <see cref="mapInstance"/> if possible
     /// </summary>
@@ -61,7 +60,6 @@ public class Map
         if (checkIfBlockHasFruit(blockXml))
         {
             mapInstance.hasFruit[(int) blockXml.fruit] = true;
-            fruityBlock += 1;
         }
 
         if (checkIfExitExist(blockXml))
@@ -72,6 +70,13 @@ public class Map
         mapInstance.blocks.Add(blockXml);
         currentBlockId += 1;
         return true;
+    }
+
+    public static bool hasAllFruits()
+    {
+        bool[] fruits = mapInstance.hasFruit;
+
+        return fruits[0] && fruits[1] && fruits[2] && fruits[3] && fruits[4];
     }
 
     public static bool checkIfBlockHasFruit(XmlBlock blockXml)
@@ -103,7 +108,6 @@ public class Map
         if (checkIfBlockHasFruit(blockXml))
         {
             mapInstance.hasFruit[(int) blockXml.fruit] = false;
-            fruityBlock -= 1;
         }
         
         return true;

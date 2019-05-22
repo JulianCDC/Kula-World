@@ -11,7 +11,7 @@ public class EditableBlockBehaviour : MonoBehaviour
     public XmlBlock xmlBlock;
 
     private LayerMask oldLayerMask;
-    
+
     private ArrowBehaviour[] arrows = new ArrowBehaviour[6];
     private GameObject blockPlaceholder;
     private GameObject placeholderInstance;
@@ -56,6 +56,10 @@ public class EditableBlockBehaviour : MonoBehaviour
             Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
             GameObject error = Instantiate(Resources.Load<GameObject>("Prefabs/Error"), canvas.transform);
             Destroy(error, 5);
+
+            EditorManager.Instance.ClearPreSelection();
+
+            Destroy(placeholderInstance);
             Destroy(this.gameObject);
         }
     }
@@ -68,6 +72,7 @@ public class EditableBlockBehaviour : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Z))
             {
+                GUIBehaviour.Instance.Toggle(ref GUIBehaviour.Instance.up);
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.up;
                 blockWithItemBehaviour.UpdateItemPosition();
                 Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.up, this);
@@ -75,15 +80,15 @@ public class EditableBlockBehaviour : MonoBehaviour
 
             else if (Input.GetKeyDown(KeyCode.S))
             {
-
-                blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.down;                
-                blockWithItemBehaviour.UpdateItemPosition();  
+                GUIBehaviour.Instance.Toggle(ref GUIBehaviour.Instance.down);
+                blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.down;
+                blockWithItemBehaviour.UpdateItemPosition();
                 Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.down, this);
-                              
             }
 
             else if (Input.GetKeyDown(KeyCode.Q))
             {
+                GUIBehaviour.Instance.Toggle(ref GUIBehaviour.Instance.left);
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.left;
                 blockWithItemBehaviour.UpdateItemPosition();
                 Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.left, this);
@@ -91,6 +96,7 @@ public class EditableBlockBehaviour : MonoBehaviour
 
             else if (Input.GetKeyDown(KeyCode.D))
             {
+                GUIBehaviour.Instance.Toggle(ref GUIBehaviour.Instance.right);
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.right;
                 blockWithItemBehaviour.UpdateItemPosition();
                 Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.right, this);
@@ -98,6 +104,7 @@ public class EditableBlockBehaviour : MonoBehaviour
 
             else if (Input.GetKeyDown(KeyCode.E))
             {
+                GUIBehaviour.Instance.Toggle(ref GUIBehaviour.Instance.back);
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.back;
                 blockWithItemBehaviour.UpdateItemPosition();
                 Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.back, this);
@@ -105,6 +112,7 @@ public class EditableBlockBehaviour : MonoBehaviour
 
             else if (Input.GetKeyDown(KeyCode.A))
             {
+                GUIBehaviour.Instance.Toggle(ref GUIBehaviour.Instance.front);
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.front;
                 blockWithItemBehaviour.UpdateItemPosition();
                 Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.front, this);
@@ -130,8 +138,11 @@ public class EditableBlockBehaviour : MonoBehaviour
 
         if (Map.mapInstance.CanBlockMoveTo(placeholderInstance.transform.position))
         {
-            this.transform.position = placeholderInstance.transform.position;
-            Map.MoveBlockTo(this, transform.position);
+            if (EditorManager.Instance.canPlaceBlock)
+            {
+                this.transform.position = placeholderInstance.transform.position;
+                Map.MoveBlockTo(this, transform.position);
+            }
         }
 
         if (this.transform.position == Vector3.zero)
@@ -139,7 +150,7 @@ public class EditableBlockBehaviour : MonoBehaviour
             Map.DeleteBlock(this.xmlBlock);
             Destroy(gameObject);
         }
-        
+
         Destroy(placeholderInstance);
     }
 
@@ -154,7 +165,7 @@ public class EditableBlockBehaviour : MonoBehaviour
     {
         oldLayerMask = gameObject.layer;
         gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-        
+
         this.GetComponent<Renderer>().enabled = false;
 
         SetRendererStateInChildren(false, transform);
@@ -163,7 +174,7 @@ public class EditableBlockBehaviour : MonoBehaviour
     private void Show()
     {
         gameObject.layer = oldLayerMask;
-        
+
         this.GetComponent<Renderer>().enabled = true;
 
         SetRendererStateInChildren(true, transform);
@@ -182,7 +193,7 @@ public class EditableBlockBehaviour : MonoBehaviour
                 SetRendererStateInChildren(newState, child);
             }
         }
-    } 
+    }
 
     private void GeneratePlaceholder()
     {
@@ -207,8 +218,9 @@ public class EditableBlockBehaviour : MonoBehaviour
 
     private Vector3 roundPointToBlock(Vector3 point)
     {
-        var roundedVector = new Vector3((float) Math.Round(point.x), (float) Math.Round(point.y),
-            (float) Math.Round(point.z));
+        var roundedVector = new Vector3((float) Math.Round(point.x, MidpointRounding.AwayFromZero),
+            (float) Math.Round(point.y, MidpointRounding.AwayFromZero),
+            (float) Math.Round(point.z, MidpointRounding.AwayFromZero));
         return roundedVector;
     }
 }

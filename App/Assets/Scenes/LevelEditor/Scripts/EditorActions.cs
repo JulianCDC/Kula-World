@@ -1,34 +1,77 @@
 ﻿using UnityEngine;
 using System;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// The actions performable by the user in the editor 
 /// </summary>
 public class EditorActions : MonoBehaviour
 {
-    /// <summary>
-    /// The Transform object of the camera
-    /// </summary>
     public Transform fovTransform;
+    [SerializeField] private Camera mainCamera;
+    private bool cameraIsUnlocked;
+    private GameObject currentlyPlacing;
 
+    private float cameraYaw = 0;
+    private float cameraPitch = 0;
 
-    /// <summary>
-    /// Generate the initial Map
-    /// </summary>
     private void Start()
     {
+        LockCamera();
         Map.mapInstance = new Map();
     }
 
-    /// <summary>
-    /// Listeners for mouse and keyboard events
-    /// </summary>
     void Update()
     {
-        CameraControls();
+        CameraLockListener();
+
+        if (!cameraIsUnlocked)
+        {
+            CameraControls();
+        }
+
         SelectListener();
         DeleteBlockListener();
         CancelListener();
+
+        if (EditorManager.Instance.newBlock != null && EditorManager.Instance.SelectedBlock == null)
+        {
+            EditorManager.Instance.SelectedBlock = Instantiate(EditorManager.Instance.newBlock, Vector3.zero,
+                Quaternion.Euler(Vector3.up * 90));
+            EditorManager.Instance.selectedBlockBehaviour.Select();
+            EditorManager.Instance.SelectedBlock.transform.parent = GameObject.Find("Map").transform;
+        }
+    }
+
+    private void CameraLockListener()
+    {
+        if (Input.GetKeyUp(KeyCode.G))
+        {
+            if (cameraIsUnlocked)
+            {
+                LockCamera();
+            }
+            else
+            {
+                UnlockCamera();
+            }
+        }
+    }
+
+    private void UnlockCamera()
+    {
+        EditorManager.Instance.canPlaceBlock = false;
+        cameraIsUnlocked = true;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    private void LockCamera()
+    {
+        EditorManager.Instance.canPlaceBlock = true;
+        cameraIsUnlocked = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void SelectListener()
@@ -45,14 +88,14 @@ public class EditorActions : MonoBehaviour
 
                 bool isBlock = hitObjectBehaviour != null;
 
-                if (EditorManager.Instance.selectedBlock != null)
+                if (EditorManager.Instance.SelectedBlock != null)
                 {
                     EditorManager.Instance.selectedBlockBehaviour.UnSelect();
                 }
 
                 if (isBlock)
                 {
-                    EditorManager.Instance.selectedBlock = hitObject;
+                    EditorManager.Instance.SelectedBlock = hitObject;
                     EditorManager.Instance.selectedBlockBehaviour = hitObjectBehaviour;
 
                     hitObjectBehaviour.Select();
@@ -69,9 +112,6 @@ public class EditorActions : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Call the <see cref="EditableBlockBehaviour.UnSelect"/> method of <see cref="selectedBlock"/> and replace <see cref="selectedBlock"/> and <see cref="selectedBlockBehaviour"/> by null
-    /// </summary>
     private void ClearSelectedObject()
     {
         if (EditorManager.Instance.selectedBlockBehaviour != null)
@@ -79,10 +119,10 @@ public class EditorActions : MonoBehaviour
             EditorManager.Instance.selectedBlockBehaviour.UnSelect();
         }
 
-        EditorManager.Instance.selectedBlock = null;
+        EditorManager.Instance.SelectedBlock = null;
         EditorManager.Instance.selectedBlockBehaviour = null;
     }
-    
+
     private void DeleteBlockListener()
     {
         if (Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Delete))
@@ -90,7 +130,7 @@ public class EditorActions : MonoBehaviour
             if (EditorManager.Instance.selectedBlockBehaviour == null) return;
 
             Map.DeleteBlock(EditorManager.Instance.selectedBlockBehaviour.xmlBlock);
-            Destroy(EditorManager.Instance.selectedBlock);
+            Destroy(EditorManager.Instance.SelectedBlock);
             ClearSelectedObject();
         }
     }
@@ -99,127 +139,41 @@ public class EditorActions : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
-            if (EditorManager.Instance.selectedBlockBehaviour == null) return;
-
-            EditorManager.Instance.selectedBlockBehaviour.Cancel();
-            EditorManager.Instance.selectedBlock = null;
-            EditorManager.Instance.selectedBlockBehaviour = null;
+            EditorManager.Instance.ClearPreSelection();
         }
     }
 
-    public void ManageTime( string userTime)
+    public void ManageTime(string userTime)
     {
         int time;
-        bool isInt =  int.TryParse(userTime, out time);
+        bool isInt = int.TryParse(userTime, out time);
         if (isInt && time > 0)
         {
             Map.mapInstance.metadata.timeToFinish = time;
         }
-
-
     }
-    
-    /// <summary>
-    /// Listener for camera movement
-    /// </summary>
-    ///
-    /// Listen for:
-    /// <list type="bullet">
-    ///    <item>Middle click for rotation and zoom</item>
-    ///    <item>Right click for movement</item>
-    /// </list>
-    ///
-    /// Call either <see cref="MoveCamera"/> or <see cref="PivotCamera"/>
+
     private void CameraControls()
     {
-        float xMovement = Input.GetAxis("Mouse X");
-        float yMovement = Input.GetAxis("Mouse Y");
-        float zMovement = Input.GetAxis("Mouse ScrollWheel");
-
-        if (xMovement != 0)
-        {
-            if (Input.GetMouseButton(1) && Input.GetMouseButton(2))
-            {
-                // do nothing
-            }
-            else if (Input.GetMouseButton(2) == true)
-            {
-                MoveCamera(0, xMovement);
-            }
-            else if (Input.GetMouseButton(1) == true)
-            {
-                PivotCamera(0, xMovement);
-            }
-        }
-
-        if (yMovement != 0)
-        {
-            if (Input.GetMouseButton(1) && Input.GetMouseButton(2))
-            {
-                // do nothing
-            }
-            else if (Input.GetMouseButton(2) == true)
-            {
-                MoveCamera(1, yMovement);
-            }
-            else if (Input.GetMouseButton(1) == true)
-            {
-                PivotCamera(1, yMovement);
-            }
-        }
-
-        if (zMovement != 0)
-        {
-            MoveCamera(2, zMovement);
-        }
+        RotateCamera();
+        MoveCamera();
     }
 
-    /// <summary>
-    /// Move the camera in the specified direction
-    /// </summary>
-    /// <param name="direction">The direction in which to move the camera (0: x, 1: y, 2: z)</param>
-    /// <param name="value">The distance to travel</param>
-    private void MoveCamera(int direction, float value)
+    private void RotateCamera()
     {
-        Vector3 translation = new Vector3();
-        const float sensibilityChanger = 1.62f;
+        float sensibility = 1.0f;
 
-        switch (direction)
-        {
-            case 0:
-                translation = new Vector3(value / sensibilityChanger, 0);
-                break;
-            case 1:
-                translation = new Vector3(0, value / sensibilityChanger);
-                break;
-            case 2:
-                translation = new Vector3(0, 0, value);
-                break;
-        }
+        cameraYaw += Input.GetAxis("Mouse X") * sensibility;
+        cameraPitch -= Input.GetAxis("Mouse Y") * sensibility;
 
-
-        this.fovTransform.Translate(translation);
+        mainCamera.transform.eulerAngles = new Vector3(cameraPitch, cameraYaw, mainCamera.transform.rotation.z);
     }
 
-    /// <summary>
-    /// Rotate the camera in the specified direction
-    /// </summary>
-    /// <param name="direction">The direction in which to rotate the camera (0: y, 1: x)</param>
-    /// <param name="value">The distance to travel</param>
-    private void PivotCamera(int direction, float value)
+    private void MoveCamera()
     {
-        Vector3 axis = Vector3.zero;
+        float sensibility = 0.5f;
 
-        switch (direction)
-        {
-            case 0:
-                axis = Vector3.up;
-                break;
-            case 1:
-                axis = Vector3.right;
-                break;
-        }
-
-        this.fovTransform.RotateAround(this.fovTransform.position, axis, value);
+        mainCamera.transform.Translate(Input.GetAxis("Horizontal editor") * sensibility, 0,
+            Input.GetAxis("Vertical editor") * sensibility);
     }
 }
