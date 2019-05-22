@@ -136,22 +136,29 @@ public class EditableBlockBehaviour : MonoBehaviour
         selected = false;
         Show();
 
-        if (Map.mapInstance.CanBlockMoveTo(placeholderInstance.transform.position))
+        try
         {
-            if (EditorManager.Instance.canPlaceBlock)
+            if (Map.mapInstance.CanBlockMoveTo(placeholderInstance.transform.position))
             {
-                this.transform.position = placeholderInstance.transform.position;
-                Map.MoveBlockTo(this, transform.position);
+                if (EditorManager.Instance.canPlaceBlock)
+                {
+                    this.transform.position = placeholderInstance.transform.position;
+                    Map.MoveBlockTo(this, transform.position);
+                }
             }
-        }
 
-        if (this.transform.position == Vector3.zero)
+            if (this.transform.position == Vector3.zero)
+            {
+                Map.DeleteBlock(this.xmlBlock);
+                Destroy(gameObject);
+            }
+
+            Destroy(placeholderInstance);
+        }
+        catch (NullReferenceException)
         {
-            Map.DeleteBlock(this.xmlBlock);
-            Destroy(gameObject);
+            
         }
-
-        Destroy(placeholderInstance);
     }
 
     public void Cancel()
