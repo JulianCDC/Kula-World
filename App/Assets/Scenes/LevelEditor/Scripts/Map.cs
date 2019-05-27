@@ -12,44 +12,21 @@ using UnityEngine;
 [XmlRoot("Map")]
 public class Map
 {
-    /// <summary>
-    /// A list of all serialized blocks in the map
-    /// </summary>
     [XmlArray("Blocks"), XmlArrayItem("Block")]
     public List<XmlBlock> blocks = new List<XmlBlock>();
 
     [XmlElement("Meta")] public MapMetadata metadata;
-
-    // replace with HashSet
-    /// <summary>
-    /// An array of boolean set to true if a fruit has already been placed in the map. In the same order as <see cref="Fruit.fruits"/>
-    /// </summary>
+    
     [XmlIgnore] public bool[] hasFruit = new bool[Enum.GetNames(typeof(Fruit.fruits)).Length];
-
-    /// <summary>
-    /// An instance of the map hold into the Map class
-    /// </summary>
+    
     public static Map mapInstance = new Map();
-    /// <summary>
-    /// The ID of the next new block, defined by the id of the last block placed
-    /// </summary>
-    /// Increment by 1 each block
     public static int currentBlockId = 1;
     
-    /// <summary>
-    /// Instantiate the map with the last value of <see cref="hasFruit"/> to false
-    /// </summary>
-    /// It is the value of none and we can always place block with no object
     public Map()
     {
         hasFruit[hasFruit.Length - 1] = false; // Fruit.fruits.none always false
     }
-
-    /// <summary>
-    /// Add a block to the <see cref="mapInstance"/> if possible
-    /// </summary>
-    /// <param name="blockXml">The block to add</param>
-    /// <returns>true if the block was added, false otherwise</returns>
+    
     public static bool AddBlock(XmlBlock blockXml) // TODO : clean
     {
         if (!mapInstance.IsAddPossible(blockXml))
@@ -57,14 +34,9 @@ public class Map
             return false;
         }
 
-        if (checkIfBlockHasFruit(blockXml))
+        if (CheckIfBlockHasFruit(blockXml))
         {
             mapInstance.hasFruit[(int) blockXml.fruit] = true;
-        }
-
-        if (checkIfExitExist(blockXml))
-        {
-            return false;
         }
 
         mapInstance.blocks.Add(blockXml);
@@ -72,40 +44,23 @@ public class Map
         return true;
     }
 
-    public static bool hasAllFruits()
+    public static bool HasAllFruits()
     {
         bool[] fruits = mapInstance.hasFruit;
 
         return fruits[0] && fruits[1] && fruits[2] && fruits[3] && fruits[4];
     }
 
-    public static bool checkIfBlockHasFruit(XmlBlock blockXml)
+    public static bool CheckIfBlockHasFruit(XmlBlock blockXml)
     {
         return blockXml.fruit != Fruit.fruits.none;
     }
-
-    public static bool checkIfExitExist(XmlBlock blockXml)
-    {
-        XmlBlock block =  mapInstance.blocks.Find(properties => properties.objectType == blockXml.objectType);
-
-        if(block.objectType == "Block with exit")
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-    /// <summary>
-    /// Remove the block from the <see cref="mapInstance"/>
-    /// </summary>
-    /// <param name="blockXml">The block to remove</param>
-    /// <returns>true if the block was successfully removed</returns>
+    
     public static bool DeleteBlock(XmlBlock blockXml)
     {
         mapInstance.blocks.RemoveAll(properties => properties.id == blockXml.id);
 
-        if (checkIfBlockHasFruit(blockXml))
+        if (CheckIfBlockHasFruit(blockXml))
         {
             mapInstance.hasFruit[(int) blockXml.fruit] = false;
         }
@@ -113,7 +68,7 @@ public class Map
         return true;
     }
 
-    public static void ChangeItemPosition(XmlBlock blockXml, WithItemBehaviour.Positions newPosition, EditableBlockBehaviour realBlock)
+    public static void ChangeItemPosition(XmlBlock blockXml, WithItemBehaviour.Positions newPosition)
     {
         XmlBlock block = mapInstance.blocks.Find(properties => properties.id == blockXml.id);
 
@@ -121,35 +76,14 @@ public class Map
 
         block.itemPosition = newPosition;
 
-        mapInstance.blocks.Add(block);       
-        
-
+        mapInstance.blocks.Add(block);
     }
 
-
-    public static bool IsCollided(EditableBlockBehaviour realBlock)
-    {
-        if ( !Map.isEmpty(realBlock.transform.position + realBlock.transform.TransformDirection(Vector3.up)))
-        {
-            return true;
-        }
-        
-        return false;
-    }
-
-    
-
-    public static bool isEmpty(Vector3 position)
+    public static bool IsEmpty(Vector3 position)
     {
         return !mapInstance.blocks.Exists(properties => properties.position == position);
     }
-
-    /// <summary>
-    /// Move a block from the map to a new position if possible
-    /// </summary>
-    /// Check if the block can move and, if possible, find it in the <see cref="mapInstance"/> and change its position
-    /// <param name="blockToMoveBehaviour">The block to move</param>
-    /// <param name="newPosition">The new position of the block</param>
+    
     public static void MoveBlockTo(EditableBlockBehaviour blockToMoveBehaviour, Vector3 newPosition)
     {
         if (mapInstance.CanBlockMoveTo(newPosition))
@@ -169,17 +103,6 @@ public class Map
         }
     }
 
-    public int GetIdAtPosition(Vector3 position)
-    {
-        XmlBlock block = mapInstance.blocks.Find(properties => properties.position == position);
-        return block.id;
-    }
-
-    /// <summary>
-    /// Check if a block can move to the new position
-    /// </summary>
-    /// <param name="newPosition">The position to check</param>
-    /// <returns>true if the position is free, false otherwise</returns>
     public bool CanBlockMoveTo(Vector3 newPosition)
     {
         foreach (XmlBlock blockProperty in this.blocks)
@@ -192,19 +115,21 @@ public class Map
 
         return true;
     }
-
-    /// <summary>
-    /// Check if a block can be added
-    /// </summary>
-    /// <param name="blockXml">The block to add</param>
-    /// <returns>true if the block can be added, otherwise false</returns>
+    
     public bool IsAddPossible(XmlBlock blockXml)
     {
+        bool isExit = blockXml.objectType == "Block with exit";
+        
         foreach (XmlBlock blockProperty in this.blocks)
         {
             if (blockXml.hasItem)
             {
-                // TODO : check if item doesn't collide with block (preferably in another method)
+                // TODO : check if item doesn't collide with blockd
+            }
+
+            if (isExit && blockProperty.objectType == "Block with exit")
+            {
+                return false;
             }
         }
 
@@ -216,22 +141,6 @@ public class Map
         return true;
     }
 
-    /// <summary>
-    /// Save map to Application.temporaryCachePath
-    /// </summary>
-    public static void WriteToTempLocation()
-    {
-        var serializer = new XmlSerializer(typeof(Map));
-        var stream = new FileStream(Application.temporaryCachePath + "/temp.map", FileMode.Create);
-        StreamWriter streamWriter = new StreamWriter(stream, System.Text.Encoding.UTF8);
-        serializer.Serialize(streamWriter, mapInstance);
-        stream.Close();
-    }
-
-    /// <summary>
-    /// Save map with specified file name
-    /// </summary>
-    /// <param name="fileName">Name of the file</param>
     public static void WriteToLocation(string fileName)
     {
         XmlSerializer serializer = new XmlSerializer(typeof(Map));

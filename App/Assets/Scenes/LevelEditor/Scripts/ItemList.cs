@@ -1,21 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// The Main Behaviour for the list of Preview GameObject displayed in the Editor scene
-/// </summary>
 public class ItemList : MonoBehaviour
 {
-    private GameObject[] previews;
+    private GameObject[] blocs;
     [SerializeField] private Light sceneLight;
     public Image previewTemplate;
 
     void Start()
     {
-        previews = Resources.LoadAll<GameObject>("EditorItemPrefabs");
+        blocs = Resources.LoadAll<GameObject>("EditorItemPrefabs");
 
         int i = 0;
-        foreach (GameObject prefab in previews)
+        foreach (GameObject prefab in blocs)
         {
             Image image = Instantiate(previewTemplate, this.transform);
             PreviewBehaviour imageBehaviour = image.GetComponent<PreviewBehaviour>();

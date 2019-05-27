@@ -143,16 +143,6 @@ public class EditorActions : MonoBehaviour
         }
     }
 
-    public void ManageTime(string userTime)
-    {
-        int time;
-        bool isInt = int.TryParse(userTime, out time);
-        if (isInt && time > 0)
-        {
-            Map.mapInstance.metadata.timeToFinish = time;
-        }
-    }
-
     private void CameraControls()
     {
         RotateCamera();

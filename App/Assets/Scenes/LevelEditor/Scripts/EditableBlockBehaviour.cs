@@ -2,10 +2,6 @@
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-/// <summary>
-/// The EditableBlock is a Block used in the Editor scene.
-/// </summary>
-/// It contains methods for edition and an instance to a variable containing a serialized version of the block <see cref="xmlBlock"/>.
 public class EditableBlockBehaviour : MonoBehaviour
 {
     public XmlBlock xmlBlock;
@@ -75,7 +71,7 @@ public class EditableBlockBehaviour : MonoBehaviour
                 GUIBehaviour.Instance.Toggle(ref GUIBehaviour.Instance.up);
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.up;
                 blockWithItemBehaviour.UpdateItemPosition();
-                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.up, this);
+                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.up);
             }
 
             else if (Input.GetKeyDown(KeyCode.S))
@@ -83,7 +79,7 @@ public class EditableBlockBehaviour : MonoBehaviour
                 GUIBehaviour.Instance.Toggle(ref GUIBehaviour.Instance.down);
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.down;
                 blockWithItemBehaviour.UpdateItemPosition();
-                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.down, this);
+                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.down);
             }
 
             else if (Input.GetKeyDown(KeyCode.Q))
@@ -91,7 +87,7 @@ public class EditableBlockBehaviour : MonoBehaviour
                 GUIBehaviour.Instance.Toggle(ref GUIBehaviour.Instance.left);
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.left;
                 blockWithItemBehaviour.UpdateItemPosition();
-                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.left, this);
+                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.left);
             }
 
             else if (Input.GetKeyDown(KeyCode.D))
@@ -99,7 +95,7 @@ public class EditableBlockBehaviour : MonoBehaviour
                 GUIBehaviour.Instance.Toggle(ref GUIBehaviour.Instance.right);
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.right;
                 blockWithItemBehaviour.UpdateItemPosition();
-                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.right, this);
+                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.right);
             }
 
             else if (Input.GetKeyDown(KeyCode.E))
@@ -107,7 +103,7 @@ public class EditableBlockBehaviour : MonoBehaviour
                 GUIBehaviour.Instance.Toggle(ref GUIBehaviour.Instance.back);
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.back;
                 blockWithItemBehaviour.UpdateItemPosition();
-                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.back, this);
+                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.back);
             }
 
             else if (Input.GetKeyDown(KeyCode.A))
@@ -115,7 +111,7 @@ public class EditableBlockBehaviour : MonoBehaviour
                 GUIBehaviour.Instance.Toggle(ref GUIBehaviour.Instance.front);
                 blockWithItemBehaviour.itemPosition = WithItemBehaviour.Positions.front;
                 blockWithItemBehaviour.UpdateItemPosition();
-                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.front, this);
+                Map.ChangeItemPosition(this.xmlBlock, WithItemBehaviour.Positions.front);
             }
         }
 
@@ -217,13 +213,13 @@ public class EditableBlockBehaviour : MonoBehaviour
             if (isBlock)
             {
                 Destroy(this.placeholderInstance);
-                this.placeholderInstance = Instantiate(blockPlaceholder, roundPointToBlock(hit.point),
+                this.placeholderInstance = Instantiate(blockPlaceholder, RoundPointToBlock(hit.point),
                     Quaternion.Euler(0, 0, 0));
             }
         }
     }
 
-    private Vector3 roundPointToBlock(Vector3 point)
+    private Vector3 RoundPointToBlock(Vector3 point)
     {
         var roundedVector = new Vector3((float) Math.Round(point.x, MidpointRounding.AwayFromZero),
             (float) Math.Round(point.y, MidpointRounding.AwayFromZero),

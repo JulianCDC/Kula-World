@@ -63,7 +63,7 @@ public class MenuBarButtonBehaviour : MonoBehaviour
     /// </summary>
     public void PromptForSave()
     {
-        if (Map.hasAllFruits())
+        if (Map.HasAllFruits())
         {
             ClickCapturerBehaviour clickCapturer = ClickCapturerBehaviour.GenerateIn(rootCanvas.transform);
             clickCapturer.Transparency = 0f;
