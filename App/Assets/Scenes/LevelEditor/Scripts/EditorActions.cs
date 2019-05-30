@@ -2,9 +2,6 @@
 using System;
 using UnityEngine.EventSystems;
 
-/// <summary>
-/// The actions performable by the user in the editor 
-/// </summary>
 public class EditorActions : MonoBehaviour
 {
     public Transform fovTransform;

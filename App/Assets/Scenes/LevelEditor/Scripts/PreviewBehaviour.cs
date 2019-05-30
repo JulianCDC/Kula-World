@@ -2,9 +2,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// The behaviour of the preview images displayed in the right slider in the editor
-/// </summary>
 public class PreviewBehaviour : MonoBehaviour
 {
     private Color oldColor;

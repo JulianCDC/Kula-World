@@ -5,9 +5,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-/// <summary>
-/// The Main Behaviour for the Main Menu Scene
-/// </summary>
 public class MainMenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Text childText;

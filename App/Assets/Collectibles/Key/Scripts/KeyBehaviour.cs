@@ -1,7 +1,4 @@
-﻿/// <summary>
-/// The Main Behaviour for the Key GameObject
-/// </summary>
-public class KeyBehaviour : Collectible
+﻿public class KeyBehaviour : Collectible
 {
     private static int currentNumberOfKeys;
     private int Id;
@@ -13,11 +10,7 @@ public class KeyBehaviour : Collectible
         currentNumberOfKeys += 1;
         this.Id = currentNumberOfKeys;
     }
-
-    /// <inheritdoc cref="Collectible.Collected"/>
-    /// <summary>
-    /// Set <see cref="Obtained"/> to true
-    /// </summary>
+    
     public override void Collected()
     {
         base.Collected();

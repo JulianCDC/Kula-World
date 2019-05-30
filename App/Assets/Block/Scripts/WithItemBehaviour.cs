@@ -1,13 +1,7 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// The behaviour for block with item
-/// </summary>
 public class WithItemBehaviour : MonoBehaviour
 {
-    /// <summary>
-    /// Specify the position of the item
-    /// </summary>
     public enum Positions
     {
         up,
@@ -20,36 +14,14 @@ public class WithItemBehaviour : MonoBehaviour
     };
 
     public Positions itemPosition;
-
-    /// <summary>
-    /// The collectible assigned to the GameObject
-    /// </summary>
     private GameObject childCollectible;
-
-    /// <summary>
-    /// The behaviour of <see cref="childCollectible"/>
-    /// </summary>
     private Collectible childBehaviour;
     private Transform initialCollectibleTransform;
-
-    /// <summary>
-    /// Initial yaw of the GameObject
-    /// </summary>
+    
     private float initialYaw;
-
-    /// <summary>
-    /// Initial pitch of the GameObject
-    /// </summary>
     private float initialPitch;
-
-    /// <summary>
-    /// Initial roll of the GameObject
-    /// </summary>
     private float initialRoll;
-
-    /// <summary>
-    /// Create the collectible and puts its initial rotations values into <see cref="initialYaw"/>, <see cref="initialRoll"/>, <see cref="initialPitch"/>
-    /// </summary>
+    
     public void Start()
     {
         this.childCollectible = this.transform.GetChild(0).gameObject;
@@ -63,14 +35,7 @@ public class WithItemBehaviour : MonoBehaviour
 
         UpdateItemPosition();
     }
-
-    void Update()
-    {
-    }
-
-    /// <summary>
-    /// Set the item position depending on <see cref="itemPosition"/>
-    /// </summary>
+    
     public void UpdateItemPosition()
     {
         Quaternion newRotation;

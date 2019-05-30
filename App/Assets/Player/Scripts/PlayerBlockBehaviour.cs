@@ -17,7 +17,6 @@ public class PlayerBlockBehaviour : MonoBehaviour
 
     private float MovementLength => playerSpeedBeforeMovement <= 1 ? 1 * playerSpeedBeforeMovement / 10 : 0.1f;
     private float MovementInterationsCount => playerSpeedBeforeMovement <= 1 ? 1 / MovementLength : 10;
-
     private float MovementIterationDuration => playerSpeedBeforeMovement <= 1
         ? 0.1f / MovementInterationsCount
         : 0.01f / playerSpeedBeforeMovement;

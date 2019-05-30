@@ -6,9 +6,6 @@ using System.Xml;
 using System.Xml.Serialization;
 using UnityEngine;
 
-/// <summary>
-/// An object used for saving and loading serialized maps
-/// </summary>
 [XmlRoot("Map")]
 public class Map
 {
