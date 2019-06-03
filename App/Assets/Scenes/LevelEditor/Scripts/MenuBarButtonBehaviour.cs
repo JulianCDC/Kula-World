@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -45,9 +46,11 @@ public class MenuBarButtonBehaviour : MonoBehaviour
             promptBehaviour.Placeholder = "name...";
 
             promptBehaviour.TimeHint = "What will be the time to finish the map";
-            promptBehaviour.TimePlaceholder = "Time";
+            promptBehaviour.TimePlaceholder = "Time";            
 
+            List<XmlBlock> blocksWithKey = Map.mapInstance.blocks.FindAll(properties => properties.objectType == "Block with key");
 
+            Map.mapInstance.metadata.numberOfKeys = blocksWithKey.Count;
 
             Action closePrompt = () =>
             {
