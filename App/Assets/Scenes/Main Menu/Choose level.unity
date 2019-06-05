@@ -487,7 +487,7 @@ PrefabInstance:
     - target: {fileID: 299181415934807006, guid: 12cc75b2f083dc94bb21196d4d15a904,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 112.5
+      value: 112.79183
       objectReference: {fileID: 0}
     - target: {fileID: 299181415934807006, guid: 12cc75b2f083dc94bb21196d4d15a904,
         type: 3}
@@ -512,7 +512,7 @@ PrefabInstance:
     - target: {fileID: 299181415934807006, guid: 12cc75b2f083dc94bb21196d4d15a904,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 299181415934807006, guid: 12cc75b2f083dc94bb21196d4d15a904,
         type: 3}
@@ -522,7 +522,7 @@ PrefabInstance:
     - target: {fileID: 299181415934807006, guid: 12cc75b2f083dc94bb21196d4d15a904,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 299181415934807006, guid: 12cc75b2f083dc94bb21196d4d15a904,
         type: 3}
@@ -939,7 +939,7 @@ PrefabInstance:
     - target: {fileID: 299181415934807006, guid: 12cc75b2f083dc94bb21196d4d15a904,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 387.5
+      value: 387.79184
       objectReference: {fileID: 0}
     - target: {fileID: 299181415934807006, guid: 12cc75b2f083dc94bb21196d4d15a904,
         type: 3}
@@ -964,7 +964,7 @@ PrefabInstance:
     - target: {fileID: 299181415934807006, guid: 12cc75b2f083dc94bb21196d4d15a904,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 299181415934807006, guid: 12cc75b2f083dc94bb21196d4d15a904,
         type: 3}
@@ -974,7 +974,7 @@ PrefabInstance:
     - target: {fileID: 299181415934807006, guid: 12cc75b2f083dc94bb21196d4d15a904,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 299181415934807006, guid: 12cc75b2f083dc94bb21196d4d15a904,
         type: 3}
@@ -995,6 +995,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_FontSize
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4023626135794763587, guid: 12cc75b2f083dc94bb21196d4d15a904,
+        type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 4534132265813131751, guid: 12cc75b2f083dc94bb21196d4d15a904,
         type: 3}
@@ -1040,6 +1045,11 @@ PrefabInstance:
         type: 3}
       propertyPath: textHoverColor.b
       value: 0.18431373
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345196724635488123, guid: 12cc75b2f083dc94bb21196d4d15a904,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2198086520094172538, guid: 12cc75b2f083dc94bb21196d4d15a904,
         type: 3}
@@ -1225,10 +1235,10 @@ RectTransform:
   m_Father: {fileID: 1937264068}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &701251783
 MonoBehaviour:
@@ -1877,15 +1887,15 @@ RectTransform:
   m_GameObject: {fileID: 1630874348}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5555556, y: 0.5555556, z: 0.5555556}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1937264068}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!328 &1630874350
 VideoPlayer:
