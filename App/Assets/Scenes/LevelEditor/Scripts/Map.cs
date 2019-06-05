@@ -24,7 +24,7 @@ public class Map
         hasFruit[hasFruit.Length - 1] = false; // Fruit.fruits.none always false
     }
     
-    public static bool AddBlock(XmlBlock blockXml) // TODO : clean
+    public static bool AddBlock(XmlBlock blockXml)
     {
         if (!mapInstance.IsAddPossible(blockXml))
         {

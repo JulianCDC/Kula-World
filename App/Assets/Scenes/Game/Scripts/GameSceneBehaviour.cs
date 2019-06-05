@@ -115,7 +115,7 @@ public class GameSceneBehaviour : MonoBehaviour
 
     private void ConfigBlock(GameObject blockGameObject, XmlBlock xmlBlock)
     {
-        configBlockPosition(blockGameObject.transform, xmlBlock);
+        ConfigBlockPosition(blockGameObject.transform, xmlBlock);
 
         BlockBehaviour blockBehaviour = blockGameObject.GetComponent<BlockBehaviour>();
 
@@ -126,7 +126,7 @@ public class GameSceneBehaviour : MonoBehaviour
         }
     }
 
-    private void configBlockPosition(Transform blockTransform, XmlBlock xmlBlock)
+    private void ConfigBlockPosition(Transform blockTransform, XmlBlock xmlBlock)
     {
         blockTransform.transform.position = new Vector3(xmlBlock.xPos, xmlBlock.yPos, xmlBlock.zPos);
     }
