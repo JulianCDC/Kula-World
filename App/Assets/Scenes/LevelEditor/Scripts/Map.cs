@@ -65,6 +65,8 @@ public class Map
         return true;
     }
 
+    
+
     public static void ChangeItemPosition(XmlBlock blockXml, WithItemBehaviour.Positions newPosition)
     {
         XmlBlock block = mapInstance.blocks.Find(properties => properties.id == blockXml.id);

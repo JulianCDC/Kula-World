@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using UnityEngine;
+using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -42,5 +43,10 @@ public class MainMenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void OnClick()
     {
         SceneManager.LoadScene(destinationSceneId);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
