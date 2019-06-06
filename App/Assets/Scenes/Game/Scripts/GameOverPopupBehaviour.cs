@@ -10,6 +10,7 @@ public class GameOverPopupBehaviour : MonoBehaviour
 {
     [SerializeField] private Button retry;
     [SerializeField] private Button exit;
+    [SerializeField] private Button reset;
     public AudioSource DeathSource;
     public AudioClip DeathClip;
 
@@ -21,11 +22,18 @@ public class GameOverPopupBehaviour : MonoBehaviour
         {
             retry.onClick.AddListener(delegate
             {
-                retry.onClick.AddListener(delegate
-                {
-                    GameManager.Instance.TotalReset();
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                });
+                GameManager.Instance.TotalReset();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            });
+        }
+
+        if (reset != null)
+        {
+            reset.onClick.AddListener(delegate
+            {
+                PlayerData.Erase();
+                GameManager.Instance.TotalReset();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             });
         }
 
