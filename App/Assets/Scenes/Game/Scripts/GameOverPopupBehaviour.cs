@@ -17,12 +17,15 @@ public class GameOverPopupBehaviour : MonoBehaviour
     {
         DeathSource.clip = DeathClip;
         DeathSource.Play();
-        retry.onClick.AddListener(delegate
+        if (retry != null)
         {
             retry.onClick.AddListener(delegate
             {
-                GameManager.Instance.TotalReset();
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                retry.onClick.AddListener(delegate
+                {
+                    GameManager.Instance.TotalReset();
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                });
             });
         }
 
