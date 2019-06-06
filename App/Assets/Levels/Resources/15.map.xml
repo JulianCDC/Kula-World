@@ -89,5 +89,5 @@
     <Block id="123" has_item="true" type="Block with hourglass" x="4" y="3" z="-4" item_position="up" />
     <Block id="124" has_item="true" type="Block with hourglass" x="4" y="0" z="4" item_position="up" />
   </Blocks>
-  <Meta keys="4" time="90" />
+  <Meta keys="4" time="240" />
 </Map>

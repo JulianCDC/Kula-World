@@ -72,5 +72,5 @@
     <Block id="117" has_item="false" type="Block" x="0" y="-1" z="0" item_position="none" />
     <Block id="118" has_item="false" type="Block with exit" x="0" y="2" z="8" item_position="down" />
   </Blocks>
-  <Meta keys="2" time="90" />
+  <Meta keys="2" time="240" />
 </Map>

@@ -30,7 +30,8 @@ public class MainMenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void LoadOfficial()
     {
         GameManager.Instance.TotalReset();
-        GameManager.Instance.currentLevel = PlayerData.GetProgress().ToString();
+        GameManager.Instance.currentLevel = PlayerData.GetProgress()["level"].ToString();
+        GameManager.Instance.TotalScore = PlayerData.GetProgress()["score"];
         GameManager.Instance.officialLevel = true;
     }
 

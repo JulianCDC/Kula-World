@@ -1,4 +1,6 @@
-﻿public class KeyBehaviour : Collectible
+﻿using UnityEngine;
+
+public class KeyBehaviour : Collectible
 {
     private static int currentNumberOfKeys;
     private int Id;

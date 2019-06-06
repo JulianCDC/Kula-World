@@ -47,5 +47,5 @@
     <Block id="114" has_item="true" type="Block with watermelon" x="0" y="5" z="-7" item_position="up" />
     <Block id="115" has_item="true" type="Block with exit" x="0" y="5" z="7" item_position="up" />
   </Blocks>
-  <Meta keys="2" time="90" />
+  <Meta keys="2" time="300" />
 </Map>

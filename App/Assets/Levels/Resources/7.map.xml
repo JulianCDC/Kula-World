@@ -99,5 +99,5 @@
     <Block id="178" has_item="true" type="Block with gem" x="4" y="0" z="-4" item_position="down" />
     <Block id="180" has_item="true" type="Block with gem" x="-4" y="0" z="4" item_position="up" />
   </Blocks>
-  <Meta keys="1" time="70" />
+  <Meta keys="1" time="120" />
 </Map>
