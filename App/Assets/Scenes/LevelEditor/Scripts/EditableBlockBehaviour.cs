@@ -50,10 +50,6 @@ public class EditableBlockBehaviour : MonoBehaviour
 
         if (!Map.AddBlock(this.xmlBlock))
         {
-            Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-            GameObject error = Instantiate(Resources.Load<GameObject>("Prefabs/Error"), canvas.transform);
-            Destroy(error, 5);
-
             EditorManager.Instance.ClearPreSelection();
 
             Destroy(placeholderInstance);
