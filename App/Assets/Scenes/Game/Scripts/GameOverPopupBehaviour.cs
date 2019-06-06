@@ -10,10 +10,14 @@ public class GameOverPopupBehaviour : MonoBehaviour
 {
     [SerializeField] private Button retry;
     [SerializeField] private Button exit;
+    public AudioSource DeathSource;
+    public AudioClip DeathClip;
 
     private void Start()
     {
-        if (retry != null)
+        DeathSource.clip = DeathClip;
+        DeathSource.Play();
+        retry.onClick.AddListener(delegate
         {
             retry.onClick.AddListener(delegate
             {

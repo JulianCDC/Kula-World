@@ -21,10 +21,18 @@ public class PlayerBlockBehaviour : MonoBehaviour
         ? 0.1f / MovementInterationsCount
         : 0.01f / playerSpeedBeforeMovement;
 
+    public AudioSource MoveSource;
+    public AudioClip MoveClip;
+    public AudioSource JumpSource;
+    public AudioClip JumpClip;
+
     private void Start()
     {
         this.playerBehaviour = player.GetComponent<PlayerBehaviour>();
         this.playerCollider = player.GetComponent<SphereCollider>();
+
+        MoveSource.clip = MoveClip;
+        JumpSource.clip = JumpClip;
     }
 
     private void Update()
@@ -266,6 +274,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
         {
             jumpButtonPressed = true;
             ToggleJump();
+            JumpSource.Play();
         }
 
         if (Input.GetAxis("Jump") == 0)
@@ -308,5 +317,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
         playerSpeedBeforeMovement = GameManager.Instance.playerSpeed;
         transformBeforeMovement = transform;
         movement();
+        MoveSource.Play();
+
     }
 }
