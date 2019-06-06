@@ -107,8 +107,10 @@
         <e p="Scenes" t="Include">
           <e p="Game" t="Include">
             <e p="Scripts" t="Include">
+              <e p="AudioSourceStop.cs" t="Include" />
               <e p="GameOverPopupBehaviour.cs" t="Include" />
               <e p="GameSceneBehaviour.cs" t="Include" />
+              <e p="HoverAndClick.cs" t="Include" />
               <e p="Hud.cs" t="Include" />
             </e>
           </e>
@@ -133,6 +135,7 @@
               <e p="LevelListItemBehaviour.cs" t="Include" />
               <e p="MainMenuElement.cs" t="Include" />
             </e>
+            <e p="SoundContinu.cs" t="Include" />
           </e>
         </e>
         <e p="Scripts" t="Include">

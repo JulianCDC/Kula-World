@@ -28,12 +28,15 @@ public class GameSceneBehaviour : MonoBehaviour
 
     void Tick()
     {
-        GameManager.Instance.elapsedTime += GameManager.Instance.secondsPerTick;
-        Hud.GetHud().timeDisplay.text = $"{GameManager.Instance.elapsedTime} / {GameManager.Instance.maxTime}";
-
-        if (GameManager.Instance.elapsedTime >= GameManager.Instance.maxTime)
+        if (!gameOver)
         {
-            GameOver();
+            GameManager.Instance.elapsedTime += GameManager.Instance.secondsPerTick;
+            Hud.GetHud().timeDisplay.text = $"{GameManager.Instance.elapsedTime} / {GameManager.Instance.maxTime}";
+
+            if (GameManager.Instance.elapsedTime >= GameManager.Instance.maxTime)
+            {
+                GameOver();
+            }
         }
     }
 
@@ -94,7 +97,15 @@ public class GameSceneBehaviour : MonoBehaviour
 
     public static void Win()
     {
-        print("Win");
+        gameOver = true;
+        DisplayWinScreen();
+        PlayerData.Erase();
+    }
+
+    private static void DisplayWinScreen()
+    {
+        var winPopup = Resources.Load<GameObject>("WinPopup");
+        Instantiate(winPopup, Hud.GetHud().transform);
     }
 
     private static void DisplayGameOverScreen()

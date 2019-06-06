@@ -70,6 +70,7 @@
     <Block id="115" has_item="true" type="Block with strawberry" x="0" y="-5" z="-11" item_position="up" />
     <Block id="116" has_item="true" type="Block with watermelon" x="0" y="2" z="10" item_position="down" />
     <Block id="117" has_item="false" type="Block" x="0" y="-1" z="0" item_position="none" />
+    <Block id="118" has_item="false" type="Block with exit" x="0" y="2" z="8" item_position="down" />
   </Blocks>
   <Meta keys="2" time="90" />
 </Map>
