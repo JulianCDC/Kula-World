@@ -1,20 +1,18 @@
 ﻿using System;
+using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
+using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-/// <summary>
-/// The Main Behaviour for the Main Menu Scene
-/// </summary>
 public class MainMenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Text childText;
     [SerializeField] private Color textHoverColor;
     [SerializeField] private int destinationSceneId;
     private Color oldTextColor;
-
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -45,5 +43,10 @@ public class MainMenuElement : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void OnClick()
     {
         SceneManager.LoadScene(destinationSceneId);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

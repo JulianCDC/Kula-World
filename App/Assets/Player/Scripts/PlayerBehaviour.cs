@@ -1,10 +1,5 @@
-﻿using System;
-using System.Timers;
-using UnityEngine;
+﻿using UnityEngine;
 
-/// <summary>
-/// The behaviour of the player
-/// </summary>
 public class PlayerBehaviour : MonoBehaviour
 {
     [SerializeField] private GameObject invisibleBlock;

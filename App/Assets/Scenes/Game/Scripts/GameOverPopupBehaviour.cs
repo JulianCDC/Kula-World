@@ -13,11 +13,15 @@ public class GameOverPopupBehaviour : MonoBehaviour
 
     private void Start()
     {
-        retry.onClick.AddListener(delegate
+        if (retry != null)
         {
-            GameManager.Instance.TotalReset();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        });
+            retry.onClick.AddListener(delegate
+            {
+                GameManager.Instance.TotalReset();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            });
+        }
+
         exit.onClick.AddListener(delegate { SceneManager.LoadScene(0); });
     }
 }

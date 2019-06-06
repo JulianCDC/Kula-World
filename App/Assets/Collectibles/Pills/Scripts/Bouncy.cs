@@ -1,9 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-/// <summary>
-/// The Main Behaviour of a BouncyPill GameObject
-/// </summary>
 public class Bouncy : Collectible
 {
     public override void Collected()

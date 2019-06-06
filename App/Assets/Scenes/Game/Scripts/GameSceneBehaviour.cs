@@ -28,12 +28,15 @@ public class GameSceneBehaviour : MonoBehaviour
 
     void Tick()
     {
-        GameManager.Instance.elapsedTime += GameManager.Instance.secondsPerTick;
-        Hud.GetHud().timeDisplay.text = $"{GameManager.Instance.elapsedTime} / {GameManager.Instance.maxTime}";
-
-        if (GameManager.Instance.elapsedTime >= GameManager.Instance.maxTime)
+        if (!gameOver)
         {
-            GameOver();
+            GameManager.Instance.elapsedTime += GameManager.Instance.secondsPerTick;
+            Hud.GetHud().timeDisplay.text = $"{GameManager.Instance.elapsedTime} / {GameManager.Instance.maxTime}";
+
+            if (GameManager.Instance.elapsedTime >= GameManager.Instance.maxTime)
+            {
+                GameOver();
+            }
         }
     }
 
@@ -94,7 +97,15 @@ public class GameSceneBehaviour : MonoBehaviour
 
     public static void Win()
     {
-        print("Win");
+        gameOver = true;
+        DisplayWinScreen();
+        PlayerData.Erase();
+    }
+
+    private static void DisplayWinScreen()
+    {
+        var winPopup = Resources.Load<GameObject>("WinPopup");
+        Instantiate(winPopup, Hud.GetHud().transform);
     }
 
     private static void DisplayGameOverScreen()
@@ -115,7 +126,7 @@ public class GameSceneBehaviour : MonoBehaviour
 
     private void ConfigBlock(GameObject blockGameObject, XmlBlock xmlBlock)
     {
-        configBlockPosition(blockGameObject.transform, xmlBlock);
+        ConfigBlockPosition(blockGameObject.transform, xmlBlock);
 
         BlockBehaviour blockBehaviour = blockGameObject.GetComponent<BlockBehaviour>();
 
@@ -126,7 +137,7 @@ public class GameSceneBehaviour : MonoBehaviour
         }
     }
 
-    private void configBlockPosition(Transform blockTransform, XmlBlock xmlBlock)
+    private void ConfigBlockPosition(Transform blockTransform, XmlBlock xmlBlock)
     {
         blockTransform.transform.position = new Vector3(xmlBlock.xPos, xmlBlock.yPos, xmlBlock.zPos);
     }

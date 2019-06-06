@@ -1,50 +1,76 @@
 ﻿using UnityEngine;
+using System;
+using UnityEngine.EventSystems;
 
-/// <summary>
-/// The actions performable by the user in the editor 
-/// </summary>
 public class EditorActions : MonoBehaviour
 {
-    /// <summary>
-    /// The Transform object of the camera
-    /// </summary>
     public Transform fovTransform;
-    /// <summary>
-    /// The block currently selected by the player
-    /// </summary>
-    private GameObject selectedBlock;
-    /// <summary>
-    /// The EditableBlockBehaviour of the currently selected block
-    /// </summary>
-    private EditableBlockBehaviour selectedBlockBehaviour;
+    [SerializeField] private Camera mainCamera;
+    private bool cameraIsUnlocked;
+    private GameObject currentlyPlacing;
 
-    /// <summary>
-    /// Generate the initial Map
-    /// </summary>
+    private float cameraYaw = 0;
+    private float cameraPitch = 0;
+
     private void Start()
     {
+        LockCamera();
         Map.mapInstance = new Map();
     }
 
-    /// <summary>
-    /// Listeners for mouse and keyboard events
-    /// </summary>
     void Update()
     {
-        CameraControls();
+        CameraLockListener();
+
+        if (!cameraIsUnlocked)
+        {
+            CameraControls();
+        }
+
         SelectListener();
         DeleteBlockListener();
+        CancelListener();
+
+        if (EditorManager.Instance.newBlock != null && EditorManager.Instance.SelectedBlock == null)
+        {
+            EditorManager.Instance.SelectedBlock = Instantiate(EditorManager.Instance.newBlock, Vector3.zero,
+                Quaternion.Euler(Vector3.up * 90));
+            EditorManager.Instance.selectedBlockBehaviour.Select();
+            EditorManager.Instance.SelectedBlock.transform.parent = GameObject.Find("Map").transform;
+        }
     }
 
-    /// <summary>
-    /// Listener for block selection
-    /// </summary>
-    ///
-    /// Listen for left click. Create a Raycast on click and :
-    /// <list type="bullet">
-    ///    <item>trigger the <see cref="EditableBlockBehaviour.Select"/> method of the hit GameObject if it is an EditableBlock.</item>
-    ///    <item>call the <see cref="ClearSelectedObject"/> method</item>
-    /// </list>
+    private void CameraLockListener()
+    {
+        if (Input.GetKeyUp(KeyCode.G))
+        {
+            if (cameraIsUnlocked)
+            {
+                LockCamera();
+            }
+            else
+            {
+                UnlockCamera();
+            }
+        }
+    }
+
+    private void UnlockCamera()
+    {
+        EditorManager.Instance.canPlaceBlock = false;
+        cameraIsUnlocked = true;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    private void LockCamera()
+    {
+        EditorManager.Instance.canPlaceBlock = true;
+        cameraIsUnlocked = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     private void SelectListener()
     {
         if (Input.GetButtonDown("Fire1"))
@@ -56,39 +82,20 @@ public class EditorActions : MonoBehaviour
             {
                 GameObject hitObject = hit.collider.gameObject;
                 EditableBlockBehaviour hitObjectBehaviour = hitObject.GetComponent<EditableBlockBehaviour>();
-                
-                ArrowBehaviour hitArrowBehaviour = hitObject.GetComponent<ArrowBehaviour>();
-                bool isBlock = false;
-                bool isArrow = false;
 
-                if (hitObjectBehaviour != null)
+                bool isBlock = hitObjectBehaviour != null;
+
+                if (EditorManager.Instance.SelectedBlock != null)
                 {
-                    isBlock = true;
-                }
-                else if (hitArrowBehaviour != null)
-                {
-                    isArrow = true;
+                    EditorManager.Instance.selectedBlockBehaviour.UnSelect();
                 }
 
                 if (isBlock)
                 {
-                    if (hitObject != this.selectedBlock)
-                    {
-                        if (this.selectedBlockBehaviour != null)
-                        {
-                            this.selectedBlockBehaviour.UnSelect();
-                        }
+                    EditorManager.Instance.SelectedBlock = hitObject;
+                    EditorManager.Instance.selectedBlockBehaviour = hitObjectBehaviour;
 
-                        this.selectedBlock = hitObject;
-                        this.selectedBlockBehaviour = hitObjectBehaviour;
-
-                        hitObjectBehaviour.Select();
-                        
-                    }
-                }
-                else if (isArrow)
-                {
-                    this.selectedBlockBehaviour.Move(hitArrowBehaviour.direction);
+                    hitObjectBehaviour.Select();
                 }
                 else
                 {
@@ -102,138 +109,58 @@ public class EditorActions : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Call the <see cref="EditableBlockBehaviour.UnSelect"/> method of <see cref="selectedBlock"/> and replace <see cref="selectedBlock"/> and <see cref="selectedBlockBehaviour"/> by null
-    /// </summary>
     private void ClearSelectedObject()
     {
-        if (this.selectedBlockBehaviour != null)
+        if (EditorManager.Instance.selectedBlockBehaviour != null)
         {
-            this.selectedBlockBehaviour.UnSelect();
+            EditorManager.Instance.selectedBlockBehaviour.UnSelect();
         }
 
-        this.selectedBlock = null;
-        this.selectedBlockBehaviour = null;
+        EditorManager.Instance.SelectedBlock = null;
+        EditorManager.Instance.selectedBlockBehaviour = null;
     }
 
-    /// <summary>
-    /// Listener for block deletion
-    /// </summary>
-    /// Listen for keyboard input of suppr or del to call <see cref="ClearSelectedObject"/>
     private void DeleteBlockListener()
     {
         if (Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Delete))
         {
-            if (this.selectedBlockBehaviour == null) return;
-            Map.DeleteBlock(this.selectedBlockBehaviour.xmlBlock);
-            Destroy(this.selectedBlock);
+            if (EditorManager.Instance.selectedBlockBehaviour == null) return;
+
+            Map.DeleteBlock(EditorManager.Instance.selectedBlockBehaviour.xmlBlock);
+            Destroy(EditorManager.Instance.SelectedBlock);
             ClearSelectedObject();
         }
     }
 
-    
+    private void CancelListener()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            EditorManager.Instance.ClearPreSelection();
+        }
+    }
 
-    /// <summary>
-    /// Listener for camera movement
-    /// </summary>
-    ///
-    /// Listen for:
-    /// <list type="bullet">
-    ///    <item>Middle click for rotation and zoom</item>
-    ///    <item>Right click for movement</item>
-    /// </list>
-    ///
-    /// Call either <see cref="MoveCamera"/> or <see cref="PivotCamera"/>
     private void CameraControls()
     {
-        float xMovement = Input.GetAxis("Mouse X");
-        float yMovement = Input.GetAxis("Mouse Y");
-        float zMovement = Input.GetAxis("Mouse ScrollWheel");
-
-        if (xMovement != 0)
-        {
-            if (Input.GetMouseButton(1) && Input.GetMouseButton(2))
-            {
-                // do nothing
-            }
-            else if (Input.GetMouseButton(2) == true)
-            {
-                MoveCamera(0, xMovement);
-            }
-            else if (Input.GetMouseButton(1) == true)
-            {
-                PivotCamera(0, xMovement);
-            }
-        }
-
-        if (yMovement != 0)
-        {
-            if (Input.GetMouseButton(1) && Input.GetMouseButton(2))
-            {
-                // do nothing
-            }
-            else if (Input.GetMouseButton(2) == true)
-            {
-                MoveCamera(1, yMovement);
-            }
-            else if (Input.GetMouseButton(1) == true)
-            {
-                PivotCamera(1, yMovement);
-            }
-        }
-
-        if (zMovement != 0)
-        {
-            MoveCamera(2, zMovement);
-        }
+        RotateCamera();
+        MoveCamera();
     }
 
-    /// <summary>
-    /// Move the camera in the specified direction
-    /// </summary>
-    /// <param name="direction">The direction in which to move the camera (0: x, 1: y, 2: z)</param>
-    /// <param name="value">The distance to travel</param>
-    private void MoveCamera(int direction, float value)
+    private void RotateCamera()
     {
-        Vector3 translation = new Vector3();
-        const float sensibilityChanger = 1.62f;
+        float sensibility = 1.0f;
 
-        switch (direction)
-        {
-            case 0:
-                translation = new Vector3(value / sensibilityChanger, 0);
-                break;
-            case 1:
-                translation = new Vector3(0, value / sensibilityChanger);
-                break;
-            case 2:
-                translation = new Vector3(0, 0, value);
-                break;
-        }
+        cameraYaw += Input.GetAxis("Mouse X") * sensibility;
+        cameraPitch -= Input.GetAxis("Mouse Y") * sensibility;
 
-
-        this.fovTransform.Translate(translation);
+        mainCamera.transform.eulerAngles = new Vector3(cameraPitch, cameraYaw, mainCamera.transform.rotation.z);
     }
 
-    /// <summary>
-    /// Rotate the camera in the specified direction
-    /// </summary>
-    /// <param name="direction">The direction in which to rotate the camera (0: y, 1: x)</param>
-    /// <param name="value">The distance to travel</param>
-    private void PivotCamera(int direction, float value)
+    private void MoveCamera()
     {
-        Vector3 axis = Vector3.zero;
+        float sensibility = 0.5f;
 
-        switch (direction)
-        {
-            case 0:
-                axis = Vector3.up;
-                break;
-            case 1:
-                axis = Vector3.right;
-                break;
-        }
-
-        this.fovTransform.RotateAround(this.fovTransform.position, axis, value);
+        mainCamera.transform.Translate(Input.GetAxis("Horizontal editor") * sensibility, 0,
+            Input.GetAxis("Vertical editor") * sensibility);
     }
 }
