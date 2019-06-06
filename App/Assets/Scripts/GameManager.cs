@@ -68,8 +68,9 @@ public class GameManager : Singleton<GameManager>
         else
         {
             GameSceneBehaviour.Win();
+            return;
         }
-
+        
         NewLevel();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
