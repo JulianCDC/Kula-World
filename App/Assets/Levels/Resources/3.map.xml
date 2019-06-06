@@ -29,24 +29,24 @@
     <Block id="45" has_item="false" type="Block" x="-1" y="0" z="6" item_position="none" />
     <Block id="46" has_item="false" type="Block" x="-2" y="0" z="6" item_position="none" />
     <Block id="47" has_item="false" type="Block" x="-3" y="0" z="6" item_position="none" />
-    <Block id="49" has_item="false" type="Block with apple" x="-2" y="0" z="3" item_position="up" />
-    <Block id="50" has_item="false" type="Block with banana" x="-2" y="0" z="0" item_position="up" />
-    <Block id="51" has_item="false" type="Block with watermelon" x="-2" y="0" z="-3" item_position="up" />
+    <Block id="49" has_item="true" type="Block with apple" x="-2" y="0" z="3" item_position="up" />
+    <Block id="50" has_item="true" type="Block with banana" x="-2" y="0" z="0" item_position="up" />
+    <Block id="51" has_item="true" type="Block with watermelon" x="-2" y="0" z="-3" item_position="up" />
     <Block id="61" has_item="false" type="Block" x="-8" y="0" z="3" item_position="none" />
     <Block id="63" has_item="false" type="Block" x="-8" y="0" z="-3" item_position="none" />
-    <Block id="69" has_item="false" type="Block with key" x="-6" y="0" z="0" item_position="up" />
-    <Block id="71" has_item="false" type="Block with coin" x="-6" y="0" z="-3" item_position="up" />
-    <Block id="72" has_item="false" type="Block with coin" x="-6" y="0" z="3" item_position="up" />
+    <Block id="69" has_item="true" type="Block with key" x="-6" y="0" z="0" item_position="up" />
+    <Block id="71" has_item="true" type="Block with coin" x="-6" y="0" z="-3" item_position="up" />
+    <Block id="72" has_item="true" type="Block with coin" x="-6" y="0" z="3" item_position="up" />
     <Block id="78" has_item="false" type="Block" x="-10" y="0" z="-2" item_position="none" />
     <Block id="79" has_item="false" type="Block" x="-10" y="0" z="-1" item_position="none" />
     <Block id="82" has_item="false" type="Block" x="-10" y="0" z="1" item_position="none" />
     <Block id="83" has_item="false" type="Block" x="-10" y="0" z="2" item_position="none" />
     <Block id="84" has_item="false" type="Block" x="0" y="0" z="0" item_position="none" />
-    <Block id="85" has_item="false" type="Block with pumpkin" x="-10" y="0" z="-3" item_position="up" />
-    <Block id="86" has_item="false" type="Block with lethargy pill" x="-4" y="0" z="-3" item_position="up" />
-    <Block id="88" has_item="false" type="Block with lethargy pill" x="-4" y="0" z="3" item_position="up" />
-    <Block id="90" has_item="false" type="Block with strawberry" x="-10" y="0" z="3" item_position="up" />
-    <Block id="91" has_item="false" type="Block with exit" x="-10" y="0" z="0" item_position="up" />
+    <Block id="85" has_item="true" type="Block with pumpkin" x="-10" y="0" z="-3" item_position="up" />
+    <Block id="86" has_item="true" type="Block with lethargy pill" x="-4" y="0" z="-3" item_position="up" />
+    <Block id="88" has_item="true" type="Block with lethargy pill" x="-4" y="0" z="3" item_position="up" />
+    <Block id="90" has_item="true" type="Block with strawberry" x="-10" y="0" z="3" item_position="up" />
+    <Block id="91" has_item="true" type="Block with exit" x="-10" y="0" z="0" item_position="up" />
   </Blocks>
   <Meta keys="1" time="60" />
 </Map>

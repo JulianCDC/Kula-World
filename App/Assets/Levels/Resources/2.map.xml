@@ -30,15 +30,15 @@
     <Block id="36" has_item="false" type="Block" x="-4" y="0" z="2" item_position="none" />
     <Block id="37" has_item="false" type="Block" x="-4" y="0" z="1" item_position="none" />
     <Block id="43" has_item="false" type="Block" x="-4" y="0" z="-4" item_position="none" />
-    <Block id="45" has_item="false" type="Block with gem" x="-4" y="0" z="-1" item_position="up" />
-    <Block id="53" has_item="false" type="Block with key" x="-3" y="0" z="-1" item_position="back" />
-    <Block id="55" has_item="false" type="Block with exit" x="-8" y="0" z="-1" item_position="up" />
-    <Block id="56" has_item="false" type="Block with pumpkin" x="0" y="0" z="-5" item_position="up" />
-    <Block id="57" has_item="false" type="Block with apple" x="0" y="0" z="3" item_position="up" />
-    <Block id="58" has_item="false" type="Block with coin" x="-4" y="0" z="3" item_position="up" />
-    <Block id="60" has_item="false" type="Block with banana" x="-4" y="0" z="-5" item_position="up" />
-    <Block id="61" has_item="false" type="Block with strawberry" x="-8" y="0" z="-5" item_position="up" />
-    <Block id="62" has_item="false" type="Block with watermelon" x="-8" y="0" z="3" item_position="up" />
+    <Block id="45" has_item="true" type="Block with gem" x="-4" y="0" z="-1" item_position="up" />
+    <Block id="53" has_item="true" type="Block with key" x="-3" y="0" z="-1" item_position="back" />
+    <Block id="55" has_item="true" type="Block with exit" x="-8" y="0" z="-1" item_position="up" />
+    <Block id="56" has_item="true" type="Block with pumpkin" x="0" y="0" z="-5" item_position="up" />
+    <Block id="57" has_item="true" type="Block with apple" x="0" y="0" z="3" item_position="up" />
+    <Block id="58" has_item="true" type="Block with coin" x="-4" y="0" z="3" item_position="up" />
+    <Block id="60" has_item="true" type="Block with banana" x="-4" y="0" z="-5" item_position="up" />
+    <Block id="61" has_item="true" type="Block with strawberry" x="-8" y="0" z="-5" item_position="up" />
+    <Block id="62" has_item="true" type="Block with watermelon" x="-8" y="0" z="3" item_position="up" />
   </Blocks>
   <Meta keys="1" time="60" />
 </Map>

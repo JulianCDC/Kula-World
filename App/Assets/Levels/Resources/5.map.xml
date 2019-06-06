@@ -39,14 +39,14 @@
     <Block id="80" has_item="false" type="Block" x="1" y="0" z="4" item_position="none" />
     <Block id="90" has_item="false" type="Block" x="3" y="1" z="4" item_position="none" />
     <Block id="91" has_item="false" type="Block" x="0" y="0" z="0" item_position="none" />
-    <Block id="92" has_item="false" type="Block with banana" x="0" y="0" z="-4" item_position="up" />
-    <Block id="93" has_item="false" type="Block with apple" x="0" y="0" z="4" item_position="up" />
-    <Block id="94" has_item="false" type="Block with pumpkin" x="-4" y="0" z="0" item_position="up" />
-    <Block id="95" has_item="false" type="Block with strawberry" x="4" y="0" z="0" item_position="up" />
-    <Block id="96" has_item="false" type="Block with key" x="-4" y="2" z="4" item_position="up" />
-    <Block id="98" has_item="false" type="Block with exit" x="4" y="2" z="-4" item_position="up" />
-    <Block id="99" has_item="false" type="Block with gem" x="4" y="2" z="4" item_position="up" />
-    <Block id="101" has_item="false" type="Block with watermelon" x="-4" y="2" z="-4" item_position="up" />
+    <Block id="92" has_item="true" type="Block with banana" x="0" y="0" z="-4" item_position="up" />
+    <Block id="93" has_item="true" type="Block with apple" x="0" y="0" z="4" item_position="up" />
+    <Block id="94" has_item="true" type="Block with pumpkin" x="-4" y="0" z="0" item_position="up" />
+    <Block id="95" has_item="true" type="Block with strawberry" x="4" y="0" z="0" item_position="up" />
+    <Block id="96" has_item="true" type="Block with key" x="-4" y="2" z="4" item_position="up" />
+    <Block id="98" has_item="true" type="Block with exit" x="4" y="2" z="-4" item_position="up" />
+    <Block id="99" has_item="true" type="Block with gem" x="4" y="2" z="4" item_position="up" />
+    <Block id="101" has_item="true" type="Block with watermelon" x="-4" y="2" z="-4" item_position="up" />
   </Blocks>
   <Meta keys="1" time="60" />
 </Map>

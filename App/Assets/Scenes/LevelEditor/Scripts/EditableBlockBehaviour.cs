@@ -32,6 +32,7 @@ public class EditableBlockBehaviour : MonoBehaviour
         if (isBlockWithItem)
         {
             this.xmlBlock.itemPosition = blockWithItemBehaviour.itemPosition;
+            this.xmlBlock.hasItem = true;
         }
         else
         {

@@ -34,19 +34,19 @@
     <Block id="60" has_item="false" type="Block" x="-1" y="-5" z="2" item_position="none" />
     <Block id="61" has_item="false" type="Block" x="-1" y="-5" z="3" item_position="none" />
     <Block id="64" has_item="false" type="Block" x="0" y="0" z="0" item_position="none" />
-    <Block id="67" has_item="false" type="Block with exit" x="2" y="0" z="0" item_position="up" />
+    <Block id="67" has_item="true" type="Block with exit" x="2" y="0" z="0" item_position="up" />
     <Block id="75" has_item="false" type="Block" x="0" y="0" z="0" item_position="none" />
-    <Block id="76" has_item="false" type="Block with key" x="-5" y="-5" z="6" item_position="up" />
-    <Block id="77" has_item="false" type="Block with key" x="0" y="-1" z="-3" item_position="up" />
-    <Block id="79" has_item="false" type="Block with apple" x="1" y="-4" z="2" item_position="up" />
-    <Block id="80" has_item="false" type="Block with banana" x="-4" y="0" z="0" item_position="up" />
-    <Block id="81" has_item="false" type="Block with pumpkin" x="0" y="-2" z="-4" item_position="front" />
-    <Block id="82" has_item="false" type="Block with watermelon" x="-3" y="-3" z="-2" item_position="up" />
-    <Block id="83" has_item="false" type="Block with coin" x="-5" y="-5" z="2" item_position="up" />
-    <Block id="84" has_item="false" type="Block with coin" x="-3" y="-5" z="4" item_position="up" />
-    <Block id="85" has_item="false" type="Block with coin" x="-1" y="-5" z="6" item_position="up" />
-    <Block id="88" has_item="false" type="Block with strawberry" x="-3" y="0" z="1" item_position="right" />
-    <Block id="89" has_item="false" type="Block with gem" x="2" y="-4" z="2" item_position="down" />
+    <Block id="76" has_item="true" type="Block with key" x="-5" y="-5" z="6" item_position="up" />
+    <Block id="77" has_item="true" type="Block with key" x="0" y="-1" z="-3" item_position="up" />
+    <Block id="79" has_item="true" type="Block with apple" x="1" y="-4" z="2" item_position="up" />
+    <Block id="80" has_item="true" type="Block with banana" x="-4" y="0" z="0" item_position="up" />
+    <Block id="81" has_item="true" type="Block with pumpkin" x="0" y="-2" z="-4" item_position="front" />
+    <Block id="82" has_item="true" type="Block with watermelon" x="-3" y="-3" z="-2" item_position="up" />
+    <Block id="83" has_item="true" type="Block with coin" x="-5" y="-5" z="2" item_position="up" />
+    <Block id="84" has_item="true" type="Block with coin" x="-3" y="-5" z="4" item_position="up" />
+    <Block id="85" has_item="true" type="Block with coin" x="-1" y="-5" z="6" item_position="up" />
+    <Block id="88" has_item="true" type="Block with strawberry" x="-3" y="0" z="1" item_position="right" />
+    <Block id="89" has_item="true" type="Block with gem" x="2" y="-4" z="2" item_position="down" />
   </Blocks>
   <Meta keys="2" time="90" />
 </Map>
