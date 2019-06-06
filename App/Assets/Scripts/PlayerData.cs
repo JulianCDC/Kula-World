@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
@@ -6,34 +7,45 @@ public static class PlayerData
 {
     private static readonly string filePath = Application.persistentDataPath + "/progress.kw";
     private static int playerSavedLevel = -1;
+    private static int playerSavedScore = -1;
 
     public static void Save(int levelId)
     {
         playerSavedLevel = levelId;
+        playerSavedScore = GameManager.Instance.TotalScore;
         UpdateDataFile();
     }
 
     public static void Erase()
     {
         playerSavedLevel = 1;
+        playerSavedScore = 0;
         UpdateDataFile();
     }
 
-    public static int GetProgress()
+    public static Dictionary<string, int> GetProgress()
     {
-        if (playerSavedLevel == -1)
+        if (playerSavedLevel == -1 || playerSavedScore == -1)
         {
             ReadDataFile();
         }
-        
-        return playerSavedLevel;
+
+        return new Dictionary<string, int>
+        {
+            {"level", playerSavedLevel},
+            {"score", playerSavedScore}
+        };
     }
 
     private static void UpdateDataFile()
     {
         BinaryFormatter binaryFormatter = new BinaryFormatter();
         FileStream file = File.Create(filePath);
-        binaryFormatter.Serialize(file, playerSavedLevel);
+        binaryFormatter.Serialize(file, new Dictionary<string, int>
+        {
+            {"level", playerSavedLevel},
+            {"score", playerSavedScore}
+        });
         file.Close();
     }
 
@@ -43,12 +55,17 @@ public static class PlayerData
         {
             BinaryFormatter binaryFormatter = new BinaryFormatter();
             FileStream file = File.Open(filePath, FileMode.Open);
-            playerSavedLevel = (int) binaryFormatter.Deserialize(file);
+
+            Dictionary<string, int> savedDatas = (Dictionary<string, int>) binaryFormatter.Deserialize(file);
+
+            playerSavedLevel = savedDatas["level"];
+            playerSavedScore = savedDatas["score"];
             file.Close();
         }
         else
         {
             playerSavedLevel = 1;
+            playerSavedScore = 0;
         }
     }
 }
