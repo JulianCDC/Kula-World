@@ -17,15 +17,22 @@ public class PlayerBlockBehaviour : MonoBehaviour
 
     private float MovementLength => playerSpeedBeforeMovement <= 1 ? 1 * playerSpeedBeforeMovement / 10 : 0.1f;
     private float MovementInterationsCount => playerSpeedBeforeMovement <= 1 ? 1 / MovementLength : 10;
-
     private float MovementIterationDuration => playerSpeedBeforeMovement <= 1
         ? 0.1f / MovementInterationsCount
         : 0.01f / playerSpeedBeforeMovement;
+
+    public AudioSource MoveSource;
+    public AudioClip MoveClip;
+    public AudioSource JumpSource;
+    public AudioClip JumpClip;
 
     private void Start()
     {
         this.playerBehaviour = player.GetComponent<PlayerBehaviour>();
         this.playerCollider = player.GetComponent<SphereCollider>();
+
+        MoveSource.clip = MoveClip;
+        JumpSource.clip = JumpClip;
     }
 
     private void Update()
@@ -46,11 +53,11 @@ public class PlayerBlockBehaviour : MonoBehaviour
 
     private void Move()
     {
-        if (!Map.isEmpty(transform.position + transform.TransformDirection(movingDirection + Vector3.up)))
+        if (!Map.IsEmpty(transform.position + transform.TransformDirection(movingDirection + Vector3.up)))
         {
             StartCoroutine(Climb());
         }
-        else if (Map.isEmpty(transform.position + transform.TransformDirection(movingDirection)))
+        else if (Map.IsEmpty(transform.position + transform.TransformDirection(movingDirection)))
         {
             StartCoroutine(Rotate(movingDirection));
         }
@@ -99,7 +106,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
         var playerJumpLength = GameManager.Instance.playerJumpLength + 1;
         Vector3 destinationDirection;
         Vector3 destinationPosition;
-        
+
         do
         {
             playerJumpLength -= 1;
@@ -122,15 +129,59 @@ public class PlayerBlockBehaviour : MonoBehaviour
             yield return new WaitForSeconds(MovementIterationDuration);
         }
 
-        StopMoving();
+        if (CanFall())
+        {
+            StartCoroutine(Fall());
+        }
+        else
+        {
+            StopMoving();
+        }
 
         this.playerCollider.enabled = true;
         ToggleJump();
     }
 
+    private IEnumerator Fall()
+    {
+        var numberOfIterations = MovementInterationsCount;
+
+        var translationDestination = transform.TransformDirection(movingDirection + Vector3.up);
+
+        for (int i = 0; i < numberOfIterations; i++)
+        {
+            this.transform.transform.Translate(Vector3.down * MovementLength);
+            yield return new WaitForSeconds(MovementIterationDuration);
+        }
+
+        if (!CanFall() || IsOutsideMapBound())
+        {
+            StopMoving();
+        }
+        else
+        {
+            StartCoroutine(Fall());
+        }
+    }
+
+    private bool IsOutsideMapBound()
+    {
+        return this.transform.position.x > Const.MAP_BOUND
+               || this.transform.position.y > Const.MAP_BOUND
+               || this.transform.position.z > Const.MAP_BOUND
+               || this.transform.position.x < -Const.MAP_BOUND
+               || this.transform.position.y < -Const.MAP_BOUND
+               || this.transform.position.z < -Const.MAP_BOUND;
+    }
+
+    private bool CanFall()
+    {
+        return Map.IsEmpty(this.transform.position);
+    }
+
     private bool CanMoveBy(Vector3 direction)
     {
-        return Map.isEmpty(transform.position + transform.TransformDirection(direction));
+        return Map.IsEmpty(transform.position + transform.TransformDirection(direction));
     }
 
     private bool CanJumpForwardOf(int jumpLength)
@@ -171,18 +222,18 @@ public class PlayerBlockBehaviour : MonoBehaviour
     {
         FixPosition();
         FixRotation();
-        CheckIfGameOver();
+        CheckIfPlayerDeath();
         isMoving = false;
     }
 
     private bool PlayerHasBlockBehind()
     {
-        return !Map.isEmpty(transform.position + transform.TransformDirection(Vector3.back + Vector3.up));
+        return !Map.IsEmpty(transform.position + transform.TransformDirection(Vector3.back + Vector3.up));
     }
 
-    private void CheckIfGameOver()
+    private void CheckIfPlayerDeath()
     {
-        if (Map.isEmpty(transform.position))
+        if (Map.IsEmpty(transform.position))
         {
             GameSceneBehaviour.PlayerDeath();
         }
@@ -223,6 +274,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
         {
             jumpButtonPressed = true;
             ToggleJump();
+            JumpSource.Play();
         }
 
         if (Input.GetAxis("Jump") == 0)
@@ -265,5 +317,7 @@ public class PlayerBlockBehaviour : MonoBehaviour
         playerSpeedBeforeMovement = GameManager.Instance.playerSpeed;
         transformBeforeMovement = transform;
         movement();
+        MoveSource.Play();
+
     }
 }

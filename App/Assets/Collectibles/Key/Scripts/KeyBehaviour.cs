@@ -1,18 +1,27 @@
-﻿/// <summary>
-/// The Main Behaviour for the Key GameObject
-/// </summary>
+﻿using UnityEngine;
+
 public class KeyBehaviour : Collectible
 {
+    private static int currentNumberOfKeys;
     private int Id;
 
-    /// <inheritdoc cref="Collectible.Collected"/>
-    /// <summary>
-    /// Set <see cref="Obtained"/> to true
-    /// </summary>
+    protected override void Start()
+    {
+        base.Start();
+
+        currentNumberOfKeys += 1;
+        this.Id = currentNumberOfKeys;
+    }
+    
     public override void Collected()
     {
         base.Collected();
         GameManager.Instance.retrievedKeys += 1;
         Hud.CollectKey(this.Id);
+    }
+
+    public static void ResetKeys()
+    {
+        currentNumberOfKeys = 0;
     }
 }

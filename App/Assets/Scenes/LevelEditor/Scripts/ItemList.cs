@@ -1,41 +1,33 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// The Main Behaviour for the list of Preview GameObject displayed in the Editor scene
-/// </summary>
 public class ItemList : MonoBehaviour
 {
-    /// <summary>
-    /// The textures of all the items to be displayd
-    /// </summary>
-    private GameObject[] previews;
-
+    private GameObject[] blocs;
     [SerializeField] private Light sceneLight;
-
-    /// <summary>
-    /// The template of an item in the list
-    /// </summary>
     public Image previewTemplate;
 
-    /// <summary>
-    /// Load all the <see cref="textures"/> in the list using <see cref="previewTemplate"/>
-    /// </summary>
     void Start()
     {
-        previews = Resources.LoadAll<GameObject>("EditorItemPrefabs");
+        blocs = Resources.LoadAll<GameObject>("EditorItemPrefabs");
 
         int i = 0;
-        foreach (GameObject prefab in previews)
+        foreach (GameObject prefab in blocs)
         {
             Image image = Instantiate(previewTemplate, this.transform);
             PreviewBehaviour imageBehaviour = image.GetComponent<PreviewBehaviour>();
-            
+
             Sprite imageSprite = GeneratePreviewSpriteForGameObject(prefab);
 
-            imageBehaviour.LinkedObject = prefab;
+            imageBehaviour.linkedObject = prefab;
 
             image.sprite = imageSprite;
+            
+            if (i == 0)
+            {
+                imageBehaviour.GenerateInitial();
+            }
+            
             i += 1;
         }
     }

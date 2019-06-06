@@ -92,6 +92,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationDirection: 1
+  KeyClip: {fileID: 8300000, guid: eb8ae3bc53b18453ca6eb431189f1064, type: 3}
+  KeySource: {fileID: 0}
 --- !u!64 &4123875371793636672
 MeshCollider:
   m_ObjectHideFlags: 0

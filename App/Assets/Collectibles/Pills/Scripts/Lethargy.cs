@@ -1,9 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-/// <summary>
-/// The Main Behaviour for the LethargyPill GameObject
-/// </summary>
 public class Lethargy : Collectible
 {
     public override void Collected()

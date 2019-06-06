@@ -1,14 +1,11 @@
-﻿using System;
-using System.Timers;
-using UnityEngine;
+﻿using UnityEngine;
 
-/// <summary>
-/// The behaviour of the player
-/// </summary>
 public class PlayerBehaviour : MonoBehaviour
 {
     [SerializeField] private GameObject invisibleBlock;
     public float rotationVelocity;
+    public AudioClip ObjectClip;
+    public AudioSource ObjectSource;
 
     public void RotateAnimation(Vector3 rotationDirection)
     {
@@ -23,6 +20,8 @@ public class PlayerBehaviour : MonoBehaviour
         if (behaviour != null)
         {
             behaviour.Collected();
+            ObjectSource.clip = ObjectClip;
+            ObjectSource.Play();
         }
     }
 }

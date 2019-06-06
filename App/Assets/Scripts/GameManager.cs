@@ -26,7 +26,7 @@ public class GameManager : Singleton<GameManager>
     public int TotalScore
     {
         get { return _totalScore; }
-        private set
+        set
         {
             if (Hud.GetHud() != null)
             {
@@ -68,13 +68,14 @@ public class GameManager : Singleton<GameManager>
         else
         {
             GameSceneBehaviour.Win();
+            return;
         }
-
+        
         NewLevel();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    private void Reset()
+    private void ResetPlayer()
     {
         playerJumpLength = 1;
         playerSpeed = 1;
@@ -99,7 +100,7 @@ public class GameManager : Singleton<GameManager>
         
         TotalScore -= currentLevelNumber * 50 + PlayerScore;
         PlayerScore = 0;
-        Reset();
+        ResetPlayer();
     }
 
     /**
@@ -109,17 +110,18 @@ public class GameManager : Singleton<GameManager>
     {
         if (officialLevel)
         {
-            currentLevel = PlayerData.GetProgress().ToString();
+            currentLevel = PlayerData.GetProgress()["level"].ToString();
+            TotalScore = PlayerData.GetProgress()["score"];
         }
 
         _playerScore = 0;
-        TotalScore = 0;
         maxTime = 600;
         elapsedTime = 0;
         collectedFruits = 0;
         requiredKeys = 0;
         retrievedKeys = 0;
-        Reset();
+        KeyBehaviour.ResetKeys();
+        ResetPlayer();
     }
 
     public void NewLevel()
@@ -131,6 +133,7 @@ public class GameManager : Singleton<GameManager>
         collectedFruits = 0;
         requiredKeys = 0;
         retrievedKeys = 0;
-        Reset();
+        KeyBehaviour.ResetKeys();
+        ResetPlayer();
     }
 }
