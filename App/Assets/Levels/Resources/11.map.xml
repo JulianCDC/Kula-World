@@ -77,5 +77,5 @@
     <Block id="113" has_item="true" type="Block with watermelon" x="0" y="3" z="7" item_position="up" />
     <Block id="114" has_item="true" type="Block with strawberry" x="-7" y="3" z="0" item_position="up" />
   </Blocks>
-  <Meta keys="2" time="80" />
+  <Meta keys="2" time="200" />
 </Map>

@@ -42,5 +42,5 @@
     <Block id="64" has_item="true" type="Block with exit" x="-4" y="0" z="1" item_position="up" />
     <Block id="65" has_item="true" type="Block with pumpkin" x="-3" y="0" z="1" item_position="back" />
   </Blocks>
-  <Meta keys="1" time="75" />
+  <Meta keys="1" time="120" />
 </Map>

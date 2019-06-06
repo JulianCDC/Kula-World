@@ -48,5 +48,5 @@
     <Block id="88" has_item="true" type="Block with strawberry" x="-3" y="0" z="1" item_position="right" />
     <Block id="89" has_item="true" type="Block with gem" x="2" y="-4" z="2" item_position="down" />
   </Blocks>
-  <Meta keys="2" time="90" />
+  <Meta keys="2" time="240" />
 </Map>

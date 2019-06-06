@@ -139,5 +139,5 @@
     <Block id="175" has_item="true" type="Block with lethargy pill" x="-5" y="3" z="-3" item_position="up" />
     <Block id="176" has_item="true" type="Block with lethargy pill" x="-7" y="3" z="-3" item_position="right" />
   </Blocks>
-  <Meta keys="1" time="45" />
+  <Meta keys="1" time="90" />
 </Map>

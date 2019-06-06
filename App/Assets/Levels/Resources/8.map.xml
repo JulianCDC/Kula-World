@@ -43,5 +43,5 @@
     <Block id="64" has_item="true" type="Block with watermelon" x="2" y="-6" z="0" item_position="up" />
     <Block id="65" has_item="false" type="Block" x="1" y="-6" z="0" item_position="none" />
   </Blocks>
-  <Meta keys="1" time="45" />
+  <Meta keys="1" time="90" />
 </Map>
