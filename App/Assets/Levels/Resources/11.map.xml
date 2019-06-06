@@ -1,7 +1,81 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Map xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Blocks>
     <Block id="1" has_item="false" type="Block" x="0" y="0" z="0" item_position="none" />
-    <Block id="2" has_item="true" type="Block with exit" x="1" y="0" z="0" item_position="up" />
+    <Block id="3" has_item="false" type="Block" x="2" y="0" z="0" item_position="none" />
+    <Block id="5" has_item="false" type="Block" x="0" y="0" z="2" item_position="none" />
+    <Block id="7" has_item="false" type="Block" x="-2" y="0" z="0" item_position="none" />
+    <Block id="9" has_item="false" type="Block" x="0" y="0" z="-2" item_position="none" />
+    <Block id="11" has_item="false" type="Block" x="0" y="1" z="2" item_position="none" />
+    <Block id="12" has_item="false" type="Block" x="0" y="2" z="2" item_position="none" />
+    <Block id="13" has_item="false" type="Block" x="0" y="3" z="2" item_position="none" />
+    <Block id="14" has_item="false" type="Block" x="-2" y="1" z="0" item_position="none" />
+    <Block id="15" has_item="false" type="Block" x="-2" y="2" z="0" item_position="none" />
+    <Block id="16" has_item="false" type="Block" x="-2" y="3" z="0" item_position="none" />
+    <Block id="17" has_item="false" type="Block" x="2" y="1" z="0" item_position="none" />
+    <Block id="18" has_item="false" type="Block" x="2" y="2" z="0" item_position="none" />
+    <Block id="19" has_item="false" type="Block" x="2" y="3" z="0" item_position="none" />
+    <Block id="20" has_item="false" type="Block" x="0" y="1" z="-2" item_position="none" />
+    <Block id="21" has_item="false" type="Block" x="0" y="2" z="-2" item_position="none" />
+    <Block id="22" has_item="false" type="Block" x="0" y="3" z="-2" item_position="none" />
+    <Block id="23" has_item="false" type="Block" x="0" y="-1" z="-2" item_position="none" />
+    <Block id="24" has_item="false" type="Block" x="0" y="-2" z="-2" item_position="none" />
+    <Block id="25" has_item="false" type="Block" x="2" y="-1" z="0" item_position="none" />
+    <Block id="26" has_item="false" type="Block" x="2" y="-2" z="0" item_position="none" />
+    <Block id="27" has_item="false" type="Block" x="0" y="-1" z="2" item_position="none" />
+    <Block id="28" has_item="false" type="Block" x="0" y="-2" z="2" item_position="none" />
+    <Block id="29" has_item="false" type="Block" x="-2" y="-1" z="0" item_position="none" />
+    <Block id="30" has_item="false" type="Block" x="-2" y="-2" z="0" item_position="none" />
+    <Block id="31" has_item="false" type="Block" x="-3" y="3" z="0" item_position="none" />
+    <Block id="32" has_item="false" type="Block" x="-4" y="3" z="0" item_position="none" />
+    <Block id="34" has_item="false" type="Block" x="-6" y="3" z="0" item_position="none" />
+    <Block id="37" has_item="false" type="Block" x="-4" y="-2" z="0" item_position="none" />
+    <Block id="38" has_item="false" type="Block" x="-5" y="-2" z="0" item_position="none" />
+    <Block id="41" has_item="false" type="Block" x="-7" y="-2" z="0" item_position="none" />
+    <Block id="42" has_item="false" type="Block" x="-7" y="-1" z="0" item_position="none" />
+    <Block id="43" has_item="false" type="Block" x="-7" y="0" z="0" item_position="none" />
+    <Block id="44" has_item="false" type="Block" x="-7" y="1" z="0" item_position="none" />
+    <Block id="45" has_item="false" type="Block" x="-7" y="2" z="0" item_position="none" />
+    <Block id="47" has_item="false" type="Block" x="0" y="3" z="3" item_position="none" />
+    <Block id="48" has_item="false" type="Block" x="0" y="3" z="4" item_position="none" />
+    <Block id="50" has_item="false" type="Block" x="0" y="3" z="6" item_position="none" />
+    <Block id="52" has_item="false" type="Block" x="0" y="-2" z="3" item_position="none" />
+    <Block id="55" has_item="false" type="Block" x="0" y="-2" z="6" item_position="none" />
+    <Block id="56" has_item="false" type="Block" x="0" y="-2" z="7" item_position="none" />
+    <Block id="57" has_item="false" type="Block" x="0" y="-1" z="7" item_position="none" />
+    <Block id="58" has_item="false" type="Block" x="0" y="0" z="7" item_position="none" />
+    <Block id="59" has_item="false" type="Block" x="0" y="1" z="7" item_position="none" />
+    <Block id="60" has_item="false" type="Block" x="0" y="2" z="7" item_position="none" />
+    <Block id="62" has_item="false" type="Block" x="4" y="-2" z="0" item_position="none" />
+    <Block id="63" has_item="false" type="Block" x="5" y="-2" z="0" item_position="none" />
+    <Block id="65" has_item="false" type="Block" x="7" y="-2" z="0" item_position="none" />
+    <Block id="66" has_item="false" type="Block" x="7" y="-1" z="0" item_position="none" />
+    <Block id="67" has_item="false" type="Block" x="7" y="0" z="0" item_position="none" />
+    <Block id="68" has_item="false" type="Block" x="7" y="1" z="0" item_position="none" />
+    <Block id="69" has_item="false" type="Block" x="7" y="2" z="0" item_position="none" />
+    <Block id="75" has_item="false" type="Block" x="0" y="3" z="-3" item_position="none" />
+    <Block id="76" has_item="false" type="Block" x="0" y="3" z="-4" item_position="none" />
+    <Block id="78" has_item="false" type="Block" x="0" y="3" z="-6" item_position="none" />
+    <Block id="80" has_item="false" type="Block" x="0" y="-2" z="-3" item_position="none" />
+    <Block id="83" has_item="false" type="Block" x="0" y="-2" z="-6" item_position="none" />
+    <Block id="84" has_item="false" type="Block" x="0" y="-2" z="-7" item_position="none" />
+    <Block id="85" has_item="false" type="Block" x="0" y="-1" z="-7" item_position="none" />
+    <Block id="86" has_item="false" type="Block" x="0" y="0" z="-7" item_position="none" />
+    <Block id="87" has_item="false" type="Block" x="0" y="1" z="-7" item_position="none" />
+    <Block id="88" has_item="false" type="Block" x="0" y="2" z="-7" item_position="none" />
+    <Block id="95" has_item="false" type="Block with gem" x="0" y="3" z="0" item_position="up" />
+    <Block id="97" has_item="false" type="Block with key" x="0" y="-2" z="5" item_position="up" />
+    <Block id="98" has_item="false" type="Block with key" x="0" y="-2" z="-5" item_position="up" />
+    <Block id="101" has_item="false" type="Block with lethargy pill" x="0" y="-2" z="4" item_position="up" />
+    <Block id="102" has_item="false" type="Block with lethargy pill" x="0" y="-2" z="-4" item_position="up" />
+    <Block id="104" has_item="false" type="Block with coin" x="6" y="-2" z="0" item_position="up" />
+    <Block id="105" has_item="false" type="Block with coin" x="-6" y="-2" z="0" item_position="up" />
+    <Block id="109" has_item="false" type="Block with exit" x="7" y="3" z="0" item_position="up" />
+    <Block id="110" has_item="false" type="Block with apple" x="3" y="-2" z="0" item_position="left" />
+    <Block id="111" has_item="false" type="Block with pumpkin" x="-3" y="-2" z="0" item_position="right" />
+    <Block id="112" has_item="false" type="Block with banana" x="0" y="3" z="-7" item_position="up" />
+    <Block id="113" has_item="false" type="Block with watermelon" x="0" y="3" z="7" item_position="up" />
+    <Block id="114" has_item="false" type="Block with strawberry" x="-7" y="3" z="0" item_position="up" />
   </Blocks>
+  <Meta keys="2" time="80" />
 </Map>
