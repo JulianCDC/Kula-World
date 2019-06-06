@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6b150064-1718-4ca9-9776-39f277d7e9f1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.App/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.App/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.App/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.App/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Levels/Resources/13.map.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Levels/Resources/13.map.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game/Scripts/GameSceneBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game/Scripts/GameSceneBehaviour.cs" afterDir="false" />
-    </list>
+    <list default="true" id="6b150064-1718-4ca9-9776-39f277d7e9f1" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,12 +81,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Scenes/Game/Scripts/GameOverPopupBehaviour.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+            <state relative-caret-position="170">
+              <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
               <folding>
-                <marker date="1558288508999" expanded="false" signature="6:175" ph="..." />
-                <marker date="1558288508999" expanded="true" signature="228:620" ph="{...}" />
-                <marker date="1558288508999" expanded="true" signature="341:618" ph="{...}" />
+                <marker date="1559829860801" expanded="false" signature="6:175" ph="..." />
+                <marker date="1559829860801" expanded="true" signature="228:688" ph="{...}" />
+                <marker date="1559829860801" expanded="true" signature="341:686" ph="{...}" />
+                <marker date="1559829860801" expanded="true" signature="374:604" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -300,6 +296,7 @@
         <option value="$PROJECT_DIR$/Assets/Scenes/LevelEditor/Scripts/EditableBlockBehaviour.cs" />
         <option value="$PROJECT_DIR$/Assets/Scenes/Game/Scripts/GameSceneBehaviour.cs" />
         <option value="$PROJECT_DIR$/Assets/Levels/Resources/13.map.xml" />
+        <option value="$PROJECT_DIR$/Assets/Scenes/Game/Scripts/GameOverPopupBehaviour.cs" />
       </list>
     </option>
   </component>
@@ -411,12 +408,12 @@
       <workItem from="1559249810205" duration="9205000" />
       <workItem from="1559515621232" duration="7120000" />
       <workItem from="1559551848358" duration="1515000" />
-      <workItem from="1559824571771" duration="3296000" />
+      <workItem from="1559824571771" duration="3920000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102885000" />
+    <option name="totallyTimeSpent" value="103509000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -428,7 +425,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1119403" />
@@ -1286,12 +1283,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scenes/Game/Scripts/GameOverPopupBehaviour.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+        <state relative-caret-position="170">
+          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
           <folding>
-            <marker date="1558288508999" expanded="false" signature="6:175" ph="..." />
-            <marker date="1558288508999" expanded="true" signature="228:620" ph="{...}" />
-            <marker date="1558288508999" expanded="true" signature="341:618" ph="{...}" />
+            <marker date="1559829860801" expanded="false" signature="6:175" ph="..." />
+            <marker date="1559829860801" expanded="true" signature="228:688" ph="{...}" />
+            <marker date="1559829860801" expanded="true" signature="341:686" ph="{...}" />
+            <marker date="1559829860801" expanded="true" signature="374:604" ph="{...}" />
           </folding>
         </state>
       </provider>
